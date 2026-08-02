@@ -1,0 +1,40 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "declaration": false,
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@tp/tokens": [
+        "../../packages/tokens/src/index.ts"
+      ],
+      "@tp/tokens/css": [
+        "../../packages/tokens/src/tokens.css"
+      ],
+      "@tp/ui": [
+        "../../packages/ui/src/index.ts"
+      ],
+      "@tp/config/tailwind": [
+        "../../packages/config/tailwind-preset.js"
+      ]
+    },
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  // Format with Prettier on save, across the monorepo.
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // --- Tailwind CSS IntelliSense ---
+  // The template's config lives in a subfolder, so point the extension at it.
+  "tailwindCSS.experimental.configFile": {
+    "templates/landing/tailwind.config.js": "templates/landing/**"
+  },
+  // Autocomplete token classes inside cva()/cn() string args (used by @tp/ui).
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+
+  // Let ESLint see each workspace package.
+  "eslint.workingDirectories": [{ "mode": "auto" }]
+}

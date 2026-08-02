@@ -1,0 +1,30 @@
+/* CSS variables generated from tokens. Import once at app root. */
+:root {
+  /* brand */
+  --color-brand-50: #eef4ff;  --color-brand-100: #d9e6ff;
+  --color-brand-200: #bcd3ff; --color-brand-300: #8db6ff;
+  --color-brand-400: #578dff; --color-brand-500: #2f66f5;
+  --color-brand-600: #1d4ed8; --color-brand-700: #1b3fb0;
+  --color-brand-800: #1c368c; --color-brand-900: #1c316f;
+  /* neutral */
+  --color-neutral-0: #ffffff;  --color-neutral-50: #f8fafc;
+  --color-neutral-100: #f1f5f9;--color-neutral-200: #e2e8f0;
+  --color-neutral-300: #cbd5e1;--color-neutral-400: #94a3b8;
+  --color-neutral-500: #64748b;--color-neutral-600: #475569;
+  --color-neutral-700: #334155;--color-neutral-800: #1e293b;
+  --color-neutral-900: #0f172a;--color-neutral-950: #020617;
+  /* semantic */
+  --color-success: #16a34a; --color-warning: #d97706; --color-danger: #dc2626;
+  /* radius */
+  --radius-sm: 0.25rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --radius-xl: 1rem; --radius-2xl: 1.5rem; --radius-full: 9999px;
+  /* type */
+  --font-display: "Clash Display","Space Grotesk",system-ui,sans-serif;
+  --font-body: "Inter",system-ui,sans-serif;
+  --font-mono: "JetBrains Mono",ui-monospace,monospace;
+  /* shadow */
+  --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
+  --shadow-md: 0 4px 12px -2px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 12px 32px -8px rgb(15 23 42 / 0.12);
+  --shadow-xl: 0 24px 48px -12px rgb(15 23 42 / 0.18);
+}

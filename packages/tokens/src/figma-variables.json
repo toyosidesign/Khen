@@ -1,0 +1,19 @@
+{
+  "$description": "Import into Figma via a variables-import plugin. Mirrors tokens/index.ts.",
+  "color": {
+    "brand": {
+      "500": { "$type": "color", "$value": "#2f66f5" },
+      "600": { "$type": "color", "$value": "#1d4ed8" },
+      "700": { "$type": "color", "$value": "#1b3fb0" }
+    },
+    "neutral": {
+      "0":   { "$type": "color", "$value": "#ffffff" },
+      "500": { "$type": "color", "$value": "#64748b" },
+      "900": { "$type": "color", "$value": "#0f172a" }
+    }
+  },
+  "radius": {
+    "md": { "$type": "number", "$value": 8 },
+    "lg": { "$type": "number", "$value": 12 }
+  }
+}

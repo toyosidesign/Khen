@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khen Beautiful analytics to grow smarter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --indigo-50:#eef2ff; --indigo-100:#e0e7ff; --indigo-500:#6172f3;
+      --indigo-600:#444ce7; --indigo-700:#3538cd; --purple-500:#7a5af8;
+      --n-0:#fff; --n-25:#fcfcfd; --n-50:#f9fafb; --n-100:#f2f4f7; --n-200:#eaecf0;
+      --n-300:#d0d5dd; --n-400:#98a2b3; --n-500:#667085; --n-600:#475467;
+      --n-700:#344054; --n-800:#1d2939; --n-900:#101828;
+      --success:#12b76a;
+      --font:"Inter", system-ui, -apple-system, sans-serif;
+      --maxw:1216px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--n-900); background: var(--n-0); -webkit-font-smoothing: antialiased; line-height: 1.5; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+    section { position: relative; }
+
+    /* buttons */
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 16px; padding: 12px 20px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; transition: background .15s, border-color .15s, color .15s; white-space: nowrap; }
+    .btn-primary { background: var(--indigo-600); color: #fff; border-color: var(--indigo-600); }
+    .btn-primary:hover { background: var(--indigo-700); border-color: var(--indigo-700); }
+    .btn-secondary { background: #fff; color: var(--n-700); border-color: var(--n-300); box-shadow: 0 1px 2px rgba(16,24,40,.05); }
+    .btn-secondary:hover { background: var(--n-50); }
+    .eyebrow { color: var(--indigo-600); font-weight: 600; font-size: 16px; }
+
+    /* ---------- NAV ---------- */
+    header { border-bottom: 1px solid var(--n-100); background: #fff; position: sticky; top: 0; z-index: 50; }
+    .nav { display: flex; align-items: center; gap: 40px; height: 72px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; }
+    .brand .mark { width: 30px; height: 30px; border-radius: 8px; background: linear-gradient(135deg,var(--indigo-500),var(--indigo-700)); display: grid; place-items: center; }
+    .brand .mark::after { content: ""; width: 12px; height: 12px; border-radius: 3px; background: #fff; transform: rotate(45deg); }
+    .nav-links { display: flex; align-items: center; gap: 8px; }
+    .nav-links a { color: var(--n-600); font-weight: 600; font-size: 15px; padding: 8px 12px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px; }
+    .nav-links a:hover { color: var(--n-900); background: var(--n-50); }
+    .nav-spacer { flex: 1; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid var(--n-200); }
+    .chev { width: 16px; height: 16px; }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; color: var(--n-700); padding: 8px; }
+    .mobile-menu { display: none; border-top: 1px solid var(--n-100); padding: 12px 0; }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 12px 24px; color: var(--n-700); font-weight: 600; }
+    .mobile-menu .btn { margin: 8px 24px; width: calc(100% - 48px); }
+
+    /* ---------- HERO ---------- */
+    .hero { text-align: center; padding: 96px 0 0; }
+    .badge-new { display: inline-flex; align-items: center; gap: 12px; background: var(--n-50); border: 1px solid var(--n-200); border-radius: 999px; padding: 4px 12px 4px 4px; font-size: 14px; color: var(--n-600); font-weight: 500; }
+    .badge-new .tag { background: #fff; color: var(--indigo-700); border: 1px solid var(--n-200); border-radius: 999px; padding: 2px 10px; font-weight: 600; box-shadow: 0 1px 2px rgba(16,24,40,.05); }
+    .badge-new .link { color: var(--indigo-700); font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .hero h1 { font-size: clamp(40px, 6vw, 64px); line-height: 1.08; letter-spacing: -0.02em; font-weight: 700; margin: 24px auto 0; max-width: 820px; padding: 0 24px; }
+    .hero .sub { font-size: 20px; color: var(--n-500); max-width: 620px; margin: 24px auto 0; }
+    .hero .actions { display: flex; gap: 12px; justify-content: center; margin-top: 40px; }
+    .hero .actions .btn { padding: 14px 22px; }
+
+    /* ---- hero image ---- */
+    .hero-mock { margin: 64px auto 0; max-width: 1080px; }
+    .hero-img { width: 100%; height: auto; display: block; }
+    .device { background: #1d2939; border-radius: 30px; padding: 12px; box-shadow: 0 48px 80px -24px rgba(16,24,40,.35); }
+    .device-screen { background: #fff; border-radius: 18px; overflow: hidden; display: grid; grid-template-columns: 64px 1fr 340px; height: 560px; text-align: left; }
+    /* sidebar */
+    .d-side { border-right: 1px solid var(--n-100); padding: 18px 0; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .d-logo { width: 32px; height: 32px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #a48afb, #6938ef); margin-bottom: 18px; }
+    .d-ic { width: 40px; height: 40px; border-radius: 8px; display: grid; place-items: center; color: var(--n-400); }
+    .d-ic.active { background: var(--n-100); color: var(--n-700); }
+    /* main */
+    .d-main { padding: 22px 24px; overflow: hidden; }
+    .d-main-top { display: flex; align-items: center; justify-content: space-between; }
+    .d-main-top h3 { font-size: 22px; font-weight: 600; }
+    .d-actions { display: flex; gap: 10px; }
+    .d-btn { font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 8px; border: 1px solid var(--n-300); background: #fff; color: var(--n-700); display: inline-flex; align-items: center; gap: 7px; box-shadow: 0 1px 2px rgba(16,24,40,.05); }
+    .d-btn .g { width: 8px; height: 8px; border-radius: 50%; background: var(--success); }
+    .d-btn.primary { background: #7f56d9; border-color: #7f56d9; color: #fff; }
+    .d-divider { height: 1px; background: var(--n-100); margin: 18px -24px; }
+    .d-chart-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .d-chart-head h4 { font-size: 16px; font-weight: 600; }
+    .d-seg { display: inline-flex; border: 1px solid var(--n-300); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 2px rgba(16,24,40,.05); }
+    .d-seg span { font-size: 13px; font-weight: 600; color: var(--n-600); padding: 7px 13px; border-left: 1px solid var(--n-200); }
+    .d-seg span:first-child { border-left: none; }
+    .d-seg span.active { background: var(--n-50); color: var(--n-800); }
+    .d-chart { width: 100%; height: 200px; }
+    .d-lists { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 12px; }
+    .d-lists h5 { font-size: 16px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--n-100); }
+    .d-lists h5 .dots { color: var(--n-400); font-size: 18px; line-height: 0; }
+    .d-person { display: flex; align-items: center; gap: 12px; padding: 12px 0; }
+    .pa { width: 40px; height: 40px; border-radius: 50%; flex: none; }
+    .d-person .pn { font-weight: 600; font-size: 14px; }
+    .d-person .ph { color: var(--n-500); font-size: 13px; }
+    .d-person .pl { margin-left: auto; color: var(--n-600); font-size: 13px; display: flex; align-items: center; gap: 10px; }
+    .d-person .pc { color: var(--n-400); }
+    /* chat */
+    .d-chat { border-left: 1px solid var(--n-100); display: flex; flex-direction: column; overflow: hidden; }
+    .d-chat-top { padding: 18px 20px; border-bottom: 1px solid var(--n-100); display: flex; align-items: flex-start; justify-content: space-between; }
+    .d-chat-top .nm { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+    .d-chat-top .on { color: var(--success); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 5px; }
+    .d-chat-top .on::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--success); }
+    .d-chat-top .loc { color: var(--n-500); font-size: 14px; margin-top: 2px; }
+    .d-chat-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 6px; overflow: hidden; }
+    .d-file { display: flex; align-items: center; gap: 10px; border: 1px solid var(--n-200); border-radius: 10px; padding: 10px; box-shadow: 0 1px 2px rgba(16,24,40,.05); }
+    .d-file .fi { width: 34px; height: 40px; border-radius: 4px; background: #fff; border: 1px solid var(--n-200); display: grid; place-items: center; color: #7f56d9; }
+    .d-file .fn { font-size: 13px; font-weight: 600; }
+    .d-file .fs { font-size: 12px; color: var(--n-500); }
+    .d-meta { display: flex; justify-content: space-between; font-size: 12px; color: var(--n-500); margin-top: 8px; }
+    .d-meta.right { flex-direction: row-reverse; }
+    .d-meta .who { font-weight: 600; color: var(--n-700); }
+    .cb { font-size: 14px; padding: 10px 14px; border-radius: 10px; line-height: 1.45; max-width: 90%; }
+    .cb.them { background: var(--n-50); color: var(--n-700); border-top-left-radius: 2px; }
+    .cb.me { background: #7f56d9; color: #fff; margin-left: auto; border-top-right-radius: 2px; }
+    .cb .lnk { color: #e9d7fe; }
+    .d-react { display: flex; gap: 4px; justify-content: flex-end; font-size: 15px; }
+    .d-row { display: flex; gap: 10px; align-items: flex-start; }
+    .d-today { text-align: center; font-size: 13px; color: var(--n-500); border-top: 1px solid var(--n-100); line-height: 0.1em; margin: 12px 0; }
+    .d-today span { background: #fff; padding: 0 12px; }
+
+    /* ---------- LOGO CLOUD ---------- */
+    .logos { padding: 48px 0 72px; }
+    .social-proof { width: 100%; height: auto; display: block; }
+    .divider { border: 0; height: 1px; background: var(--n-200); margin: 0; }
+
+    /* ---------- SECTION HEADING ---------- */
+    .sec-head { text-align: center; max-width: none; margin: 0 auto; }
+    .sec-head h2 { font-size: clamp(30px,4vw,40px); letter-spacing: -0.02em; font-weight: 700; margin: 12px 0 20px; white-space: nowrap; }
+    .sec-head p { font-size: 19px; color: var(--n-500); max-width: 640px; margin: 0 auto; }
+
+    /* ---------- FEATURES GRID ---------- */
+    .features { padding: 96px 0; }
+    .feat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px 32px; margin-top: 64px; }
+    .feat { text-align: center; }
+    .feat .ic { width: 48px; height: 48px; border-radius: 50%; background: var(--indigo-100); color: var(--indigo-600); box-shadow: 0 0 0 8px var(--indigo-50); display: grid; place-items: center; margin: 10px auto 30px; }
+    .feat h3 { font-size: 18px; margin-bottom: 8px; }
+    .feat p { color: var(--n-500); font-size: 15px; }
+    .feat .more { display: inline-flex; align-items: center; gap: 6px; color: var(--indigo-700); font-weight: 600; font-size: 15px; margin-top: 16px; }
+
+    /* ---------- TESTIMONIAL ---------- */
+    .quote { background: var(--n-50); padding: 96px 0; text-align: center; }
+    .quote .logo { font-size: 22px; font-weight: 700; color: var(--n-900); display: inline-flex; align-items: center; gap: 10px; }
+    .quote .logo svg { width: 26px; height: 26px; }
+    .quote blockquote { font-size: clamp(24px,3.2vw,34px); font-weight: 500; line-height: 1.35; letter-spacing: -0.01em; max-width: 900px; margin: 28px auto; }
+    .quote .who { display: flex; flex-direction: column; align-items: center; margin-top: 40px; }
+    .quote .who .avatar-photo { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 4px rgba(127,86,217,.12); margin-bottom: 16px; }
+    .quote .who .name { font-weight: 600; font-size: 16px; }
+    .quote .who .role { color: var(--n-500); font-size: 15px; margin-top: 2px; }
+
+    /* ---------- SHOWCASE ---------- */
+    .showcase { padding: 96px 0; }
+    .showcase-mock { margin: 48px 0 0; }
+    .showcase-img { width: 100%; height: auto; display: block; }
+    .showcase .feat-grid { grid-template-columns: repeat(3,1fr); margin-top: 48px; }
+
+    /* ---------- FAQ ---------- */
+    .faq { padding: 96px 0; }
+    .faq-list { max-width: 768px; margin: 56px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--n-200); padding: 24px 0; }
+    .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; font-weight: 600; font-size: 18px; color: var(--n-900); background: none; border: none; width: 100%; text-align: left; font-family: inherit; }
+    .faq-q .ic { color: var(--n-400); flex: none; }
+    .faq-a { color: var(--n-500); font-size: 16px; max-width: 90%; margin-top: 12px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+    .faq-help { background: var(--n-50); text-align: center; padding: 64px 24px; }
+    .faq-help .stack { display: flex; justify-content: center; margin-bottom: 20px; }
+    .faq-help .stack .a { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #fff; object-fit: cover; margin-left: -14px; box-shadow: 0 1px 3px rgba(16,24,40,.12); }
+    .faq-help .stack .a:first-child { margin-left: 0; }
+    .faq-help h4 { font-size: 20px; margin-bottom: 8px; }
+    .faq-help p { color: var(--n-500); margin-bottom: 20px; }
+
+    /* ---------- METRICS ---------- */
+    .metrics { padding: 96px 0; }
+    .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .metrics .eyebrow { display: block; }
+    .metrics h2 { font-size: clamp(30px,4vw,40px); letter-spacing: -0.02em; margin: 12px 0 16px; }
+    .metrics .lede { color: var(--n-500); font-size: 18px; margin-bottom: 40px; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .stat .n { font-size: 48px; font-weight: 800; color: var(--indigo-600); letter-spacing: -.02em; }
+    .stat .t { font-weight: 600; margin: 4px 0; }
+    .stat .d { color: var(--n-500); font-size: 15px; }
+    .metrics-photo { width: 100%; height: 440px; object-fit: cover; border-radius: 16px; display: block; }
+
+    /* ---------- CTA ---------- */
+    .cta { padding: 0; }
+    .cta-inner { background: var(--n-50); text-align: center; padding: 96px 24px; }
+    .cta-inner h2 { font-size: clamp(30px,4vw,40px); letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cta-inner p { color: var(--n-500); font-size: 19px; margin-bottom: 32px; }
+    .cta-inner .actions { display: flex; gap: 12px; justify-content: center; }
+
+    /* ---------- FOOTER ---------- */
+    footer { border-top: 1px solid var(--n-100); padding: 64px 0 40px; }
+    .foot-grid { display: grid; grid-template-columns: repeat(6,1fr); gap: 32px; }
+    .foot-col h5 { font-size: 14px; color: var(--n-500); font-weight: 600; margin-bottom: 16px; }
+    .foot-col a { display: flex; align-items: center; gap: 8px; color: var(--n-600); font-weight: 500; font-size: 15px; padding: 6px 0; }
+    .foot-col a:hover { color: var(--n-900); }
+    .foot-badge { background: var(--indigo-50); color: var(--indigo-700); font-size: 12px; font-weight: 600; padding: 1px 8px; border-radius: 999px; }
+    .foot-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--n-200); margin-top: 48px; padding-top: 32px; color: var(--n-500); font-size: 15px; }
+    .foot-social { display: flex; gap: 20px; }
+    .foot-social a { color: var(--n-400); }
+    .foot-social a:hover { color: var(--n-600); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 960px) {
+      .nav-links { display: none; }
+      .nav > .avatar { display: none; }
+      .hamburger { display: inline-flex; }
+      .nav-spacer { flex: 1; }
+      .device-screen { grid-template-columns: 56px 1fr; height: 480px; }
+      .d-chat { display: none; }
+      .sec-head h2 { white-space: normal; }
+      .showcase-mock { max-width: 600px; margin: 48px auto 0; }
+      .feat-grid, .showcase .feat-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 48px; padding: 0 24px; }
+      .showcase .feat-grid .feat:last-child { grid-column: 1 / -1; max-width: calc(50% - 24px); margin-inline: auto; }
+      .faq-list { padding: 0 24px; }
+      .metrics-grid { grid-template-columns: 1fr; gap: 40px; padding: 0 24px; }
+      .metrics-photo { height: 300px; order: -1; }
+      .foot-grid { grid-template-columns: repeat(3, 1fr); gap: 40px; padding: 0 32px; }
+      .foot-grid .foot-col:nth-child(3n+2) { text-align: center; }
+      .foot-grid .foot-col:nth-child(3n+2) a { justify-content: center; }
+      .foot-grid .foot-col:nth-child(3n) { text-align: right; }
+      .foot-grid .foot-col:nth-child(3n) a { justify-content: flex-end; }
+    }
+    @media (max-width: 560px) {
+      .hero { padding: 56px 16px 0; }
+      .hero h1 { font-size: 36px; line-height: 44px; padding: 0; }
+      .hero .sub { font-size: 18px; }
+      .hero .actions { flex-direction: column; align-items: stretch; padding: 0; }
+      .badge-new { font-size: 12px; gap: 6px; padding: 2px 8px 2px 2px; white-space: nowrap; background: var(--indigo-50); border-color: var(--indigo-100); color: var(--indigo-700); }
+      .badge-new .tag { padding: 1px 8px; border-color: var(--indigo-100); box-shadow: none; }
+      .badge-new .link span { display: inline; }
+      .badge-new .link svg { width: 14px; height: 14px; }
+      .device-screen { grid-template-columns: 1fr; height: 440px; }
+      .d-side { display: none; }
+      /* all non-hero section titles: 30px / 38px */
+      .sec-head h2, .cta-inner h2 { white-space: normal; font-size: 30px; line-height: 38px; }
+      /* section titles + descriptions get the same 16px side gutter as the hero */
+      .sec-head { padding: 0 16px; }
+      /* tighter vertical rhythm between sections on mobile */
+      .features, .showcase, .quote, .faq, .metrics { padding-top: 56px; padding-bottom: 56px; }
+      .cta-inner { padding: 56px 16px; }
+      .cta-inner .wrap { padding: 0; }
+      .faq-help { padding-top: 48px; padding-bottom: 48px; }
+      .logos { padding: 24px 0 40px; }
+      footer { padding-top: 48px; padding-bottom: 32px; }
+      .hero-mock { margin-top: 40px; }
+      .feat-grid, .showcase .feat-grid { margin-top: 40px; }
+      .faq-list { margin-top: 12px; padding: 0 16px; }
+      .faq-a { max-width: 100%; }
+      .showcase-mock { margin-top: 32px; }
+      /* features + showcase: single centered column */
+      .feat-grid, .showcase .feat-grid { grid-template-columns: 1fr; gap: 48px; padding: 0 24px; }
+      .showcase .feat-grid .feat:last-child { grid-column: auto; max-width: none; margin-inline: 0; }
+      /* metrics: stats stack one-per-row, photo drops to the bottom */
+      .metrics-grid { gap: 40px; padding: 0 16px; }
+      .metrics-photo { order: 0; height: 260px; border-radius: 0; }
+      .metrics h2 { font-size: 30px; line-height: 38px; white-space: nowrap; }
+      .stat-grid { grid-template-columns: 1fr; gap: 32px; }
+      .stat { text-align: center; }
+      .stat .n { font-size: 40px; }
+      /* footer: two even columns, all left-aligned */
+      .foot-grid { grid-template-columns: repeat(2,1fr); gap: 40px 24px; padding: 0 24px; }
+      .foot-grid .foot-col:nth-child(3n+2), .foot-grid .foot-col:nth-child(3n) { text-align: left; }
+      .foot-grid .foot-col:nth-child(3n+2) a, .foot-grid .foot-col:nth-child(3n) a { justify-content: flex-start; }
+      .foot-bottom { flex-direction: column-reverse; gap: 20px; align-items: flex-start; }
+      .cta-inner .actions { flex-direction: column; align-items: stretch; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="brand"><span class="mark"></span> Khen</a>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Products <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Resources <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Pricing</a>
+      </nav>
+      <span class="nav-spacer"></span>
+      <img class="avatar" src="./assets/avatar-nav.png" alt="Your account" />
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">Home</a>
+      <a href="#">Products</a>
+      <a href="#">Resources</a>
+      <a href="#">Pricing</a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="badge-new">
+      <span class="tag">New feature</span>
+      <span class="link">Check out the team dashboard <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </span>
+    <h1>Beautiful analytics to grow smarter</h1>
+    <p class="sub">Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users. Trusted by over 4,000 startups.</p>
+    <div class="actions">
+      <button class="btn btn-secondary"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg> Demo</button>
+      <button class="btn btn-primary">Sign up</button>
+    </div>
+
+    <!-- hero image — desktop: hero-dashboard.png (tablet) · mobile: hero-dashboard-mobile.png (full MacBook) -->
+    <div class="hero-mock">
+      <picture>
+        <source media="(max-width: 560px)" srcset="./assets/hero-dashboard-mobile.png" />
+        <img class="hero-img" src="./assets/hero-dashboard.png" alt="Khen analytics dashboard, Stats for Olivia Rhye" />
+      </picture>
+    </div>
+  </section>
+
+  <!-- LOGO CLOUD (overlaps the hero image) -->
+  <!-- desktop: social-proof.png (single row) · mobile: social-proof-mobile.png (2×3 grid, generated from the strip) -->
+  <section class="logos">
+    <div class="wrap">
+      <picture>
+        <source media="(max-width: 560px)" srcset="./assets/social-proof-mobile.png" />
+        <img class="social-proof" src="./assets/social-proof.png" alt="Join 4,000+ companies already growing: coinbase, Spotify, slack, Dropbox, webflow, zoom" />
+      </picture>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider" /></div>
+
+  <!-- FEATURES 1 -->
+  <section class="features wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Features</span>
+      <h2>Analytics that feels like it's from the future</h2>
+      <p>Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><h3>Share team inboxes</h3><p>Whether you have a team of 2 or 200, our shared team inboxes keep everyone on the same page and in the loop.</p></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Deliver instant answers</h3><p>An all-in-one customer service platform that helps you balance everything your customers need to be happy.</p></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg></div><h3>Manage your team with reports</h3><p>Measure what matters with Khen's easy-to-use reports. You can filter, export, and drilldown on the data.</p></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></svg></div><h3>Connect with customers</h3><p>Solve a problem or close a sale in real-time with chat. If no one is available, customers are routed to email.</p></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="6" height="6" rx="2"/><rect x="15" y="9" width="6" height="6" rx="2"/><path d="M9 12h6M6 3v6M6 21v-6M18 3v6M18 21v-6"/></svg></div><h3>Connect the tools you already use</h3><p>Explore 100+ integrations that make your day-to-day workflow more efficient and familiar.</p></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 5.6a5.4 5.4 0 0 0-7.6 0L12 6.8l-1.2-1.2a5.4 5.4 0 1 0-7.6 7.6L12 21.6l8.8-8.4a5.4 5.4 0 0 0 0-7.6Z"/></svg></div><h3>Our people make the difference</h3><p>We're an extension of your team, and all of our resources are free. Chat to our friendly team 24/7 when you need help.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section class="quote">
+    <div class="wrap">
+      <span class="logo">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="allure" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7c3aed"/><stop offset="1" stop-color="#4f46e5"/></linearGradient></defs>
+          <path d="M12 1.5c.8 5 4 8.2 9 9-5 .8-8.2 4-9 9-.8-5-4-8.2-9-9 5-.8 8.2-4 9-9Z" fill="url(#allure)"/>
+        </svg>
+        Allure
+      </span>
+      <blockquote>We've been using Khen to kick start every new project and can't imagine working without it.</blockquote>
+      <div class="who">
+        <img class="avatar-photo" src="./assets/avatar-candice.png" alt="Candice Wu" />
+        <div class="name">Candice Wu</div>
+        <div class="role">Product Manager, Allure</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE -->
+  <section class="showcase wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Features</span>
+      <h2>Cutting-edge features for advanced analytics</h2>
+      <p>Powerful, self-serve product and growth analytics to help you convert, engage, and retain more users.</p>
+    </div>
+    <div class="showcase-mock">
+      <!-- desktop: features-showcase.png (desktop + phone) · mobile: features-showcase-mobile.png (phone only) -->
+      <picture>
+        <source media="(max-width: 560px)" srcset="./assets/features-showcase-mobile.png" />
+        <img class="showcase-img" src="./assets/features-showcase.png" alt="Khen dashboard on desktop and mobile, MRR, members, and recent posts" />
+      </picture>
+    </div>
+    <div class="feat-grid">
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><h3>Share team inboxes</h3><p>Whether you have a team of 2 or 200, our shared team inboxes keep everyone in the loop.</p><a class="more" href="#">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3>Deliver instant answers</h3><p>An all-in-one customer service platform that helps you balance everything customers need.</p><a class="more" href="#">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+      <div class="feat"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg></div><h3>Manage your team with reports</h3><p>Measure what matters with Khen's easy-to-use reports. Filter, export, and drilldown fast.</p><a class="more" href="#">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </section>
+
+  <div class="wrap"><hr class="divider" /></div>
+
+  <!-- FAQ -->
+  <section class="faq wrap">
+    <div class="sec-head">
+      <h2>Frequently asked questions</h2>
+      <p>Everything you need to know about the product and billing.</p>
+    </div>
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">Is there a free trial available? <span class="ic"></span></button>
+        <div class="faq-a">Yes, you can try us for free for 30 days. If you want, we'll provide you with a free, personalized 30-minute onboarding call to get you up and running as soon as possible.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I change my plan later? <span class="ic"></span></button>
+        <div class="faq-a">Of course. Our pricing scales with your company. Chat to our friendly team to find a solution that works for you as you grow.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What is your cancellation policy? <span class="ic"></span></button>
+        <div class="faq-a">We understand that things change. You can cancel your plan at any time and we'll refund you the difference already paid.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can other info be added to an invoice? <span class="ic"></span></button>
+        <div class="faq-a">Yes, you can add custom information such as your company name, VAT number, and address to every invoice.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How does billing work? <span class="ic"></span></button>
+        <div class="faq-a">Plans are per workspace, not per account. You can upgrade one workspace and still have any number of free workspaces.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I change my account email? <span class="ic"></span></button>
+        <div class="faq-a">You can change the email address associated with your account by going to Settings → Account and updating your email.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Still have questions (full-width band) -->
+  <section class="faq-help">
+    <div class="wrap">
+      <div class="stack">
+        <img class="a" src="./assets/avatar-phoenix.png" alt="Phoenix Baker" />
+        <img class="a" src="./assets/avatar-lana.png" alt="Lana Steiner" />
+        <img class="a" src="./assets/avatar-candice.png" alt="Candice Wu" />
+      </div>
+      <h4>Still have questions?</h4>
+      <p>Can't find the answer you're looking for? Please chat to our friendly team.</p>
+      <button class="btn btn-primary">Get in touch</button>
+    </div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="metrics wrap">
+    <div class="metrics-grid">
+      <div>
+        <span class="eyebrow">Launch faster</span>
+        <h2>Build something great</h2>
+        <p class="lede">We've done all the heavy lifting so you don't have to. Get all the data you need to launch and grow your business faster.</p>
+        <div class="stat-grid">
+          <div class="stat"><div class="n">4,000+</div><div class="t">Global customers</div><div class="d">We've helped over 4,000 amazing global companies.</div></div>
+          <div class="stat"><div class="n">600%</div><div class="t">Return on investment</div><div class="d">Our customers have reported an average of ~600% ROI.</div></div>
+          <div class="stat"><div class="n">10k</div><div class="t">Global downloads</div><div class="d">Our app has been downloaded over 10k times.</div></div>
+          <div class="stat"><div class="n">200+</div><div class="t">5-star reviews</div><div class="d">We're proud of our 5-star rating with over 200 reviews.</div></div>
+        </div>
+      </div>
+      <img class="metrics-photo" src="./assets/launch-faster.png" alt="Team planning on a whiteboard by the window" />
+    </div>
+  </section>
+
+  <!-- CTA (full-width band) -->
+  <section class="cta">
+    <div class="cta-inner">
+      <div class="wrap">
+        <h2>Start your free trial</h2>
+        <p>Join over 4,000+ startups already growing with Khen.</p>
+        <div class="actions">
+          <button class="btn btn-secondary">Learn more</button>
+          <button class="btn btn-primary">Get started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-col"><h5>Product</h5><a href="#">Overview</a><a href="#">Features</a><a href="#">Solutions <span class="foot-badge">New</span></a><a href="#">Tutorials</a><a href="#">Pricing</a><a href="#">Releases</a></div>
+        <div class="foot-col"><h5>Khen</h5><a href="#">About us</a><a href="#">Careers</a><a href="#">Press</a><a href="#">News</a><a href="#">Media kit</a><a href="#">Contact</a></div>
+        <div class="foot-col"><h5>Resources</h5><a href="#">Blog</a><a href="#">Newsletter</a><a href="#">Events</a><a href="#">Help centre</a><a href="#">Tutorials</a><a href="#">Support</a></div>
+        <div class="foot-col"><h5>Use cases</h5><a href="#">Startups</a><a href="#">Enterprise</a><a href="#">Government</a><a href="#">SaaS</a><a href="#">Marketplaces</a><a href="#">Ecommerce</a></div>
+        <div class="foot-col"><h5>Social</h5><a href="#">Twitter</a><a href="#">LinkedIn</a><a href="#">Facebook</a><a href="#">GitHub</a><a href="#">AngelList</a><a href="#">Dribbble</a></div>
+        <div class="foot-col"><h5>Legal</h5><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a><a href="#">Licenses</a><a href="#">Settings</a><a href="#">Contact</a></div>
+      </div>
+      <div class="foot-bottom">
+        <a href="#" class="brand" style="font-size:18px"><span class="mark"></span> Khen</a>
+        <span>© 2077 Khen UI. All rights reserved.</span>
+        <div class="foot-social">
+          <a href="#" aria-label="Twitter"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L22 21h-6l-4.3-5.6L6.7 21h-3l7-8L2.3 3h6.1l3.9 5.1L17.5 3Z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM3 9h4v12H3V9Zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4 0 4.75 2.63 4.75 6V21h-4v-5.3c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4V9Z"/></svg></a>
+          <a href="#" aria-label="GitHub"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.36 1.09 2.94.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg></a>
+          <a href="#" aria-label="Dribbble"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M5 8c4 1 9 1.5 14 5M8 4c3 4 5 9 5.5 16M20 13c-6-1.5-11 0-14 4"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    document.getElementById('hamburger').addEventListener('click', function () {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var item = btn.parentElement;
+        var wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(function (i) { i.classList.remove('open'); });
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // FAQ +/- icons
+    function refreshIcons() {
+      document.querySelectorAll('.faq-item').forEach(function (item) {
+        var ic = item.querySelector('.ic');
+        var open = item.classList.contains('open');
+        ic.innerHTML = open
+          ? '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>'
+          : '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>';
+      });
+    }
+    document.getElementById('faqList').addEventListener('click', refreshIcons);
+    refreshIcons();
+  </script>
+</body>
+</html>
