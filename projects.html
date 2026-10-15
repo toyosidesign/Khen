@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects — Khen</title>
   <meta name="description" content="Projects Khen has delivered: ERP platforms, SaaS products, web and mobile apps, websites, product design and branding." />
-  <link rel="icon" href="assets/khen-logo.png" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -57,64 +59,144 @@
   </div>
 </section>
 
-<!-- To add a project: copy one <a class="project-card">, set data-tags (pipe-separated,
-     using the filter names above) and point href at its case study. -->
-<section class="wrap" style="padding-top:clamp(32px,4vw,48px);padding-bottom:var(--section-y)">
-  <div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,360px),1fr));gap:48px 24px">
-    <a class="project-card t-royal" href="case-study.html" data-tags="ERP platforms|Web apps">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">ERP platforms</span><span class="tag neutral">Web apps</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Procurement and invoice approvals for a finance team</div>
+<!-- To add a project: copy a card and set data-tags (pipe-separated, using the
+     filter names above; filters with no projects stay hidden). Live projects are links; coming-soon ones are <article>s. -->
+<section class="wrap" style="padding-top:28px;padding-bottom:var(--section-y)">
+  <div class="tpl-grid">
+    <a class="tpl-card" href="preview.html?src=previews/mono-fintech.html&amp;name=Mono&amp;cat=Fintech%20landing%20page" data-tags="Websites|Product design">
+      <div class="thumb">
+        <img class="thumb-img" src="assets/projects/mono-fintech.jpg" alt="Mono landing page" loading="lazy" width="900" height="900" />
+        <div class="overlay"><span class="overlay-btn">Preview →</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Fintech landing page</span><span class="price">$49</span></div>
+        <h2 class="tpl-title">Mono</h2>
+        <p class="tpl-desc">Fintech landing: virtual cards hero, logo cloud, feature grid &amp; CTA.</p>
+        <div class="tpl-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
     </a>
-    <a class="project-card t-fire" href="case-study.html" data-tags="Web apps|Product design">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Web apps</span><span class="tag neutral">Product design</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Operations dashboard for a logistics company</div>
+    <a class="tpl-card" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="Websites|SaaS products|Product design">
+      <div class="thumb">
+        <img class="thumb-img" src="assets/projects/khen-analytics.jpg" alt="Khen Analytics landing page" loading="lazy" width="900" height="900" />
+        <div class="overlay"><span class="overlay-btn">Preview →</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">SaaS landing page</span><span class="price">$49</span></div>
+        <h2 class="tpl-title">Khen Analytics</h2>
+        <p class="tpl-desc">Beautiful analytics landing: hero dashboard, features, FAQ &amp; CTA.</p>
+        <div class="tpl-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
     </a>
-    <a class="project-card t-growth" href="case-study.html" data-tags="SaaS products">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">SaaS products</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">AI assistant inside a B2B SaaS product</div>
+    <a class="tpl-card" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="Websites|SaaS products">
+      <div class="thumb">
+        <img class="thumb-img" src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" />
+        <div class="overlay"><span class="overlay-btn">Preview →</span></div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">SaaS landing page</span><span class="price">$49</span></div>
+        <h2 class="tpl-title">Aurora Analytics</h2>
+        <p class="tpl-desc">Blue analytics landing: hero dashboard, feature blocks, integrations &amp; CTA.</p>
+        <div class="tpl-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
     </a>
-    <a class="project-card t-royal" href="case-study.html" data-tags="Mobile apps">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Mobile apps</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Field inspection app for on-site teams</div>
-    </a>
-    <a class="project-card t-fire" href="case-study.html" data-tags="ERP platforms">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">ERP platforms</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Inventory and warehouse management</div>
-    </a>
-    <a class="project-card t-growth" href="case-study.html" data-tags="Websites|Branding">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Websites</span><span class="tag neutral">Branding</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Marketing site and brand identity for a developer tool</div>
-    </a>
-    <a class="project-card t-royal" href="case-study.html" data-tags="Product design|SaaS products">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Product design</span><span class="tag neutral">SaaS products</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Design system for a multi-product SaaS</div>
-    </a>
-    <a class="project-card t-fire" href="case-study.html" data-tags="Mobile apps|ERP platforms">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Mobile apps</span><span class="tag neutral">ERP platforms</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Approval workflows on mobile for managers</div>
-    </a>
-    <a class="project-card t-growth" href="case-study.html" data-tags="Web apps">
-      <div class="img">Project image</div>
-      <div class="tags"><span class="tag neutral">Web apps</span></div>
-      <div class="title">Project name</div>
-      <div class="desc">Customer portal replacing email and spreadsheets</div>
-    </a>
+    <article class="tpl-card" data-tags="Websites|Web apps">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#0f766e,#134e4a)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">E-commerce</span><span class="price">$59</span></div>
+        <h2 class="tpl-title">Marketplace Storefront</h2>
+        <p class="tpl-desc">Product grid, category rail and conversion-focused checkout hero.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Websites|Branding">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-cards"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Startup / Agency</span><span class="price">$49</span></div>
+        <h2 class="tpl-title">Studio Agency</h2>
+        <p class="tpl-desc">Bold hero, service cards and social proof for teams and studios.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Mobile apps|Websites">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Mobile App</span><span class="price">$45</span></div>
+        <h2 class="tpl-title">Orbit App Launch</h2>
+        <p class="tpl-desc">App-store badges, feature highlights and device mockup hero.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Websites|Branding">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#1e293b,#0f172a)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-grid"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Portfolio</span><span class="price">$39</span></div>
+        <h2 class="tpl-title">Folio Personal</h2>
+        <p class="tpl-desc">Minimal portfolio with project gallery and about section.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Websites">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#ea580c,#9a3412)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Restaurant</span><span class="price">$42</span></div>
+        <h2 class="tpl-title">Savory Restaurant</h2>
+        <p class="tpl-desc">Menu highlights, reservations CTA and location for local venues.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Websites|Web apps">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#db2777,#831843)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-cards"><span></span><span></span><span></span></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Event</span><span class="price">$45</span></div>
+        <h2 class="tpl-title">Summit Conference</h2>
+        <p class="tpl-desc">Speaker lineup, schedule and ticket CTA for events.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+    <article class="tpl-card" data-tags="Websites|Product design">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#16a34a,#14532d)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+      </div>
+      <div class="tpl-body">
+        <div class="tpl-top"><span class="cat-tag">Creator</span><span class="price">$35</span></div>
+        <h2 class="tpl-title">Signal Newsletter</h2>
+        <p class="tpl-desc">Email capture hero, testimonials and archive for creators.</p>
+        <div class="tpl-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
   </div>
 </section>
 

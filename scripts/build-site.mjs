@@ -36,6 +36,7 @@ const ALLOW = [
   // shape has to be preserved inside the publish dir.
   { from: "templates/assets", to: "templates/assets", required: true },
   { from: "robots.txt", to: "robots.txt" },
+  { from: "favicon.ico", to: "favicon.ico" },
   // Netlify only honours these at the publish-dir root, not the repo root.
   { from: "_headers", to: "_headers" },
   { from: "_redirects", to: "_redirects" },

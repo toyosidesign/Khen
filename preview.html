@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/favicon-192.png" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <title>Preview Template Platform</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
@@ -94,7 +97,7 @@
     <div class="tb-left">
       <a class="back" href="./projects.html">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-        Templates
+        Projects
       </a>
     </div>
 
@@ -115,7 +118,7 @@
 
     <div class="tb-right">
       <span class="price" id="tplPrice"></span>
-      <button class="btn btn-primary" id="useBtn">Use this template</button>
+      <a class="btn btn-primary" href="./#contact">Start a similar project →</a>
     </div>
   </header>
 
@@ -217,14 +220,6 @@
     });
     fitDevice();
 
-    // "Use this template" — placeholder action (wire to real checkout later)
-    const toast = document.getElementById("toast");
-    document.getElementById("useBtn").addEventListener("click", () => {
-      toast.textContent = "🎉 Nice pick! Checkout for " + name + " is coming soon.";
-      toast.classList.add("show");
-      clearTimeout(window.__t);
-      window.__t = setTimeout(() => toast.classList.remove("show"), 3200);
-    });
   </script>
 </body>
 </html>

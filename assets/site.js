@@ -102,8 +102,11 @@
     const buttons = [...filterBar.querySelectorAll('.pill-btn')];
     buttons.forEach((btn) => {
       const f = btn.dataset.filter;
-      btn.querySelector('.count').textContent =
-        f === 'All' ? cards.length : cards.filter((c) => c.dataset.tags.split('|').includes(f)).length;
+      const count = f === 'All' ? cards.length : cards.filter((c) => c.dataset.tags.split('|').includes(f)).length;
+      const countEl = btn.querySelector('.count');
+      if (countEl) countEl.textContent = count;
+      // Categories with no projects yet stay hidden until one is added.
+      btn.hidden = count === 0;
       btn.addEventListener('click', () => {
         buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
         cards.forEach((c) => { c.hidden = f !== 'All' && !c.dataset.tags.split('|').includes(f); });
