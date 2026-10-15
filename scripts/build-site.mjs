@@ -26,6 +26,10 @@ const OUT = path.join(ROOT, "_site");
 const ALLOW = [
   { from: "index.html", to: "index.html", required: true },
   { from: "projects.html", to: "projects.html", required: true },
+  { from: "about.html", to: "about.html", required: true },
+  { from: "case-study.html", to: "case-study.html", required: true },
+  // Site-wide CSS, JS and logo for the agency pages.
+  { from: "assets", to: "assets", required: true },
   { from: "preview.html", to: "preview.html", required: true },
   { from: "previews", to: "previews", required: true },
   // Images only. Previews reference these as ../templates/assets/, so the path

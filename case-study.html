@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Case study — Khen</title>
+  <meta name="description" content="How Khen turned a 1,284-row approval queue into three decisions a day." />
+  <link rel="icon" href="assets/khen-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
+  <style>
+    .cs-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 24px; margin: clamp(40px, 5vw, 64px) 0 0; border-top: 1.5px solid var(--ink); padding-top: 24px; }
+    .cs-meta div { display: flex; flex-direction: column; gap: 6px; }
+    .cs-meta dt { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--n-66); }
+    .cs-meta dd { margin: 0; font-size: 16px; font-weight: 500; }
+    .cs-big { margin: 0; font-size: clamp(32px, 4.4vw, 64px); letter-spacing: -.04em; line-height: 1; font-weight: 700; }
+    .findings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 2px; background: #333333; border-radius: 16px; overflow: hidden; }
+    .findings > div { background: var(--ink); padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; }
+    .findings h3 { margin: 0; font-size: clamp(22px, 2.2vw, 28px); font-weight: 600; letter-spacing: -.03em; line-height: 1.15; }
+    .findings p { margin: 0; color: var(--n-b3); font-size: 16px; line-height: 1.55; text-wrap: pretty; }
+    .move { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 32px 64px; align-items: center; }
+    .move h3 { margin: 0; font-size: clamp(24px, 2.6vw, 34px); font-weight: 600; letter-spacing: -.03em; line-height: 1.15; }
+    .move .shot { aspect-ratio: 4 / 3; border-radius: 16px; background: var(--royal-50); border: 1px solid var(--royal-100); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; color: var(--royal-500); text-transform: uppercase; letter-spacing: .06em; text-align: center; padding: 20px; }
+    .result { display: flex; flex-direction: column; gap: 12px; border-top: 1.5px solid var(--ink); padding-top: 20px; }
+    .result .v { font-size: clamp(56px, 7vw, 104px); font-weight: 700; letter-spacing: -.05em; line-height: .9; color: var(--royal-500); }
+    .result .l { font-size: 16px; line-height: 1.5; color: var(--n-4a); max-width: 28ch; }
+    .next-card { border-radius: 24px; padding: clamp(28px, 4vw, 48px); display: flex; flex-direction: column; gap: 20px; min-height: 280px; transition: background .15s, border-color .15s; }
+    .next-card .big { font-size: clamp(26px, 3vw, 40px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; margin-top: auto; }
+    .next-card .mono { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+    .next-dark { background: var(--ink); color: #FFFFFF; }
+    .next-dark:hover { background: var(--n-2c); color: #FFFFFF; }
+    .next-light { background: var(--royal-100); border: 1.5px solid var(--royal-200); }
+    .next-light:hover { border-color: var(--royal-500); }
+    .hl { background: linear-gradient(transparent 58%, var(--fire-200) 58%); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="./"><img src="assets/khen-logo.png" alt="Khen" width="128" height="44" /></a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-links">
+        <a class="nav-link" href="projects.html" aria-current="page">Projects</a>
+        <a class="nav-link" href="./#build">Services</a>
+        <a class="nav-link" href="./#approach">How we work</a>
+        <a class="nav-link" href="about.html">About us</a>
+      </div>
+      <a class="nav-cta" href="./#contact">Free consultation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap" style="padding-top:clamp(40px,6vw,80px);padding-bottom:clamp(32px,4vw,56px)">
+  <a href="projects.html" style="font-size:15px;font-weight:500;color:var(--n-66)" class="nav-link">← All work</a>
+  <div class="eyebrow" style="margin:40px 0 24px">Case study · Financial workflow</div>
+  <h1 style="margin:0;font-size:clamp(40px,6.4vw,96px);line-height:.98;letter-spacing:-.045em;font-weight:700;max-width:16ch;text-wrap:balance">From a 1,284-row approval queue to three decisions a day.</h1>
+  <p style="margin:clamp(28px,4vw,44px) 0 0;font-size:clamp(18px,1.6vw,22px);line-height:1.5;color:var(--n-3a);max-width:44ch;text-wrap:pretty">A finance operations platform that did everything it should, and that the finance team avoided whenever they could.</p>
+  <dl class="cs-meta">
+    <div><dt>Client</dt><dd>Client name</dd></div>
+    <div><dt>Industry</dt><dd>Fintech</dd></div>
+    <div><dt>Scope</dt><dd>Research, UX/UI, Design system, Web app</dd></div>
+    <div><dt>Platform</dt><dd>Web</dd></div>
+    <div><dt>Timeline</dt><dd>00 weeks</dd></div>
+  </dl>
+</section>
+
+<section class="wrap" style="padding-bottom:var(--section-y)">
+  <div class="placeholder" style="aspect-ratio:16/8;border-radius:20px">Hero image · final product</div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 80px;align-items:start">
+    <div class="eyebrow muted">01 · The problem</div>
+    <div class="stack" style="gap:24px">
+      <p style="margin:0;font-size:clamp(24px,2.6vw,36px);line-height:1.2;letter-spacing:-.03em;font-weight:500;text-wrap:pretty">Every invoice landed in one queue. Approvers opened it each morning to <span class="hl">over a thousand rows</span> and no way to tell which ones needed them.</p>
+      <p class="body" style="line-height:1.6;max-width:58ch">The data was right and the rules were right. But the screen treated a routine $400 invoice exactly like a $48,000 one that was over budget. So people exported to spreadsheets, sorted by hand, and approved in batches they hadn't really checked.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap section">
+    <div class="row-between" style="margin-bottom:clamp(40px,6vw,64px)">
+      <div class="stack">
+        <div class="eyebrow on-dark">02 · What we saw</div>
+        <h2 class="cs-big" style="max-width:16ch">Two weeks sitting with the finance team.</h2>
+      </div>
+      <p style="margin:0;color:var(--n-b3);font-size:17px;line-height:1.5;max-width:36ch">Before designing anything, we watched approvals happen: what people looked at, what they ignored, and where they left the product.</p>
+    </div>
+    <div class="findings">
+      <div><h3>Almost everything was routine.</h3><p>Most invoices matched a PO and sat within budget. Approvers clicked through them without reading, which is exactly how the risky ones slipped by.</p></div>
+      <div><h3>The real work happened elsewhere.</h3><p>To decide, people checked the PO in one system, the budget in a spreadsheet, and asked receiving by email. The product held none of that context.</p></div>
+      <div><h3>Nobody trusted the status column.</h3><p>Eleven columns, six status codes. Approvers couldn’t tell whether an invoice was waiting on them or someone else, so they asked in chat.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="stack" style="margin-bottom:clamp(40px,6vw,64px)">
+    <div class="eyebrow muted">03 · What we did</div>
+    <h2 class="cs-big" style="max-width:18ch">Design around the decision, not the database.</h2>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:clamp(48px,7vw,96px)">
+    <div class="move">
+      <div class="stack">
+        <div class="mono" style="font-size:13px;color:var(--royal-500)">01</div>
+        <h3>Route the routine automatically.</h3>
+        <p class="body" style="line-height:1.6;max-width:46ch">Invoices within policy are approved by rule and logged. People only see what genuinely needs a person, with the reason it was flagged.</p>
+      </div>
+      <div class="shot">Screen · Needs you queue</div>
+    </div>
+    <div class="move">
+      <div class="stack" style="order:1">
+        <div class="mono" style="font-size:13px;color:var(--royal-500)">02</div>
+        <h3>Bring the context to the decision.</h3>
+        <p class="body" style="line-height:1.6;max-width:46ch">PO, goods receipt and budget sit beside each flagged invoice. Approving, rejecting or asking someone takes one click and never leaves the screen.</p>
+      </div>
+      <div class="shot">Screen · Invoice detail with PO match</div>
+    </div>
+    <div class="move">
+      <div class="stack">
+        <div class="mono" style="font-size:13px;color:var(--royal-500)">03</div>
+        <h3>Build it on one shared system.</h3>
+        <p class="body" style="line-height:1.6;max-width:46ch">Every table, status and action comes from a single component library, so the procurement and expenses modules that followed look and behave the same way.</p>
+      </div>
+      <div class="shot">Design system · Components</div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section">
+    <div class="eyebrow muted" style="margin-bottom:clamp(32px,5vw,56px)">04 · Outcome</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:40px">
+      <div class="result"><div class="v">00%</div><div class="l">Result metric, e.g. fewer invoices needing manual review</div></div>
+      <div class="result"><div class="v">00×</div><div class="l">Result metric, e.g. faster time to approve</div></div>
+      <div class="result"><div class="v">00</div><div class="l">Result metric, e.g. modules now built on the system</div></div>
+    </div>
+    <figure style="margin:clamp(64px,9vw,112px) 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:32px 80px;align-items:start">
+      <div style="display:flex;gap:14px;align-items:center">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--royal-100);flex:none"></div>
+        <figcaption style="display:flex;flex-direction:column;gap:2px;font-size:15px"><span style="font-weight:600">Client name</span><span style="color:var(--n-66)">Role, Company</span></figcaption>
+      </div>
+      <blockquote style="margin:0;font-size:clamp(24px,2.8vw,40px);line-height:1.2;letter-spacing:-.03em;font-weight:500;text-wrap:pretty">“Client quote goes here. One or two sentences about what changed for the people using the product.”</blockquote>
+    </figure>
+  </div>
+</section>
+
+<section style="padding:0 var(--gutter) var(--gutter)">
+  <div style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:16px">
+    <a class="next-card next-dark" href="case-study.html">
+      <span class="mono" style="color:var(--fire-300)">Next case study · Operations dashboard</span>
+      <span class="big">Project name</span>
+      <span style="font-weight:600;font-size:15px;color:var(--royal-300)">Read it →</span>
+    </a>
+    <a class="next-card next-light" href="./#contact">
+      <span class="mono" style="color:var(--royal-500)">Sound familiar?</span>
+      <span class="big" style="color:var(--royal-800)">Your product works. Let’s make it good to use.</span>
+      <span style="font-weight:600;font-size:15px;color:var(--royal-500)">Start a project →</span>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="assets/khen-logo.png" alt="Khen" width="116" height="40" />
+      <div style="font-weight:600;font-size:16px">Khen Ltd.</div>
+      <address>Street address<br />City, Postcode<br />Country</address>
+      <a class="email" href="mailto:hello@khen.example">hello@khen.example</a>
+    </div>
+    <div class="footer-col">
+      <h2>Company</h2>
+      <a href="about.html">About us</a>
+      <a href="./#approach">How we work</a>
+      <a href="projects.html">Projects</a>
+      <a href="#">Careers</a>
+      <a href="./#contact">Contact us</a>
+      <a href="#">Privacy policy</a>
+    </div>
+    <div class="footer-col">
+      <h2>Services</h2>
+      <a href="./#build">ERP platforms</a>
+      <a href="./#build">SaaS products</a>
+      <a href="./#build">Web apps</a>
+      <a href="./#build">Mobile apps</a>
+      <a href="./#build">Websites</a>
+      <a href="./#build">Product design</a>
+      <a href="./#build">Branding</a>
+    </div>
+    <div class="footer-col">
+      <h2>Start a project</h2>
+      <p>Tell us what your product does and who uses it.</p>
+      <a class="footer-cta" href="./#contact">Free consultation →</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Khen. All rights reserved.</span>
+    <div><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="#">Behance</a></div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>

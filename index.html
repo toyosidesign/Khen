@@ -1,63 +1,459 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Khen — Product Development Agency</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khen — Product development agency</title>
+  <meta name="description" content="Khen designs and builds ERP platforms, SaaS products, web and mobile apps: software that does complicated jobs, and that people enjoy using." />
+  <link rel="icon" href="assets/khen-logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    /* ---- Design tokens (mirrors @tp/tokens) ---- */
-    :root {
-      --brand-500:#2f66f5; --brand-600:#1d4ed8; --brand-700:#1b3fb0;
-      --n-50:#f8fafc; --n-200:#e2e8f0; --n-600:#475569; --n-900:#0f172a;
-      --font-display:"Space Grotesk", system-ui, sans-serif;
-      --font-body:"Inter", system-ui, sans-serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: var(--font-body); color: var(--n-900); background: var(--n-50);
-      -webkit-font-smoothing: antialiased; line-height: 1.5;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---- Top bar ---- */
-    .topbar { border-bottom: 1px solid var(--n-200); background: #fff; }
-    .topbar-inner {
-      max-width: 1200px; margin: 0 auto; padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-    }
-    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; }
-    .logo-mark {
-      width: 30px; height: 30px; border-radius: 8px;
-      background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
-      display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 15px;
-    }
-    .cta {
-      display: inline-block; background: var(--brand-500); color: #fff; padding: 12px 20px;
-      border-radius: 10px; font-weight: 600; font-size: 15px; transition: background .15s ease;
-    }
-    .cta:hover { background: var(--brand-600); }
-
-    /* ---- Hero (placeholder until agency content lands) ---- */
-    .hero { max-width: 880px; margin: 0 auto; padding: 120px 24px; text-align: center; }
-    .hero h1 { font-family: var(--font-display); font-size: clamp(36px, 6vw, 60px); line-height: 1.1; letter-spacing: -.02em; }
-    .hero p { margin: 20px auto 32px; max-width: 560px; color: var(--n-600); font-size: 18px; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="logo" href="./index.html"><span class="logo-mark">k</span> Khen</a>
-      <nav><a class="cta" href="./projects.html">All projects</a></nav>
-    </div>
-  </header>
 
-  <main class="hero">
-    <h1>Khen — product development agency</h1>
-    <p>Placeholder homepage. Agency content goes here.</p>
-    <a class="cta" href="./projects.html">See our projects</a>
-  </main>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="./"><img src="assets/khen-logo.png" alt="Khen" width="128" height="44" /></a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-links">
+        <a class="nav-link" href="projects.html">Projects</a>
+        <a class="nav-link" href="./#build">Services</a>
+        <a class="nav-link" href="./#approach">How we work</a>
+        <a class="nav-link" href="about.html">About us</a>
+      </div>
+      <a class="nav-cta" href="#contact">Free consultation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="wrap hero">
+  <div class="hero-copy">
+    <div class="eyebrow pulse-eyebrow"><span class="pulse"></span>Product development agency</div>
+    <h1 class="h1" aria-label="Software that works, and people actually enjoy using."><span class="w" aria-hidden="true" style="animation-delay:.15s">Software</span><span class="w" aria-hidden="true" style="animation-delay:.23s">that</span><span class="w" aria-hidden="true" style="animation-delay:.31s">works,</span><span class="w" aria-hidden="true" style="animation-delay:.39s">and</span><span class="w" aria-hidden="true" style="animation-delay:.47s">people</span><span class="w" aria-hidden="true" style="animation-delay:.55s">actually</span><span class="w" aria-hidden="true" style="animation-delay:.63s">enjoy</span><span class="w" aria-hidden="true" style="animation-delay:.71s">using.</span></h1>
+    <p>We design and build ERP platforms, SaaS products, web and mobile apps: software that does complicated jobs. Dashboards people live in all day. Financial workflows. AI tools that need to earn trust.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#contact">Start a project →</a>
+      <a class="btn btn-secondary" href="projects.html">Projects</a>
+    </div>
+  </div>
+  <div class="hero-art">
+    <svg viewBox="0 0 900 780" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Illustration: tangled workflow becoming three clear paths into a shared component system">
+      <defs>
+        <pattern id="kdots" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="2" fill="#ECECEC"></circle></pattern>
+        <filter id="kshadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#4a2b48" flood-opacity=".16"></feDropShadow></filter>
+      </defs>
+      <rect x="0" y="0" width="900" height="780" fill="url(#kdots)"></rect>
+      <g>
+        <g transform="rotate(-14 120 330)"><rect x="60" y="290" width="120" height="84" rx="8" fill="#FFFFFF" stroke="#CFCFCF" stroke-width="2"></rect><rect x="74" y="306" width="60" height="6" rx="3" fill="#E3E3E3"></rect><rect x="74" y="322" width="88" height="6" rx="3" fill="#E3E3E3"></rect><rect x="74" y="338" width="70" height="6" rx="3" fill="#E3E3E3"></rect></g>
+        <g transform="rotate(9 220 300)"><rect x="170" y="262" width="104" height="76" rx="6" fill="#f9dfd6"></rect><rect x="184" y="280" width="64" height="6" rx="3" fill="#e99374"></rect><rect x="184" y="296" width="44" height="6" rx="3" fill="#e99374"></rect></g>
+        <g transform="rotate(6 110 440)"><rect x="40" y="396" width="150" height="96" rx="8" fill="#FFFFFF" stroke="#CFCFCF" stroke-width="2"></rect><path d="M40 428 H190 M40 460 H190 M90 396 V492 M140 396 V492" stroke="#E3E3E3" stroke-width="2"></path><rect x="96" y="434" width="38" height="20" fill="#f9dfd6"></rect></g>
+        <g transform="rotate(-8 240 450)"><rect x="196" y="410" width="96" height="80" rx="6" fill="#e9d9e8"></rect><rect x="210" y="428" width="56" height="6" rx="3" fill="#a4609f"></rect><rect x="210" y="444" width="68" height="6" rx="3" fill="#c69bc3"></rect><rect x="210" y="460" width="40" height="6" rx="3" fill="#c69bc3"></rect></g>
+        <g transform="rotate(18 250 360)"><rect x="214" y="338" width="72" height="44" rx="6" fill="#FFFFFF" stroke="#CFCFCF" stroke-width="2"></rect><circle cx="232" cy="360" r="7" fill="#e47b56"></circle><rect x="246" y="356" width="28" height="7" rx="3.5" fill="#E3E3E3"></rect></g>
+      </g>
+      <text x="40" y="520" font-family="Poppins, sans-serif" font-size="14" font-weight="500" letter-spacing="1" fill="#666666">THE WORK, AS IT IS</text>
+      <g fill="none" stroke-linecap="round">
+        <path d="M310 380 C 430 380, 450 190, 610 180" stroke="#a4609f" stroke-width="34"></path>
+        <path d="M310 392 C 440 392, 480 390, 630 390" stroke="#e47b56" stroke-width="34"></path>
+        <path d="M310 404 C 430 404, 450 590, 610 596" stroke="#57a655" stroke-width="34"></path>
+      </g>
+      <text x="610" y="84" font-family="Poppins, sans-serif" font-size="14" font-weight="500" letter-spacing="1" fill="#666666">ONE SHARED SYSTEM</text>
+      <g filter="url(#kshadow)">
+        <rect x="600" y="110" width="260" height="140" rx="16" fill="#FFFFFF"></rect>
+        <rect x="620" y="320" width="260" height="140" rx="16" fill="#FFFFFF"></rect>
+        <rect x="600" y="530" width="260" height="130" rx="16" fill="#FFFFFF"></rect>
+      </g>
+      <rect x="624" y="130" width="84" height="8" rx="4" fill="#E3E3E3"></rect>
+      <g>
+        <rect x="628" y="190" width="26" height="40" rx="4" fill="#e9d9e8"></rect>
+        <rect x="666" y="160" width="26" height="70" rx="4" fill="#c69bc3"></rect>
+        <rect x="704" y="175" width="26" height="55" rx="4" fill="#a4609f"></rect>
+        <rect x="742" y="145" width="26" height="85" rx="4" fill="#8b5287"></rect>
+        <rect x="780" y="170" width="26" height="60" rx="4" fill="#d8bbd6"></rect>
+      </g>
+      <g>
+        <circle cx="646" cy="352" r="7" fill="#e47b56"></circle><rect x="664" y="347" width="120" height="10" rx="5" fill="#E3E3E3"></rect><rect x="808" y="345" width="52" height="14" rx="7" fill="#f9dfd6"></rect>
+        <rect x="640" y="372" width="220" height="1.5" fill="#F0F0F0"></rect>
+        <circle cx="646" cy="392" r="7" fill="#f3c6b6"></circle><rect x="664" y="387" width="96" height="10" rx="5" fill="#E3E3E3"></rect><rect x="808" y="385" width="52" height="14" rx="7" fill="#F5F5F5"></rect>
+        <rect x="640" y="412" width="220" height="1.5" fill="#F0F0F0"></rect>
+        <circle cx="646" cy="432" r="7" fill="#e47b56"></circle><rect x="664" y="427" width="132" height="10" rx="5" fill="#E3E3E3"></rect><rect x="808" y="425" width="52" height="14" rx="7" fill="#f9dfd6"></rect>
+      </g>
+      <g>
+        <rect x="624" y="556" width="64" height="34" rx="17" fill="#57a655"></rect><circle cx="671" cy="573" r="13" fill="#FFFFFF"></circle>
+        <rect x="708" y="556" width="128" height="34" rx="17" fill="#16150F"></rect><rect x="736" y="569" width="72" height="8" rx="4" fill="#FFFFFF" fill-opacity=".85"></rect>
+        <rect x="624" y="612" width="24" height="24" rx="7" fill="#d7ead6" stroke="#57a655" stroke-width="2"></rect>
+        <path d="M630 624 L635 629 L643 618" fill="none" stroke="#3e763c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+        <rect x="660" y="619" width="132" height="10" rx="5" fill="#E3E3E3"></rect>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section id="demo" class="wrap demo">
+  <div class="row-between" style="margin-bottom:clamp(28px,4vw,44px)">
+    <div class="stack" style="gap:14px">
+      <div class="eyebrow">Same data. Same job.</div>
+      <h2 class="h2" style="max-width:16ch">Drag to see the difference.</h2>
+    </div>
+    <p class="lead" style="font-size:17px;max-width:38ch">An invoice approval queue that technically works, and the same queue designed around the decision people actually make.</p>
+  </div>
+
+  <div class="browser">
+    <div class="browser-bar">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="url">app.yourproduct.com/approvals</div>
+      <div style="width:42px"></div>
+    </div>
+
+    <div class="compare" data-compare>
+      <div class="pane legacy" aria-hidden="true">
+        <div class="legacy-toolbar"><span>New</span><span>Edit</span><span>Copy</span><span>Delete</span><span>Approve</span><span>Reject</span><span>Hold</span><span>Route…</span><span>Export</span><span>Print</span><span>Filter</span><span>Columns</span><span>Refresh</span><span>Help</span></div>
+        <div class="legacy-warn">⚠ 14 records have validation warnings. 3 records locked by another user. Session expires in 04:12.</div>
+        <table>
+          <thead><tr><th>Doc #</th><th>Vendor</th><th>Amt</th><th>Cur</th><th>Status</th><th>Appr 1</th><th>Appr 2</th><th>GL Code</th><th>Cost Ctr</th><th>Due</th><th>Flag</th></tr></thead>
+          <tbody>
+            <tr><td>INV-048210</td><td>Halvorsen Logistics</td><td>1200.00</td><td>USD</td><td>PEND</td><td>JMK</td><td>-</td><td>6100-00</td><td>CC-210</td><td>10/14/26</td><td>N</td></tr>
+            <tr><td>INV-048217</td><td>Arcturus Supply</td><td>4617.50</td><td>USD</td><td>PEND-L2</td><td>-</td><td>-</td><td>6113-00</td><td>CC-215</td><td>10/15/26</td><td>N</td></tr>
+            <tr><td>INV-048224</td><td>Meridian Facilities</td><td>8035.00</td><td>USD</td><td>HOLD</td><td>RLT</td><td>PND</td><td>6126-00</td><td>CC-220</td><td>10/16/26</td><td>Y</td></tr>
+            <tr><td>INV-048231</td><td>Northgate Freight</td><td>11452.50</td><td>USD</td><td>PEND</td><td>-</td><td>-</td><td>6139-00</td><td>CC-225</td><td>10/17/26</td><td>N</td></tr>
+            <tr><td>INV-048238</td><td>Okafor &amp; Lin LLP</td><td>14870.00</td><td>USD</td><td>REVW</td><td>JMK</td><td>-</td><td>6152-00</td><td>CC-210</td><td>10/18/26</td><td>N</td></tr>
+            <tr><td>INV-048245</td><td>Bellwether Components</td><td>18287.50</td><td>USD</td><td>PEND</td><td>SAV</td><td>PND</td><td>6165-00</td><td>CC-215</td><td>10/19/26</td><td>N</td></tr>
+            <tr><td>INV-048252</td><td>Tessaro Packaging</td><td>21705.00</td><td>USD</td><td>PEND</td><td>JMK</td><td>-</td><td>6178-00</td><td>CC-220</td><td>10/20/26</td><td>Y</td></tr>
+            <tr><td>INV-048259</td><td>Quayside Energy</td><td>25122.50</td><td>USD</td><td>PEND-L2</td><td>-</td><td>-</td><td>6191-00</td><td>CC-225</td><td>10/21/26</td><td>N</td></tr>
+            <tr><td>INV-048266</td><td>Pinecrest IT</td><td>28540.00</td><td>USD</td><td>HOLD</td><td>RLT</td><td>PND</td><td>6204-00</td><td>CC-210</td><td>10/22/26</td><td>N</td></tr>
+            <tr><td>INV-048273</td><td>Varga Industrial</td><td>31957.50</td><td>USD</td><td>PEND</td><td>-</td><td>-</td><td>6217-00</td><td>CC-215</td><td>10/14/26</td><td>N</td></tr>
+            <tr><td>INV-048280</td><td>Lumen Print Co.</td><td>35375.00</td><td>USD</td><td>REVW</td><td>JMK</td><td>-</td><td>6230-00</td><td>CC-220</td><td>10/15/26</td><td>Y</td></tr>
+            <tr><td>INV-048287</td><td>Delacroix Metals</td><td>38792.50</td><td>USD</td><td>PEND</td><td>SAV</td><td>PND</td><td>6243-00</td><td>CC-225</td><td>10/16/26</td><td>N</td></tr>
+          </tbody>
+        </table>
+        <div class="legacy-foot"><span>Rows 1–12 of 1,284</span><span>« ‹ Page 1 of 107 › »</span></div>
+      </div>
+
+      <div class="pane after">
+        <div class="after-head">
+          <div class="mono" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--n-66)">Invoice approvals · Today</div>
+          <div class="after-title">3 invoices need you.<br /><span>1,281 are on track.</span></div>
+          <p>Everything within policy was routed automatically. These three are over budget or missing a match.</p>
+          <div class="pills"><span class="on">Needs you · 3</span><span>Waiting on others · 12</span><span>Done · 1,269</span></div>
+        </div>
+        <div class="queue">
+          <div class="queue-item"><div class="vendor">Halvorsen Logistics</div><div class="amount">$48,200</div><div class="reason">12% over PO, fuel surcharge added</div><div class="actions"><span>Review</span><span>Approve</span></div></div>
+          <div class="queue-item"><div class="vendor">Meridian Facilities</div><div class="amount">$9,640</div><div class="reason">No goods receipt matched yet</div><div class="actions"><span>Review</span><span>Ask receiving</span></div></div>
+          <div class="queue-item"><div class="vendor">Okafor &amp; Lin LLP</div><div class="amount">$22,500</div><div class="reason">Exceeds Q4 legal budget</div><div class="actions"><span>Review</span><span>Approve</span></div></div>
+        </div>
+      </div>
+
+      <span class="compare-label before">Before</span>
+      <span class="compare-label after-l">After Khen</span>
+      <div class="compare-line"></div>
+      <button class="compare-handle" type="button" role="slider" aria-label="Drag to compare before and after" aria-valuemin="3" aria-valuemax="97" aria-valuenow="50">⟷</button>
+    </div>
+  </div>
+
+  <div class="takeaways">
+    <div class="takeaway"><span class="mono">01</span><div><strong>Routine work disappears</strong><span>1,281 invoices within policy are approved by rule.</span></div></div>
+    <div class="takeaway"><span class="mono">02</span><div><strong>The reason comes first</strong><span>Each flagged invoice says why it needs a person.</span></div></div>
+    <div class="takeaway"><span class="mono">03</span><div><strong>One clear next step</strong><span>Approve, review or ask, without leaving the queue.</span></div></div>
+  </div>
+</section>
+
+<section id="start" class="wrap" style="padding-bottom:var(--section-y)">
+  <div class="row-between" style="margin-bottom:32px">
+    <h2 class="h2">Where are you now?</h2>
+    <p class="lead" style="font-size:17px;line-height:1.5;max-width:36ch">Pick the one that sounds most like you. We’ll start the conversation there.</p>
+  </div>
+  <div class="situations">
+    <button type="button" class="situation t-royal" data-pick="Product design">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg></span><span class="num">01</span></span>
+      <span class="card-title">Redesign</span>
+      <span class="card-text">Your product works, but it’s hard to use. We redesign it so people enjoy using it.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-fire" data-pick="SaaS products">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z M12 8v8 M8 12h8"/></svg></span><span class="num">02</span></span>
+      <span class="card-title">New product</span>
+      <span class="card-text">You have an idea for a new product. We design and build it with you from the start.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-growth" data-pick="Product design">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4z M13 4h7v7h-7z M4 13h7v7H4z M13 13h7v7h-7z"/></svg></span><span class="num">03</span></span>
+      <span class="card-title">Design system</span>
+      <span class="card-text">Your product looks and works differently from screen to screen. We make it consistent.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-fire" data-pick="SaaS products">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z M9 10.5l2 2 4-4"/></svg></span><span class="num">04</span></span>
+      <span class="card-title">AI feature</span>
+      <span class="card-text">You’re adding AI to your product. We design it so people understand and trust it.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-growth" data-pick="ERP platforms">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 10h18 M9 5v14"/></svg></span><span class="num">05</span></span>
+      <span class="card-title">Internal tool</span>
+      <span class="card-text">Your team runs on spreadsheets and email. We build a proper system that fits how you work.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-royal" data-pick="Web apps">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M12 8a4 4 0 1 0 0 8a4 4 0 1 0 0-8z M5.6 5.6l3.6 3.6 M14.8 14.8l3.6 3.6 M18.4 5.6l-3.6 3.6 M9.2 14.8l-3.6 3.6"/></svg></span><span class="num">06</span></span>
+      <span class="card-title">Rescue</span>
+      <span class="card-text">Your product is unstable and has no one looking after it. We fix it and keep it running.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-growth" data-pick="Websites">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 5h18v14H3z M3 9h18 M6 7h.01 M8.5 7h.01"/></svg></span><span class="num">07</span></span>
+      <span class="card-title">Website</span>
+      <span class="card-text">Your product is hard to explain. We build a website that makes it clear.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-royal" data-pick="">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M10.5 4a6.5 6.5 0 1 0 0 13a6.5 6.5 0 1 0 0-13z M15.5 15.5L20 20"/></svg></span><span class="num">08</span></span>
+      <span class="card-title">Discovery</span>
+      <span class="card-text">Not sure what you need yet? We look at your product and tell you where to start.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+    <button type="button" class="situation t-fire" data-pick="">
+      <span class="top"><span class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5.3 M20 4v4h-4 M20 12a8 8 0 0 1-14 5.3 M4 20v-4h4"/></svg></span><span class="num">09</span></span>
+      <span class="card-title">Ongoing team</span>
+      <span class="card-text">You need designers and developers who stay with your product as it grows.</span>
+      <span class="go">Start here<span>→</span></span>
+    </button>
+  </div>
+</section>
+
+<section id="approach" class="dark">
+  <div class="wrap section">
+    <div class="split" style="margin-bottom:clamp(48px,7vw,88px)">
+      <div class="stack">
+        <div class="eyebrow on-dark">How we work</div>
+        <h2 class="h2" style="max-width:14ch">We don’t start with screens.</h2>
+      </div>
+      <p class="lead">We start with the people who use your product every day. What they do, what slows them down, and what they do instead. Then we design and build from there.</p>
+    </div>
+    <div class="steps">
+      <div class="steps-grid">
+        <div class="step" style="--c:var(--fire-500);--c-light:var(--fire-300)">
+          <span class="dot"></span>
+          <div class="eyebrow">Step 1 · Observe</div>
+          <div class="h3">We watch the work happen.</div>
+          <p>We sit with your team and watch how they really use the product. The shortcuts, the spreadsheets on the side, the steps everyone skips.</p>
+          <div class="step-card" style="background:var(--fire-50);transform:rotate(-1.2deg)">
+            <div class="label" style="color:var(--fire-700)">Field note · Finance team</div>
+            <div class="note">Everyone exports the queue to Excel before they start.</div>
+            <div class="note">One approval means checking two other systems.</div>
+          </div>
+          <div class="get"><strong>You get</strong><div>A clear picture of how work really gets done</div><div>The problems worth fixing first</div></div>
+        </div>
+        <div class="step" style="--c:var(--royal-400);--c-light:var(--royal-300)">
+          <span class="dot"></span>
+          <div class="eyebrow">Step 2 · Design</div>
+          <div class="h3">We design around decisions.</div>
+          <p>Screens follow the job, not the database. We put the important things first and test prototypes with real users before anything is built.</p>
+          <div class="step-card" style="background:var(--royal-50);gap:8px">
+            <div class="label" style="color:var(--royal-600);margin-bottom:4px">Prototype · Approvals</div>
+            <div style="height:10px;width:55%;border-radius:5px;background:var(--royal-200)"></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;background:var(--royal-500);color:#FFFFFF;border-radius:8px;padding:9px 12px;font-size:13px;font-weight:600"><span>Needs you · 3</span><span>→</span></div>
+            <div style="height:30px;border-radius:8px;background:var(--royal-100)"></div>
+            <div style="height:30px;border-radius:8px;background:var(--royal-100)"></div>
+          </div>
+          <div class="get"><strong>You get</strong><div>Prototypes tested with the people who’ll use them</div><div>Designs your team has already seen working</div></div>
+        </div>
+        <div class="step" style="--c:var(--growth-500);--c-light:var(--growth-300)">
+          <span class="dot"></span>
+          <div class="eyebrow">Step 3 · Build</div>
+          <div class="h3">We build on one system.</div>
+          <p>Every screen is made from the same set of parts. So the product stays consistent and new features are faster to add.</p>
+          <div class="step-card" style="background:var(--growth-50)">
+            <div class="label" style="color:var(--growth-700)">Design system · Components</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+              <span class="chip" style="background:var(--ink);color:#FFFFFF">Button</span>
+              <span class="chip" style="background:var(--growth-100);color:var(--growth-800)">Approved</span>
+              <span class="chip" style="background:var(--fire-100);color:var(--fire-800)">Over budget</span>
+              <span class="toggle"></span>
+            </div>
+            <div style="font-size:13px;color:var(--growth-700);font-weight:500">One set of parts, used on every screen.</div>
+          </div>
+          <div class="get"><strong>You get</strong><div>A design system and component library</div><div>Production code your team can extend</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="build" class="wrap section">
+  <div class="split" style="margin-bottom:clamp(36px,5vw,56px)">
+    <div class="stack">
+      <div class="eyebrow">What we build</div>
+      <h2 class="h2" style="max-width:14ch">Software for complicated jobs.</h2>
+    </div>
+    <p class="lead">Products that handle a lot of data, a lot of steps, or a lot of people. And still feel simple to use.</p>
+  </div>
+  <div class="grid-cards" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr))">
+    <div class="card lift t-royal">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z M3 13l9 5 9-5"/></svg></span>
+      <h3 class="card-title" style="margin:0">ERP platforms</h3>
+      <p class="card-text">Finance, procurement, inventory and HR in one place, built for the people who use it all day.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">Finance</span><span class="tag">Procurement</span><span class="tag">Inventory</span></div>
+    </div>
+    <div class="card lift t-fire">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-8 6 6 0 0 1 11.5 1.5A3.5 3.5 0 0 1 17.5 18z"/></svg></span>
+      <h3 class="card-title" style="margin:0">SaaS products</h3>
+      <p class="card-text">From a first version to the redesign that helps a product grow up.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">Onboarding</span><span class="tag">Billing</span><span class="tag">Admin</span></div>
+    </div>
+    <div class="card lift t-growth">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M3 4h18v16H3z M3 9h18 M9 9v11"/></svg></span>
+      <h3 class="card-title" style="margin:0">Web apps</h3>
+      <p class="card-text">Dashboards and internal tools people keep open all day.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">Dashboards</span><span class="tag">Internal tools</span></div>
+    </div>
+    <div class="card lift t-fire">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M8 3h8v18H8z M11 18h2"/></svg></span>
+      <h3 class="card-title" style="margin:0">Mobile apps</h3>
+      <p class="card-text">Approvals, field work and quick tasks that work away from a desk.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">iOS</span><span class="tag">Android</span></div>
+    </div>
+    <div class="card lift t-royal">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18z M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18"/></svg></span>
+      <h3 class="card-title" style="margin:0">Websites</h3>
+      <p class="card-text">Marketing sites that explain a complicated product clearly.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">Marketing sites</span><span class="tag">Product pages</span></div>
+    </div>
+    <div class="card lift t-growth">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z M14 7l3 3"/></svg></span>
+      <h3 class="card-title" style="margin:0">Product design</h3>
+      <p class="card-text">Research, UX and UI for your existing team. We design it, you build it.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">UX research</span><span class="tag">UI design</span><span class="tag">Design systems</span></div>
+    </div>
+    <div class="card lift t-fire">
+      <span class="icon-tile" style="margin-bottom:4px"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/></svg></span>
+      <h3 class="card-title" style="margin:0">Branding</h3>
+      <p class="card-text">Names, logos and visual identities that carry through to the product itself.</p>
+      <div class="tags" style="margin-top:auto;padding-top:4px"><span class="tag">Logo</span><span class="tag">Visual identity</span><span class="tag">Guidelines</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="work" class="rule-top">
+  <div class="wrap section">
+    <div class="row-between" style="margin-bottom:40px">
+      <h2 class="h2">Projects we have delivered</h2>
+      <a class="link-underline" href="projects.html">See more projects →</a>
+    </div>
+    <div class="grid-cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px">
+      <a class="work-card" href="case-study.html">
+        <div class="placeholder">Project screenshot</div>
+        <div class="title-row"><div class="title">Project name</div><div class="kind">Financial workflow</div></div>
+        <dl><dt>Industry</dt><dd>Fintech</dd><dt>Scope</dt><dd>Research, UX/UI, Web app</dd><dt>Platform</dt><dd>Web</dd></dl>
+      </a>
+      <a class="work-card" href="case-study.html">
+        <div class="placeholder">Project screenshot</div>
+        <div class="title-row"><div class="title">Project name</div><div class="kind">Operations dashboard</div></div>
+        <dl><dt>Industry</dt><dd>Logistics</dd><dt>Scope</dt><dd>Redesign, Design system</dd><dt>Platform</dt><dd>Web, Mobile</dd></dl>
+      </a>
+      <a class="work-card" href="case-study.html">
+        <div class="placeholder">Project screenshot</div>
+        <div class="title-row"><div class="title">Project name</div><div class="kind">AI tool</div></div>
+        <dl><dt>Industry</dt><dd>B2B SaaS</dd><dt>Scope</dt><dd>UX/UI, Frontend</dd><dt>Platform</dt><dd>Web</dd></dl>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" style="padding:0 var(--gutter) var(--gutter)">
+  <div class="contact-panel" style="max-width:1320px;margin:0 auto">
+    <div class="stack" style="gap:36px">
+      <h2 class="h2 contact-title">Your product works. Let’s make it good to use.</h2>
+      <div class="numbered">
+        <div><span class="mono">01</span><div><strong>Tell us about it</strong><span>What the product does, who uses it, and where it hurts. Rough is fine.</span></div></div>
+        <div><span class="mono">02</span><div><strong>A first call with our team</strong><span>You talk directly to the Khen designers and engineers who’d work on your project.</span></div></div>
+        <div><span class="mono">03</span><div><strong>We watch the work</strong><span>Before any screens, we spend time with your users and come back with what we found and a plan.</span></div></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <form class="form" novalidate>
+        <input type="hidden" name="service" value="" />
+        <div class="stack" style="gap:10px">
+          <div class="form-label" id="need-label">What do you need?</div>
+          <div class="chips" role="group" aria-labelledby="need-label">
+            <button type="button" class="pill-btn" data-value="ERP platforms" aria-pressed="false">ERP platforms</button>
+            <button type="button" class="pill-btn" data-value="SaaS products" aria-pressed="false">SaaS products</button>
+            <button type="button" class="pill-btn" data-value="Web apps" aria-pressed="false">Web apps</button>
+            <button type="button" class="pill-btn" data-value="Mobile apps" aria-pressed="false">Mobile apps</button>
+            <button type="button" class="pill-btn" data-value="Websites" aria-pressed="false">Websites</button>
+            <button type="button" class="pill-btn" data-value="Product design" aria-pressed="false">Product design</button>
+            <button type="button" class="pill-btn" data-value="Branding" aria-pressed="false">Branding</button>
+            <button type="button" class="pill-btn" data-value="Other" aria-pressed="false">Other</button>
+          </div>
+        </div>
+        <div class="fields-2">
+          <label class="field"><span>Name<span class="req"> *</span></span><input type="text" name="name" required autocomplete="name" /></label>
+          <label class="field"><span>Work email<span class="req"> *</span></span><input type="email" name="email" required autocomplete="email" /></label>
+        </div>
+        <div class="form-error" role="alert" hidden>Please add your name, a valid work email and your company.</div>
+        <label class="field"><span>Company<span class="req"> *</span></span><input type="text" name="company" required autocomplete="organization" /></label>
+        <label class="field">What does the product do, and who uses it?<textarea name="message" rows="4"></textarea></label>
+        <div class="form-foot">
+          <span>Need an NDA first? <a href="mailto:hello@khen.example">Email us</a> and we’ll sign before you share.</span>
+          <button type="submit" class="btn btn-primary">Send →</button>
+        </div>
+      </form>
+      <div class="sent" hidden>
+        <div class="check">✓</div>
+        <h3>Thanks. We’ve got it.</h3>
+        <p>Someone who’ll actually work on your project will reply to set up a first call.</p>
+        <button type="button" class="text-btn" data-reset>Send another</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer" style="margin-top:var(--gutter)">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="assets/khen-logo.png" alt="Khen" width="116" height="40" />
+      <div style="font-weight:600;font-size:16px">Khen Ltd.</div>
+      <address>Street address<br />City, Postcode<br />Country</address>
+      <a class="email" href="mailto:hello@khen.example">hello@khen.example</a>
+    </div>
+    <div class="footer-col">
+      <h2>Company</h2>
+      <a href="about.html">About us</a>
+      <a href="./#approach">How we work</a>
+      <a href="projects.html">Projects</a>
+      <a href="#">Careers</a>
+      <a href="#contact">Contact us</a>
+      <a href="#">Privacy policy</a>
+    </div>
+    <div class="footer-col">
+      <h2>Services</h2>
+      <a href="./#build">ERP platforms</a>
+      <a href="./#build">SaaS products</a>
+      <a href="./#build">Web apps</a>
+      <a href="./#build">Mobile apps</a>
+      <a href="./#build">Websites</a>
+      <a href="./#build">Product design</a>
+      <a href="./#build">Branding</a>
+    </div>
+    <div class="footer-col">
+      <h2>Start a project</h2>
+      <p>Tell us what your product does and who uses it.</p>
+      <a class="footer-cta" href="#contact">Free consultation →</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Khen. All rights reserved.</span>
+    <div><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="#">Behance</a></div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
 </body>
 </html>
