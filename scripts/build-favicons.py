@@ -41,7 +41,7 @@ for name in PAGES:
     text = page.read_text()
     current = re.search(r"favicon-32\.png\?v=(\d+)", text)
     version = version or (int(current.group(1)) + 1 if current else 1)
-    text = re.sub(r'(assets/(?:favicon-32|favicon-192|apple-touch-icon)\.png)(\?v=\d+)?"', rf'\1?v={version}"', text)
+    text = re.sub(r'((?:assets/(?:favicon-32|favicon-192|apple-touch-icon)\.png)|favicon\.ico)(\?v=\d+)?"', rf'\1?v={version}"', text)
     page.write_text(text)
 
 print(f"favicons built from {SRC.name} (tile {bg[:3]}), cache version v={version}")
