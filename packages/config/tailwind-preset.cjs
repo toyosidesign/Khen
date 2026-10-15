@@ -1,8 +1,12 @@
 /**
  * Shared Tailwind preset. Every template extends this so all templates
  * share one visual language. Colors map to the CSS vars from @tp/tokens.
+ *
+ * CommonJS on purpose: Tailwind loads presets with require(), so an ESM
+ * `export default` here arrives as { default: … } and Tailwind silently
+ * drops the theme — every brand-* utility disappears with no error.
  */
-export default {
+module.exports = {
   theme: {
     extend: {
       colors: {

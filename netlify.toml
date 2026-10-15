@@ -1,0 +1,15 @@
+# Netlify publishes `publish` wholesale, so the safety property is that _site/
+# is assembled from an allowlist and never contains templates/*.html or the
+# delivery ledger. See scripts/build-site.mjs.
+
+[build]
+  command = "pnpm previews && pnpm site"
+  publish = "_site"
+
+[build.environment]
+  # scripts/ use import.meta.dirname (Node >= 20.11)
+  NODE_VERSION = "22"
+
+# Headers and redirects are defined in _headers / _redirects, which the build
+# copies into _site/. Netlify only reads them from the publish-dir root — at the
+# repo root they would be silently ignored.

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mono — No more banking headaches</title>
+  <meta name="description" content="Next-generation financial technology. Virtual cards, expense policies, and real-time visibility on spending." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mono — No more banking headaches" />
+  <meta property="og:description" content="Next-generation financial technology. Virtual cards, expense policies, and real-time visibility on spending." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --blue-50:#eff4ff; --blue-100:#dbe7fe; --blue-200:#c3d9fd;
+      --blue-500:#2e6ee6; --blue-600:#175cd3; --blue-700:#1349a8;
+      --violet-400:#a855f7; --violet-500:#8b3ff0; --violet-600:#7127d8;
+      --n-0:#ffffff; --n-25:#fcfdff; --n-50:#f7f9fc; --n-100:#f2f4f7;
+      --n-200:#eaecf0; --n-300:#d0d5dd; --n-400:#98a2b3; --n-500:#667085;
+      --n-600:#475467; --n-700:#344054; --n-900:#0c1a32;
+      --maxw:1280px;
+      --font:"Inter", system-ui, -apple-system, sans-serif;
+      --shadow-xs:0 1px 2px rgba(16,24,40,.05);
+      --shadow-md:0 4px 8px -2px rgba(16,24,40,.10), 0 2px 4px -2px rgba(16,24,40,.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font); color: var(--n-900); background: var(--n-50);
+      -webkit-font-smoothing: antialiased; line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    ul { list-style: none; }
+
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
+
+    /* ---------- BUTTONS ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: inherit; font-weight: 600; font-size: 16px; line-height: 1;
+      padding: 14px 20px; border-radius: 8px; border: 1px solid transparent;
+      cursor: pointer; white-space: nowrap; transition: background .15s ease, border-color .15s ease;
+    }
+    .btn-primary { background: var(--blue-600); color: #fff; box-shadow: var(--shadow-xs); }
+    .btn-primary:hover { background: var(--blue-700); }
+    .btn-ghost { background: var(--n-0); color: var(--n-700); border-color: var(--n-300); box-shadow: var(--shadow-xs); }
+    .btn-ghost:hover { background: var(--n-50); }
+    .btn-sm { font-size: 15px; padding: 10px 16px; }
+
+    /* ---------- NAV ---------- */
+    .nav { position: relative; z-index: 20; }
+    .nav-inner {
+      max-width: var(--maxw); margin: 0 auto; padding: 20px 32px;
+      display: flex; align-items: center; gap: 36px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
+    .brand-mark {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: radial-gradient(circle at 32% 30%, #c084fc, var(--violet-500) 45%, var(--violet-600) 100%);
+      position: relative; flex: none;
+    }
+    .brand-mark::after {
+      content: ""; position: absolute; inset: 7px auto auto 7px;
+      width: 8px; height: 8px; border-radius: 50%; background: rgba(76,29,149,.85);
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { display: inline-flex; align-items: center; gap: 5px; font-size: 16px; font-weight: 500; color: var(--n-600); }
+    .nav-links a:hover { color: var(--n-900); }
+    .nav-links svg { width: 16px; height: 16px; color: var(--n-400); }
+    .nav-spacer { flex: 1; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-actions .login { font-size: 16px; font-weight: 600; color: var(--n-600); padding: 10px 8px; }
+    .nav-actions .login:hover { color: var(--n-900); }
+    .hamburger {
+      display: none; align-items: center; justify-content: center;
+      width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--n-200);
+      background: var(--n-0); cursor: pointer; color: var(--n-700);
+    }
+    .mobile-menu {
+      display: none; border-bottom: 1px solid var(--n-200); background: var(--n-0);
+      padding: 12px 24px 20px;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 12px 0; font-size: 16px; font-weight: 500; color: var(--n-700); }
+    .mobile-menu .actions { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+
+    /* ---------- HERO ---------- */
+    .hero { text-align: center; padding: 92px 0 0; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--blue-50); border-radius: 999px; padding: 4px 12px 4px 4px;
+      font-size: 14px; font-weight: 600;
+    }
+    .badge .tag {
+      background: var(--n-0); color: var(--blue-600); border-radius: 999px;
+      padding: 3px 10px; box-shadow: var(--shadow-xs);
+    }
+    .badge .link { display: inline-flex; align-items: center; gap: 6px; color: var(--blue-600); }
+    .badge .link svg { width: 15px; height: 15px; }
+
+    .hero h1 {
+      font-size: clamp(40px, 5.2vw, 60px); line-height: 1.12; letter-spacing: -0.025em;
+      font-weight: 700; margin: 24px auto 0; max-width: 880px;
+    }
+    .hero .sub {
+      font-size: 18px; color: var(--n-500); max-width: 700px; margin: 20px auto 0;
+    }
+    .hero .actions { display: flex; justify-content: center; gap: 12px; margin-top: 36px; }
+
+    /* card illustration */
+    .hero-art {
+      margin-top: 56px; border-radius: 12px; overflow: hidden;
+      background: #c3ddfa; /* matches the artwork, so no white flash before load */
+    }
+    .hero-art img { width: 100%; height: auto; }
+
+    /* ---------- LOGOS ---------- */
+    .logos { background: var(--n-0); padding: 64px 0 72px; }
+    .logos p { text-align: center; font-size: 16px; color: var(--n-600); margin-bottom: 32px; }
+    .logo-row {
+      display: grid; grid-template-columns: repeat(6, 1fr); align-items: center;
+      gap: 32px; justify-items: center;
+    }
+    .logo-row span {
+      font-size: clamp(16px, 1.55vw, 22px); font-weight: 700; letter-spacing: -0.02em;
+      color: var(--n-400); white-space: nowrap;
+    }
+
+    /* ---------- FEATURES ---------- */
+    .features { padding: 96px 0 104px; }
+    .sec-head { text-align: center; max-width: 780px; margin: 0 auto; }
+    .sec-head .eyebrow { display: block; font-size: 16px; font-weight: 600; color: var(--blue-600); margin-bottom: 12px; }
+    .sec-head h2 { font-size: clamp(30px, 3.4vw, 38px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+    .sec-head p { font-size: 18px; color: var(--n-500); margin-top: 16px; }
+
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 64px 48px; margin-top: 64px;
+    }
+    .feat { text-align: center; }
+    .feat .ic {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--blue-100);
+      color: var(--blue-600); display: grid; place-items: center; margin: 0 auto 20px;
+    }
+    .feat .ic svg { width: 22px; height: 22px; }
+    .feat h3 { font-size: 18px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .feat p { font-size: 16px; color: var(--n-500); }
+
+    /* ---------- CTA ---------- */
+    .cta { padding: 0 0 96px; }
+    .cta-inner {
+      background: var(--n-0); border: 1px solid var(--n-200); border-radius: 16px;
+      padding: 64px 40px; text-align: center; box-shadow: var(--shadow-md);
+    }
+    .cta-inner h2 { font-size: clamp(28px, 3vw, 36px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 700; }
+    .cta-inner p { font-size: 18px; color: var(--n-500); margin-top: 14px; }
+    .cta-inner .actions { display: flex; justify-content: center; gap: 12px; margin-top: 32px; }
+
+    /* ---------- FOOTER ---------- */
+    footer { background: var(--n-0); border-top: 1px solid var(--n-200); padding: 56px 0 40px; }
+    .foot-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
+    .foot-links { display: flex; gap: 32px; flex-wrap: wrap; }
+    .foot-links a { font-size: 15px; font-weight: 500; color: var(--n-600); }
+    .foot-links a:hover { color: var(--n-900); }
+    .foot-bottom {
+      margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--n-100);
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-size: 14px; color: var(--n-400);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 960px) {
+      .nav-links, .nav-actions .login { display: none; }
+      .hamburger { display: inline-flex; }
+      .nav-inner { gap: 16px; }
+      .feat-grid { grid-template-columns: repeat(2, 1fr); gap: 56px 40px; }
+      .feat { padding-inline: 20px; }
+      /* An odd card count leaves the last one alone in the left column — span it
+         and centre it at a single column's width so the row reads as balanced.
+         :nth-child(odd) scopes this to when an orphan actually exists, so the
+         full 6-card template (even) is untouched. */
+      .feat-grid > .feat:last-child:nth-child(odd) {
+        grid-column: 1 / -1; max-width: calc(50% - 20px); margin-inline: auto;
+      }
+      .logo-row { grid-template-columns: repeat(3, 1fr); gap: 32px 24px; }
+    }
+    @media (max-width: 560px) {
+      .wrap, .nav-inner { padding-inline: 24px; }
+      .hero { padding: 56px 16px 0; }
+      .hero h1 { font-size: 36px; line-height: 44px; }
+      .hero .sub { font-size: 17px; }
+      .hero .actions { flex-direction: column; align-items: stretch; }
+      .hero-art { margin-top: 40px; }
+      .sec-head { padding: 0 16px; }
+      .features { padding: 64px 0 72px; }
+      .feat-grid { grid-template-columns: 1fr; gap: 48px; margin-top: 48px; padding: 0 16px; }
+      /* Single column: undo the tablet spanning/padding or the last card would
+         render at half width with a doubled inset. */
+      .feat { padding-inline: 0; }
+      .feat-grid > .feat:last-child:nth-child(odd) { grid-column: auto; max-width: none; margin-inline: 0; }
+      .logos { padding: 48px 0 56px; }
+      .logo-row { grid-template-columns: repeat(2, 1fr); gap: 28px 20px; }
+      .cta { padding-bottom: 64px; }
+      .cta-inner { padding: 48px 24px; }
+      .cta-inner .actions { flex-direction: column; align-items: stretch; }
+      .foot-bottom { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+      footer { padding: 48px 0 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#"><span class="brand-mark"></span> Mono</a>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Products <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Resources <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></a>
+        <a href="#">Pricing</a>
+      </nav>
+      <span class="nav-spacer"></span>
+      <div class="nav-actions">
+        <a class="login" href="#">Log in</a>
+        <a class="btn btn-primary btn-sm" href="#">Sign up</a>
+        <button class="hamburger" id="navToggle" aria-label="Menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#">Home</a>
+    <a href="#">Products</a>
+    <a href="#">Resources</a>
+    <a href="#">Pricing</a>
+    <div class="actions">
+      <a class="btn btn-ghost" href="#">Log in</a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="badge">
+      <span class="tag">What's new?</span>
+      <a class="link" href="#">Instantly issue virtual cards
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </span>
+
+    <h1>No more banking headaches</h1>
+    <p class="sub">More money, no problems. Mono is a next-generation financial technology Mono in the process of reinventing banking. 30-day free trial.</p>
+
+    <div class="actions">
+      <a class="btn btn-ghost" href="#">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M10 8.5 16 12l-6 3.5V8.5Z" fill="currentColor" stroke="none"/></svg>
+        Demo
+      </a>
+      <a class="btn btn-primary" href="#">Sign up</a>
+    </div>
+
+    <div class="hero-art">
+      <picture>
+        <source media="(max-width: 560px)" srcset="./assets/mono/hero-cards-mobile.png" />
+        <img src="./assets/mono/hero-cards.png" width="2432" height="960"
+             alt="Two Mono cards: a purple card issued to Phoenix Baker and a frosted virtual card issued to Olivia Rhye" />
+      </picture>
+    </div>
+  </section>
+
+  <!-- LOGO CLOUD -->
+  <section class="logos">
+    <div class="wrap">
+      <p>Join 4,000+ companies already growing</p>
+      <div class="logo-row">
+        <span>Northwind</span>
+        <span>Lumen</span>
+        <span>Cadence</span>
+        <span>Fathom</span>
+        <span>Arbour</span>
+        <span>Kestrel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Features</span>
+      <h2>All you need to run your finances effectively</h2>
+      <p>Open a full-featured account in with virtual cards in less than 5 minutes.</p>
+    </div>
+
+    <div class="feat-grid">
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg></div>
+        <h3>Unlimited cards</h3>
+        <p>Give your team the autonomy they need with access to as many cards as they need. Authorise purchases with a click. Simple.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 6.5c0-2-2.2-3-5-3s-5 .9-5 3 2.2 2.8 5 3.5 5 1.4 5 3.5-2.2 3-5 3-5-1-5-3"/></svg></div>
+        <h3>Easy expense policies</h3>
+        <p>Every card comes with configurable spending limits, purchase restrictions, and cancellations for each employee and team.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V10M12 20V4M18 20v-6"/></svg></div>
+        <h3>Advanced analytics</h3>
+        <p>An all-in-one platform that helps you balance everything your team need to be happy and your finances in order.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Real-time visibility on spending</h3>
+        <p>No more unpleasant surprises. Our in-app top line view of your business spending means you can see who's spending what, when, &amp; where.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6Z"/></svg></div>
+        <h3>Connect the tools you already use</h3>
+        <p>Explore 100+ integrations that make your day-to-day workflow more efficient and familiar. Plus, our extensive developer tools.</p>
+      </div>
+      <div class="feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5Z"/></svg></div>
+        <h3>Our people make the difference</h3>
+        <p>We're an extension of your customer service team, and all of our resources are free. Chat to our friendly team 24/7 when you need help.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta wrap">
+    <div class="cta-inner">
+      <h2>Start your 30-day free trial</h2>
+      <p>Join 4,000+ companies already growing with Mono. No credit card required.</p>
+      <div class="actions">
+        <a class="btn btn-ghost" href="#">Talk to sales</a>
+        <a class="btn btn-primary" href="#">Get started</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot-top">
+        <a class="brand" href="#"><span class="brand-mark"></span> Mono</a>
+        <nav class="foot-links">
+          <a href="#">Product</a>
+          <a href="#">Pricing</a>
+          <a href="#">Resources</a>
+          <a href="#">Company</a>
+          <a href="#">Legal</a>
+        </nav>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Mono. All rights reserved.</span>
+        <span>Privacy · Terms · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  </script>
+</body>
+</html>

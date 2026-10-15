@@ -1,0 +1,12 @@
+# Previews and the gallery are meant to be indexed — they sell the templates.
+# The full deliverables and delivery records are not.
+#
+# Note: robots.txt is public and advisory only. It stops well-behaved crawlers
+# from indexing a stray copy; it does not stop anyone from fetching a URL. The
+# control that matters is that _site/ is built from an allowlist and never
+# contains these files at all (scripts/build-site.mjs).
+
+User-agent: *
+Allow: /
+Disallow: /templates/*.html$
+Disallow: /dist/

@@ -146,8 +146,18 @@
     @media (max-width: 960px) {
       .nav-links, .nav-cta { display: none; }
       .hamburger { display: inline-flex; }
+      /* .sec-head is max-width 768 inside a 770px content box here, so the copy
+         runs edge to edge with only .wrap's 32px beside it. Pull it in — with
+         border-box this narrows the text rather than widening the block. */
+      .sec-head { padding-inline: 24px; }
       .frow { grid-template-columns: 1fr; gap: 40px; }
       .frow.rev .txt, .frow.rev .shot { order: 0; }
+      /* Once the row stacks, the copy sits under a centred .sec-head — so centre
+         it too, matching that block's max-width + auto margins. The checklist
+         stays a left-aligned block so its rows line up with each other. */
+      .frow .txt { text-align: center; max-width: 620px; margin-inline: auto; }
+      .frow .txt .ic { margin-inline: auto; }
+      .frow .checklist { width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
       .ig-grid { grid-template-columns: repeat(4, 1fr); max-width: 560px; }
       .trial-inner { flex-direction: column; align-items: flex-start; }
       .cta-split { grid-template-columns: 1fr; gap: 40px; }
@@ -156,12 +166,24 @@
       .foot-brand { grid-column: 1 / -1; }
     }
     @media (max-width: 560px) {
-      .wrap { padding: 0 16px; }
-      .hero { padding: 56px 0 0; }
+      /* Mobile rhythm matched to khen-analytics: 24px container, 40px inset for
+         hero + section copy, and the same hero type scale. */
+      .wrap { padding: 0 24px; }
+      .hero { padding: 56px 16px 0; }
+      .hero h1 { font-size: 36px; line-height: 44px; }
+      .hero .sub { font-size: 18px; }
+      /* Overrides the 24px set at the tablet breakpoint: 24 + 16 = 40px, same
+         effective inset as the hero and as khen's .sec-head. */
+      .sec-head { padding: 0 16px; }
       .hero .actions { flex-direction: column; align-items: stretch; }
       .hero-mock { margin-top: 40px; }
       .features, .integrations, .stats, .quote, .cta { padding: 56px 0; }
       .frows { gap: 56px; margin-top: 40px; }
+      /* The checklist items are the longest lines in the block, so they were the
+         only thing reaching the wrap edge. Pad the whole .txt rather than just
+         the list, so heading, copy and checklist stay on one edge — 24 + 16 =
+         40px, the same inset as .sec-head and the hero. */
+      .frow .txt { padding-inline: 16px; }
       .stat-row { grid-template-columns: 1fr; gap: 40px; }
       .ig-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
       .trial-inner { padding: 28px 24px; }
@@ -170,6 +192,7 @@
       .tlogos { gap: 24px; }
       .foot-top { grid-template-columns: repeat(2, 1fr); }
       .foot-bottom { flex-direction: column-reverse; gap: 20px; align-items: flex-start; }
+      footer { padding-top: 48px; padding-bottom: 32px; }
     }
   </style>
 </head>

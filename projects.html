@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template Platform Landing Page Templates</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- Design tokens (mirrors @tp/tokens) ---- */
+    :root {
+      --brand-50:#eef4ff; --brand-100:#d9e6ff; --brand-500:#2f66f5;
+      --brand-600:#1d4ed8; --brand-700:#1b3fb0;
+      --n-0:#ffffff; --n-50:#f8fafc; --n-100:#f1f5f9; --n-200:#e2e8f0;
+      --n-300:#cbd5e1; --n-400:#94a3b8; --n-500:#64748b; --n-600:#475569;
+      --n-700:#334155; --n-800:#1e293b; --n-900:#0f172a;
+      --font-display:"Space Grotesk", system-ui, sans-serif;
+      --font-body:"Inter", system-ui, sans-serif;
+      --radius:16px;
+      --shadow-md:0 4px 12px -2px rgb(15 23 42 / .08);
+      --shadow-lg:0 12px 32px -8px rgb(15 23 42 / .16);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--n-900);
+      background: var(--n-50);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---- Top bar ---- */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--n-200);
+    }
+    .topbar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+    .logo-mark {
+      width: 30px; height: 30px; border-radius: 8px;
+      background: linear-gradient(135deg, var(--brand-500), var(--brand-700));
+      display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 15px;
+    }
+    .topbar .cta {
+      background: var(--brand-500); color: #fff; padding: 10px 18px; border-radius: 10px;
+      font-weight: 600; font-size: 14px; transition: background .15s ease;
+    }
+    .topbar .cta:hover { background: var(--brand-600); }
+    .topbar-actions { display: flex; align-items: center; gap: 10px; }
+    .topbar .cta-ghost { background: transparent; color: var(--n-600); }
+    .topbar .cta-ghost:hover { background: var(--n-100); color: var(--n-900); }
+    @media (max-width: 560px) { .topbar .cta-ghost { display: none; } }
+
+    /* ---- Hero ---- */
+    .hero { max-width: 1200px; margin: 0 auto; padding: 64px 24px 28px; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--brand-50); color: var(--brand-700);
+      font-size: 13px; font-weight: 600; padding: 6px 14px; border-radius: 999px;
+    }
+    .hero h1 {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(32px, 5vw, 56px); line-height: 1.08; margin: 20px auto 0; max-width: 760px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 .accent { color: var(--brand-500); }
+    .hero p { margin: 18px auto 0; max-width: 560px; color: var(--n-600); font-size: 18px; }
+
+    /* ---- Filter pills ---- */
+    .filters {
+      max-width: 1200px; margin: 0 auto; padding: 32px 24px 8px;
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    }
+    .pill {
+      border: 1px solid var(--n-200); background: var(--n-0); color: var(--n-700);
+      font-family: var(--font-body); font-size: 14px; font-weight: 500;
+      padding: 9px 18px; border-radius: 999px; cursor: pointer; transition: all .15s ease;
+    }
+    .pill:hover { border-color: var(--brand-300, #8db6ff); color: var(--brand-600); }
+    .pill.active { background: var(--n-900); color: #fff; border-color: var(--n-900); }
+
+    /* ---- Grid ---- */
+    .grid {
+      max-width: 1200px; margin: 0 auto; padding: 28px 24px 80px;
+      display: grid; gap: 26px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    }
+
+    /* ---- Card ---- */
+    .card {
+      background: var(--n-0); border: 1px solid var(--n-200); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow-md);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+      display: flex; flex-direction: column;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--brand-300, #8db6ff); }
+
+    /* thumbnail (a stylized mini landing page) */
+    .thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; }
+    .thumb-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .thumb-scene { position: absolute; inset: 0; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+    .mini-nav { display: flex; align-items: center; gap: 6px; }
+    .mini-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.75); }
+    .mini-nav .spacer { flex: 1; }
+    .mini-link { width: 26px; height: 6px; border-radius: 3px; background: rgba(255,255,255,.55); }
+    .mini-hero { margin-top: auto; display: flex; flex-direction: column; gap: 7px; }
+    .mini-h1 { height: 13px; width: 72%; border-radius: 4px; background: rgba(255,255,255,.95); }
+    .mini-h2 { height: 13px; width: 54%; border-radius: 4px; background: rgba(255,255,255,.9); }
+    .mini-p  { height: 7px; width: 84%; border-radius: 3px; background: rgba(255,255,255,.55); }
+    .mini-btn { margin-top: 4px; height: 22px; width: 96px; border-radius: 7px; background: #fff; }
+    .mini-cards { display: flex; gap: 8px; margin-top: 4px; }
+    .mini-cards span { flex: 1; height: 34px; border-radius: 7px; background: rgba(255,255,255,.85); }
+    .mini-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: auto; }
+    .mini-grid span { aspect-ratio: 1; border-radius: 7px; background: rgba(255,255,255,.85); }
+
+    /* hover overlay with actions */
+    .overlay {
+      position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 12px;
+      background: rgba(15,23,42,.55); backdrop-filter: blur(2px);
+      opacity: 0; transition: opacity .18s ease;
+    }
+    .card:hover .overlay, .card:focus-within .overlay { opacity: 1; }
+    .overlay .btn {
+      font-family: var(--font-body); font-weight: 600; font-size: 14px;
+      padding: 11px 18px; border-radius: 10px; cursor: pointer; border: none;
+      transform: translateY(8px); transition: transform .18s ease, background .15s ease;
+    }
+    .card:hover .overlay .btn, .card:focus-within .overlay .btn { transform: translateY(0); }
+    .btn-use { background: var(--brand-500); color: #fff; }
+    .btn-use:hover { background: var(--brand-600); }
+    .btn-preview { background: #fff; color: var(--n-900); }
+    .btn-preview:hover { background: var(--n-100); }
+
+    /* checkout toast */
+    .toast {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+      background: var(--n-900); color: #fff; padding: 12px 18px; border-radius: 10px;
+      font-size: 14px; font-weight: 500; opacity: 0; pointer-events: none;
+      transition: opacity .25s, transform .25s; z-index: 50; box-shadow: var(--shadow-lg);
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    /* card body */
+    .card-body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .card-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .cat-tag { font-size: 12px; font-weight: 600; color: var(--brand-700); background: var(--brand-50); padding: 4px 10px; border-radius: 999px; }
+    .price { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--n-900); }
+    .card-title { font-family: var(--font-display); font-weight: 600; font-size: 18px; margin-top: 4px; }
+    .card-desc { font-size: 14px; color: var(--n-500); }
+    .card-meta { margin-top: auto; padding-top: 12px; display: flex; align-items: center; gap: 14px; font-size: 12.5px; color: var(--n-400); }
+    .card-meta .live { color: #16a34a; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
+    .card-meta .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #16a34a; }
+
+    /* ---- "what you're buying" — the part a screenshot can't carry ---- */
+    .value { border-top: 1px solid var(--n-200); background: var(--n-0); }
+    .value-inner { max-width: 1200px; margin: 0 auto; padding: 72px 24px 80px; }
+    .value-head { max-width: 680px; margin-bottom: 44px; }
+    .value-head .eyebrow-sm {
+      font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--brand-500); display: block; margin-bottom: 12px;
+    }
+    .value-head h2 { font-family: var(--font-display); font-weight: 700; font-size: 34px; line-height: 1.15; margin-bottom: 14px; }
+    .value-head p { color: var(--n-500); font-size: 17px; line-height: 1.6; }
+    .value-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .value-item {
+      background: var(--n-50); border: 1px solid var(--n-200); border-radius: var(--radius);
+      padding: 24px 22px 26px;
+    }
+    .value-item .vi-num {
+      font-family: var(--font-display); font-weight: 700; font-size: 13px;
+      color: var(--brand-500); display: block; margin-bottom: 14px;
+    }
+    .value-item h3 { font-family: var(--font-display); font-weight: 600; font-size: 16.5px; margin-bottom: 8px; }
+    .value-item p { font-size: 14.5px; line-height: 1.6; color: var(--n-500); }
+    .value-item code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px;
+      background: var(--n-0); border: 1px solid var(--n-200); border-radius: 5px;
+      padding: 1px 5px; color: var(--n-700);
+    }
+    .value-flow {
+      margin-top: 32px; background: var(--n-900); border-radius: var(--radius);
+      padding: 26px 28px; overflow-x: auto;
+    }
+    .value-flow pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 13px; line-height: 1.75; color: #cbd5e1; margin: 0;
+    }
+    .value-flow .hl { color: #7dd3fc; }
+    .value-flow .cm { color: var(--n-500); }
+    .value-note { margin-top: 18px; font-size: 14.5px; color: var(--n-500); }
+
+    @media (max-width: 940px) { .value-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) {
+      .value-grid { grid-template-columns: 1fr; }
+      .value-inner { padding: 56px 20px 64px; }
+      .value-head h2 { font-size: 27px; }
+    }
+
+    /* footer */
+    footer { border-top: 1px solid var(--n-200); background: var(--n-0); }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 28px 24px; text-align: center; color: var(--n-400); font-size: 14px; }
+
+    .hidden { display: none !important; }
+
+    /* on touch screens (no hover), always show the actions */
+    @media (hover: none) {
+      .overlay { opacity: 1; background: rgba(15,23,42,.35); }
+      .overlay .btn { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="logo" href="./index.html"><span class="logo-mark">tp</span> Template Platform</a>
+      <nav class="topbar-actions">
+        <a class="cta cta-ghost" href="#whats-included">What's included</a>
+        <a class="cta" href="#grid">Browse templates</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="eyebrow">◆ Premium landing page templates</span>
+    <h1>Launch-ready landing pages, <span class="accent">built to sell.</span></h1>
+    <p>Responsive, on-brand templates for every kind of company. Hover any template to preview it live or start using it in seconds.</p>
+  </section>
+
+  <!-- Category filters -->
+  <nav class="filters" id="filters">
+    <button class="pill active" data-filter="all">All templates</button>
+    <button class="pill" data-filter="landing">Landing Page</button>
+    <button class="pill" data-filter="saas">SaaS</button>
+    <button class="pill" data-filter="fintech">Fintech</button>
+    <button class="pill" data-filter="ecommerce">E-commerce</button>
+    <button class="pill" data-filter="startup">Startup / Agency</button>
+    <button class="pill" data-filter="app">Mobile App</button>
+    <button class="pill" data-filter="portfolio">Portfolio</button>
+    <button class="pill" data-filter="hospitality">Restaurant</button>
+  </nav>
+
+  <!-- Template grid -->
+  <main class="grid" id="grid">
+    <!-- SaaS (this one is the real, running template) -->
+    <article class="card" data-category="fintech landing saas">
+      <div class="thumb">
+        <img class="thumb-img" src="./templates/assets/mono-thumb.png" alt="Mono fintech landing page preview" />
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/mono-fintech.html&name=Mono%20%E2%80%94%20Fintech&cat=Fintech%20landing%20page&price=$49">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Fintech landing page</span><span class="price">$49</span></div>
+        <h3 class="card-title">Mono</h3>
+        <p class="card-desc">Fintech landing: virtual cards hero, logo cloud, feature grid &amp; CTA.</p>
+        <div class="card-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
+    </article>
+
+    <article class="card" data-category="saas landing">
+      <div class="thumb">
+        <img class="thumb-img" src="./templates/assets/khen-thumb.png" alt="Khen Analytics landing page preview" />
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/khen-analytics.html&name=Khen%20%E2%80%94%20Analytics&cat=SaaS%20landing%20page&price=$49">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">SaaS landing page</span><span class="price">$49</span></div>
+        <h3 class="card-title">Khen Analytics</h3>
+        <p class="card-desc">Beautiful analytics landing: hero dashboard, features, FAQ &amp; CTA.</p>
+        <div class="card-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
+    </article>
+
+    <!-- Aurora Analytics (blue variant landing page) -->
+    <article class="card" data-category="saas landing">
+      <div class="thumb">
+        <img class="thumb-img" src="./templates/assets/aurora-thumb.png" alt="Aurora Analytics landing page preview" />
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/aurora-analytics.html&name=Aurora%20%E2%80%94%20Analytics&cat=SaaS%20landing%20page&price=$49">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">SaaS landing page</span><span class="price">$49</span></div>
+        <h3 class="card-title">Aurora Analytics</h3>
+        <p class="card-desc">Blue analytics landing: hero dashboard, feature blocks, integrations &amp; CTA.</p>
+        <div class="card-meta"><span class="live">Live</span><span>Responsive · HTML</span></div>
+      </div>
+    </article>
+
+    <!-- E-commerce -->
+    <article class="card" data-category="ecommerce">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#0f766e,#134e4a)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-grid"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/marketplace-storefront.html&name=Marketplace%20Storefront">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">E-commerce</span><span class="price">$59</span></div>
+        <h3 class="card-title">Marketplace Storefront</h3>
+        <p class="card-desc">Product grid, category rail and conversion-focused checkout hero.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Startup / Agency -->
+    <article class="card" data-category="startup landing">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#7c3aed,#4c1d95)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-cards"><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/studio-agency.html&name=Studio%20Agency">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Startup / Agency</span><span class="price">$49</span></div>
+        <h3 class="card-title">Studio Agency</h3>
+        <p class="card-desc">Bold hero, service cards and social proof for teams and studios.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Mobile App -->
+    <article class="card" data-category="app landing">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#0ea5e9,#0369a1)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/orbit-app-launch.html&name=Orbit%20App%20Launch">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Mobile App</span><span class="price">$45</span></div>
+        <h3 class="card-title">Orbit App Launch</h3>
+        <p class="card-desc">App-store badges, feature highlights and device mockup hero.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Portfolio -->
+    <article class="card" data-category="portfolio">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#1e293b,#0f172a)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-grid"><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/folio-personal.html&name=Folio%20Personal">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Portfolio</span><span class="price">$39</span></div>
+        <h3 class="card-title">Folio Personal</h3>
+        <p class="card-desc">Minimal portfolio with project gallery and about section.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Restaurant / Hospitality -->
+    <article class="card" data-category="hospitality landing">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#ea580c,#9a3412)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/savory-restaurant.html&name=Savory%20Restaurant">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Restaurant</span><span class="price">$42</span></div>
+        <h3 class="card-title">Savory Restaurant</h3>
+        <p class="card-desc">Menu highlights, reservations CTA and location for local venues.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Event / Conference -->
+    <article class="card" data-category="event landing">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#db2777,#831843)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span><span class="mini-link"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-h2"></div><div class="mini-cards"><span></span><span></span><span></span></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/summit-conference.html&name=Summit%20Conference">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Event</span><span class="price">$45</span></div>
+        <h3 class="card-title">Summit Conference</h3>
+        <p class="card-desc">Speaker lineup, schedule and ticket CTA for events.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+
+    <!-- Creator / Newsletter -->
+    <article class="card" data-category="creator landing">
+      <div class="thumb">
+        <div class="thumb-scene" style="background:linear-gradient(135deg,#16a34a,#14532d)">
+          <div class="mini-nav"><span class="mini-dot"></span><span class="spacer"></span><span class="mini-link"></span></div>
+          <div class="mini-hero"><div class="mini-h1"></div><div class="mini-p"></div><div class="mini-btn"></div></div>
+        </div>
+        <div class="overlay">
+          <button class="btn btn-use" type="button">Use Template</button>
+          <a class="btn btn-preview" href="./preview.html?src=previews/signal-newsletter.html&name=Signal%20Newsletter">Preview</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top"><span class="cat-tag">Creator</span><span class="price">$35</span></div>
+        <h3 class="card-title">Signal Newsletter</h3>
+        <p class="card-desc">Email capture hero, testimonials and archive for creators.</p>
+        <div class="card-meta"><span>Coming soon</span><span>Next.js · Tailwind</span></div>
+      </div>
+    </article>
+  </main>
+
+  <!-- What the purchase actually includes. A screenshot carries the pixels;
+       none of this travels with them. -->
+  <section class="value" id="whats-included">
+    <div class="value-inner">
+      <div class="value-head">
+        <span class="eyebrow-sm">What you're actually buying</span>
+        <h2>A design system, not a picture of one.</h2>
+        <p>
+          Anyone can screenshot a landing page. What they can't copy is the system
+          underneath it — the part that makes the template yours in an afternoon
+          instead of a fortnight.
+        </p>
+      </div>
+
+      <div class="value-grid">
+        <div class="value-item">
+          <span class="vi-num">01</span>
+          <h3>One source of truth</h3>
+          <p>Colors, type, spacing, radius and shadow live in <code>@tp/tokens</code>. Change a brand value once and every template and component restyles with it.</p>
+        </div>
+        <div class="value-item">
+          <span class="vi-num">02</span>
+          <h3>A real component library</h3>
+          <p><code>@tp/ui</code> ships typed React components built on those tokens — not copy-pasted markup you have to keep in sync by hand.</p>
+        </div>
+        <div class="value-item">
+          <span class="vi-num">03</span>
+          <h3>Figma that matches the code</h3>
+          <p>The same tokens export as Figma variables. Import them and your design file and your codebase stop drifting apart.</p>
+        </div>
+        <div class="value-item">
+          <span class="vi-num">04</span>
+          <h3>Source, docs &amp; updates</h3>
+          <p>TypeScript, Tailwind and Next.js source you can read and extend — with written docs, a commercial licence for client work, and updates included.</p>
+        </div>
+      </div>
+
+      <div class="value-flow">
+<pre><span class="cm">// change a brand color in ONE place…</span>
+tokens/index.ts  ──┐
+                   ├─→ <span class="hl">tokens.css</span>       <span class="cm">→ every app root</span>
+                   ├─→ <span class="hl">config preset</span>    <span class="cm">→ Tailwind utilities (bg-brand-500…)</span>
+                   └─→ <span class="hl">figma-variables</span>  <span class="cm">→ import into Figma</span>
+<span class="cm">// …and it propagates to code AND design.</span></pre>
+      </div>
+
+      <p class="value-note">
+        Every template on this page is built on it. Re-skinning one for a client is
+        a token edit, not a find-and-replace.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">Built on the @tp design system · tokens · config · ui. Change a brand color once, every template restyles.</div>
+  </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // Category filtering
+    const pills = document.querySelectorAll('.pill');
+    const cards = document.querySelectorAll('.card');
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        pills.forEach((p) => p.classList.remove('active'));
+        pill.classList.add('active');
+        const filter = pill.dataset.filter;
+        cards.forEach((card) => {
+          const match = filter === 'all' || card.dataset.category.split(' ').includes(filter);
+          card.classList.toggle('hidden', !match);
+        });
+      });
+    });
+
+    // "Use Template" is a checkout action, NOT a link to the template file.
+    // Wire this to real checkout; it must never hand over templates/*.html.
+    const toast = document.getElementById('toast');
+    let toastTimer;
+    document.querySelector('.grid')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-use');
+      if (!btn) return;
+      const title = btn.closest('.card')?.querySelector('.card-title')?.textContent.trim() || 'this template';
+      toast.textContent = `🎉 Nice pick! Checkout for ${title} is coming soon.`;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+    });
+  </script>
+</body>
+</html>

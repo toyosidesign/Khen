@@ -1,0 +1,44 @@
+# GitHub Pages. Publishes only _site/, which scripts/build-site.mjs assembles
+# from an allowlist and hard-fails if a templates/*.html deliverable appears.
+# Note: _headers and _redirects are Netlify-only; Pages ignores them.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Build scripts use only Node built-ins, so no install step is needed.
+      - run: node scripts/build-previews.mjs
+      - run: node --test scripts/build-previews.test.mjs
+      - run: node scripts/build-site.mjs
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

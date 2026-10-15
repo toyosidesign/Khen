@@ -20,7 +20,7 @@
         "../../packages/ui/src/index.ts"
       ],
       "@tp/config/tailwind": [
-        "../../packages/config/tailwind-preset.js"
+        "../../packages/config/tailwind-preset.cjs"
       ]
     },
     "allowJs": true,

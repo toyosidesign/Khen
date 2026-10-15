@@ -1,0 +1,10 @@
+# Netlify. Defence in depth: even if a full template somehow ends up in the
+# published directory, it is not reachable. The primary control is that
+# scripts/build-site.mjs builds _site/ from an allowlist and hard-fails if a
+# deliverable appears; this is the backstop.
+#
+# templates/assets/* must stay reachable — previews/ references it — so only the
+# .html deliverables are blocked.
+
+/templates/*.html   /404.html   404
+/dist/*             /404.html   404

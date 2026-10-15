@@ -8,5 +8,9 @@
     ".": "./src/index.ts",
     "./css": "./src/tokens.css",
     "./figma": "./src/figma-variables.json"
+  },
+  "scripts": {
+    "build": "node ../../scripts/build-tokens.mjs",
+    "check": "node ../../scripts/build-tokens.mjs --check"
   }
 }

@@ -55,14 +55,22 @@
     .frame { position: relative; background: var(--n-0); width: 100%; max-width: 1440px; height: 100%; box-shadow: 0 12px 40px -12px rgba(16,24,40,.18); overflow: hidden; flex: none; transform-origin: center center; transition: transform .35s cubic-bezier(.4,0,.2,1); }
     .frame iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 
+    /* Holds the iframe + watermark so the overlay aligns to the screen area,
+       not the device bezel (absolute `inset:0` resolves to the padding box). */
+    .viewport { position: relative; width: 100%; height: 100%; overflow: hidden; }
+
+    /* Tiled diagonal watermark, drawn in THIS document rather than inside the
+       previewed page — saving the iframe source does not carry it along. */
+    .watermark { position: absolute; inset: 0; z-index: 2; pointer-events: none; background-repeat: repeat; }
+
     /* tablet: iPad-style mockup — fixed 834px logical viewport, scaled to fit via JS */
     .frame.tablet { width: 834px; height: 1120px; max-width: none; background: #1d2939; padding: 32px; border-radius: 42px; box-shadow: 0 40px 70px -24px rgba(16,24,40,.5); overflow: visible; }
-    .frame.tablet iframe { border-radius: 18px; }
+    .frame.tablet iframe, .frame.tablet .viewport { border-radius: 18px; }
     .frame.tablet::after { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 8px; height: 8px; border-radius: 50%; background: #3a4353; }
 
     /* mobile: iPhone-style mockup — fixed 390px logical viewport, scaled to fit via JS */
     .frame.mobile { width: 390px; height: 844px; max-width: none; background: #1d2939; padding: 20px; border-radius: 56px; box-shadow: 0 40px 70px -22px rgba(16,24,40,.55); overflow: visible; }
-    .frame.mobile iframe { border-radius: 44px; }
+    .frame.mobile iframe, .frame.mobile .viewport { border-radius: 44px; }
     .frame.mobile::after { content: ""; position: absolute; top: 26px; left: 50%; transform: translateX(-50%); width: 100px; height: 30px; background: #000; border-radius: 16px; z-index: 3; }
 
     .loading { position: absolute; inset: var(--topbar-h) 0 0 0; display: grid; place-items: center; color: var(--n-500); font-size: 14px; pointer-events: none; transition: opacity .3s; }
@@ -84,7 +92,7 @@
 <body>
   <header class="topbar">
     <div class="tb-left">
-      <a class="back" href="./index.html">
+      <a class="back" href="./projects.html">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
         Templates
       </a>
@@ -115,15 +123,61 @@
 
   <div class="stage">
     <div class="frame" id="frame">
-      <iframe id="viewer" title="Template preview" loading="lazy"></iframe>
+      <div class="viewport" id="viewport">
+        <iframe id="viewer" title="Template preview" loading="lazy"></iframe>
+        <div class="watermark" id="watermark" aria-hidden="true"></div>
+      </div>
     </div>
   </div>
 
   <div class="toast" id="toast"></div>
 
   <script>
+    // ---- Preview watermark -------------------------------------------------
+    // Change this one string to rebrand the overlay everywhere.
+    const WATERMARK_TEXT = "PREVIEW · TEMPLATE PLATFORM";
+
+    const xmlEscape = (s) => s.replace(/[&<>"']/g, (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&apos;" }[c]));
+
+    // One tile carries two staggered labels so the repeat reads as a diagonal
+    // lattice. Each label is drawn twice — a white pass 1px below a dark pass —
+    // so it stays legible over light AND dark sections of a template.
+    function watermarkTile(text) {
+      const W = 440, H = 280;
+      const safe = xmlEscape(text);
+      const label = (x, y) => `
+        <g transform="rotate(-30 ${x} ${y})" text-anchor="middle"
+           font-family="Inter, system-ui, sans-serif" font-size="15" font-weight="700" letter-spacing="2.5">
+          <text x="${x}" y="${y + 1}" fill="#ffffff" fill-opacity="0.11">${safe}</text>
+          <text x="${x}" y="${y}" fill="#101828" fill-opacity="0.10">${safe}</text>
+        </g>`;
+      const svg =
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}">` +
+        label(W * 0.25, H * 0.25) + label(W * 0.75, H * 0.75) +
+        `</svg>`;
+      return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+    }
+
+    const viewport = document.getElementById("viewport");
+    let watermark = document.getElementById("watermark");
+    watermark.style.backgroundImage = watermarkTile(WATERMARK_TEXT);
+
+    // A speed bump, not a lock: anyone with DevTools can still strip this, but
+    // deleting the node no longer survives long enough to line up a screenshot.
+    new MutationObserver(() => {
+      if (!watermark.isConnected) {
+        watermark = watermark.cloneNode(false);
+        watermark.style.backgroundImage = watermarkTile(WATERMARK_TEXT);
+        viewport.appendChild(watermark);
+      }
+    }).observe(viewport, { childList: true });
+    // ------------------------------------------------------------------------
+
     const params = new URLSearchParams(location.search);
-    const src   = params.get("src")   || "templates/khen-analytics.html";
+    // Previews only. `templates/` holds the full deliverables and is not deployed.
+    const requested = params.get("src") || "previews/khen-analytics.html";
+    const src = requested.startsWith("previews/") ? requested : "previews/" + requested.replace(/^.*\//, "");
     const name  = params.get("name")  || "Template preview";
     const cat   = params.get("cat")   || "Template Platform";
     const price = params.get("price") || "";

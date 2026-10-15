@@ -6,6 +6,11 @@
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
     "dev": { "cache": false, "persistent": true },
-    "lint": {}
+    "lint": {},
+    "check": { "cache": false },
+    "@tp/tokens#build": {
+      "inputs": ["src/index.ts"],
+      "outputs": ["src/tokens.css", "src/figma-variables.json"]
+    }
   }
 }
