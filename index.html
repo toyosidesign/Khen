@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=202610161751" />
+  <link rel="stylesheet" href="assets/site.css?v=202610161818" />
 </head>
 <body>
 
@@ -348,22 +348,25 @@
       <h2 class="h2">Projects we have delivered</h2>
       <a class="link-underline" href="projects.html">See more projects →</a>
     </div>
-    <div class="grid-cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:24px">
-      <div class="work-card">
-        <div class="shot mockup"><img src="assets/projects/fluent-conveyors.webp" alt="Fluent Conveyors ERP dashboard on a desktop screen" loading="lazy" width="1200" height="1011" /></div>
-        <div class="title-row"><div class="title">Fluent Conveyors</div><div class="kind">ERP platform</div></div>
-        <dl><dt>Industry</dt><dd>Manufacturing</dd><dt>Scope</dt><dd>UX/UI, Web app</dd><dt>Platform</dt><dd>Web</dd></dl>
-      </div>
-      <a class="work-card" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page">
-        <div class="shot"><img src="assets/projects/khen-analytics.jpg" alt="Khen Analytics landing page" loading="lazy" width="900" height="900" /></div>
-        <div class="title-row"><div class="title">Khen Analytics</div><div class="kind">Landing page</div></div>
-        <dl><dt>Industry</dt><dd>Analytics SaaS</dd><dt>Scope</dt><dd>UI design, Design system, Website</dd><dt>Platform</dt><dd>Web, responsive</dd></dl>
-      </a>
-      <a class="work-card" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page">
-        <div class="shot"><img src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" /></div>
-        <div class="title-row"><div class="title">Aurora Analytics</div><div class="kind">Landing page</div></div>
-        <dl><dt>Industry</dt><dd>Analytics SaaS</dd><dt>Scope</dt><dd>UI design, Website</dd><dt>Platform</dt><dd>Web, responsive</dd></dl>
-      </a>
+    <div class="pcard-grid">
+    <div class="pcard" data-tags="ERP platforms|Web apps" style="--tile:#e6eefd">
+      <div class="pcard-media"><div class="pcard-frame is-mockup"><img class="pcard-shot" src="assets/projects/fluent-conveyors.webp" alt="Fluent Conveyors ERP dashboard on a desktop screen" loading="lazy" width="1200" height="1011" /></div></div>
+      <div class="tags"><span class="tag neutral">ERP platforms</span><span class="tag neutral">Web apps</span></div>
+      <h3 class="pcard-title">Fluent Conveyors</h3>
+      <p class="pcard-desc">Customer portal for a conveyor manufacturer: quotes, shipments, maintenance and help desk in one place.</p>
+    </div>
+    <a class="pcard" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="Websites|SaaS products|Product design" style="--tile:#f0ebfa">
+      <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/khen-analytics.jpg" alt="Khen Analytics landing page" loading="lazy" width="900" height="900" /></div></div>
+      <div class="tags"><span class="tag neutral">Websites</span><span class="tag neutral">SaaS products</span><span class="tag neutral">Product design</span></div>
+      <h3 class="pcard-title">Khen Analytics</h3>
+      <p class="pcard-desc">Beautiful analytics landing: hero dashboard, features, FAQ and CTA.</p>
+    </a>
+    <a class="pcard" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="Websites|SaaS products" style="--tile:#e9eafc">
+      <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" /></div></div>
+      <div class="tags"><span class="tag neutral">Websites</span><span class="tag neutral">SaaS products</span></div>
+      <h3 class="pcard-title">Aurora Analytics</h3>
+      <p class="pcard-desc">Blue analytics landing: hero dashboard, feature blocks, integrations and CTA.</p>
+    </a>
     </div>
   </div>
 </section>
@@ -457,6 +460,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=202610161751"></script>
+<script src="assets/site.js?v=202610161818"></script>
 </body>
 </html>
