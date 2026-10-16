@@ -356,3 +356,17 @@ img, svg { display: block; }
 .tpl-meta .live::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--growth-600); }
 @media (hover: none) { .overlay { display: none; } }
 @media (prefers-reduced-motion: reduce) { .tpl-card, .tpl-card:hover { transition: none; transform: none; } }
+
+/* ---- Project cards (tile + framed image) ---- */
+.pcard-grid { display: grid; gap: 48px 24px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); }
+.pcard { display: flex; flex-direction: column; gap: 14px; color: var(--ink); }
+.pcard[hidden] { display: none; }
+.pcard-media { aspect-ratio: 1 / 1; border-radius: 18px; background: var(--tile, var(--n-f5)); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.pcard-frame { position: relative; width: 83%; aspect-ratio: 5 / 4; border-radius: 12px; overflow: hidden; background: #FFFFFF; box-shadow: 0 24px 48px -20px rgba(22, 21, 15, .22), 0 2px 6px rgba(22, 21, 15, .06); transition: transform .3s ease; }
+.pcard-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+a.pcard:hover .pcard-frame { transform: translateY(-6px); }
+a.pcard:hover .pcard-title { color: var(--royal-500); }
+.pcard-title { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.025em; line-height: 1.2; transition: color .15s; }
+.pcard-desc { margin: -6px 0 0; font-size: 15px; line-height: 1.5; color: var(--n-4a); }
+.tag.soon { background: transparent; border: 1px dashed var(--n-cf); color: var(--n-66); }
+@media (prefers-reduced-motion: reduce) { a.pcard:hover .pcard-frame { transform: none; } }
