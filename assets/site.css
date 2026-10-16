@@ -49,7 +49,7 @@ img, svg { display: block; }
 .eyebrow.muted { color: var(--n-66); font-weight: 400; }
 .eyebrow.on-dark { color: var(--fire-300); font-weight: 400; }
 .mono { font-family: var(--mono); }
-.h1 { margin: 0; font-size: clamp(36px, 4.6vw, 68px); line-height: 1.02; letter-spacing: -.04em; font-weight: 700; text-wrap: balance; }
+.h1 { margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1.05; letter-spacing: -.04em; font-weight: 700; text-wrap: balance; }
 .h2 { margin: 0; font-size: clamp(28px, 3.4vw, 48px); line-height: 1; letter-spacing: -.04em; font-weight: 700; text-wrap: balance; }
 .h3 { margin: 0; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.08; letter-spacing: -.035em; font-weight: 700; }
 .lead { margin: 0; font-size: 18px; line-height: 1.55; color: var(--n-4a); max-width: 42ch; text-wrap: pretty; }
@@ -135,7 +135,7 @@ img, svg { display: block; }
 .hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 48px 56px; align-items: center; }
 .hero-copy { display: flex; flex-direction: column; gap: 24px; }
 .hero .h1 { max-width: 16ch; }
-.hero p { margin: 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.55; color: var(--n-3a); max-width: 40ch; text-wrap: pretty; }
+.hero p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--n-3a); max-width: 40ch; text-wrap: pretty; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
 .hero-art { aspect-ratio: 900 / 780; max-height: 620px; width: 100%; }
 .pulse-eyebrow { display: flex; gap: 12px; align-items: center; }
