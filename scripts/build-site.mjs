@@ -27,7 +27,7 @@ const ALLOW = [
   { from: "index.html", to: "index.html", required: true },
   { from: "projects.html", to: "projects.html", required: true },
   { from: "about.html", to: "about.html", required: true },
-  { from: "case-study.html", to: "case-study.html", required: true },
+  { from: "fluent-conveyors.html", to: "fluent-conveyors.html", required: true },
   // Site-wide CSS, JS and logo for the agency pages.
   { from: "assets", to: "assets", required: true },
   { from: "preview.html", to: "preview.html", required: true },

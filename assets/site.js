@@ -125,4 +125,42 @@
       document.getElementById(b.getAttribute('aria-controls')).hidden = !open;
     });
   }));
+
+  // ---- Project page scroll effects ----
+  // [data-expand] bands start inset with rounded corners and open to full
+  // width as they scroll into view; [data-parallax] elements drift by their
+  // factor; [data-reveal] blocks fade up once.
+  const bands = [...document.querySelectorAll('[data-expand]')];
+  const drifters = [...document.querySelectorAll('[data-parallax]')];
+  if (!reduceMotion && (bands.length || drifters.length)) {
+    let raf = null;
+    const tick = () => {
+      raf = null;
+      const vh = innerHeight;
+      const maxX = Math.min(48, Math.max(20, innerWidth * 0.04));
+      bands.forEach((el) => {
+        const p = Math.min(1, Math.max(0, (vh - el.getBoundingClientRect().top) / (vh * 0.85)));
+        el.style.clipPath = `inset(0 ${(1 - p) * maxX}px round ${(1 - p) * 24}px)`;
+      });
+      drifters.forEach((el) => {
+        const box = el.parentElement.getBoundingClientRect();
+        el.style.transform = `translate3d(0,${(box.top + box.height / 2 - vh / 2) * parseFloat(el.dataset.parallax)}px,0)`;
+      });
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    addEventListener('scroll', schedule, { passive: true });
+    addEventListener('resize', schedule);
+    tick();
+  }
+
+  const reveals = document.querySelectorAll('[data-reveal]');
+  if (!reduceMotion && reveals.length && 'IntersectionObserver' in window) {
+    document.documentElement.classList.add('js-reveal');
+    const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('is-in');
+      io.unobserve(e.target);
+    }), { rootMargin: '0px 0px -12% 0px' });
+    reveals.forEach((el) => io.observe(el));
+  }
 })();

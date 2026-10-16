@@ -14,7 +14,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PAGES = ["index.html", "projects.html", "about.html", "case-study.html"]
+PAGES = ["index.html", "projects.html", "about.html", "fluent-conveyors.html"]
 HEADER_H, FOOTER_H = 64, 72  # display heights in px; keep in sync with site.css
 
 src = Path(sys.argv[1]).read_text()
