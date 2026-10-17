@@ -14,7 +14,7 @@ from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "assets" / "Fav Icon.png"
-PAGES = ["index.html", "projects.html", "about.html", "fluent-conveyors.html", "preview.html"]
+PAGES = ["index.html", "projects.html", "about.html", "fluent-conveyors.html", "fluent-conveyors-website.html", "preview.html"]
 
 im = Image.open(SRC).convert("RGBA")
 w, h = im.size
