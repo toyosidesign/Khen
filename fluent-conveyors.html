@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Fluent Conveyors — Khen</title>
-  <meta name="description" content="How Khen designed and built a customer portal for Fluent Conveyors: quotes, shipments, maintenance and help desk in one place." />
+  <meta name="description" content="How Khen designed a multi-tenant self-serve customer portal for Fluent Conveyors, moving parts, quotes, payments, shipping and maintenance online." />
   <link rel="icon" href="favicon.ico?v=7" sizes="any" />
   <link rel="icon" href="assets/favicon-32.png?v=7" sizes="32x32" type="image/png" />
   <link rel="icon" href="assets/favicon-192.png?v=7" sizes="192x192" type="image/png" />
@@ -27,7 +27,6 @@
     .pd-vortex { position: absolute; height: auto; opacity: .9; pointer-events: none; }
     /* Shadow is baked into the image: CSS filters on moving layers render soft in Safari. */
     .pd-hero-shot { position: relative; width: auto; height: auto; max-width: min(84%, 1240px); max-height: 92%; }
-    .pd-screen { position: relative; width: min(64%, 960px); aspect-ratio: 16 / 10; border-radius: 16px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .25); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding: 20px; }
     .pd-meta { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 24px; border-top: 1.5px solid var(--ink); padding-top: 24px; }
     .pd-meta div { display: flex; flex-direction: column; gap: 6px; }
     .pd-meta dt { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--n-66); }
@@ -46,20 +45,56 @@
     .pd-feature-text { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: start; }
     .pd-feature-text h3 { margin: 0; font-size: clamp(26px, 3vw, 40px); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; max-width: 18ch; }
     .pd-feature-text p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--n-4a); max-width: 46ch; text-wrap: pretty; }
-    .pd-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(16px, 2vw, 24px); clip-path: inset(0 var(--gutter) round 24px); }
-    .pd-gallery > div { height: min(100vh, 56vw); min-height: 420px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-    .pd-phone, .pd-square { background: #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding: 16px; }
-    .pd-phone { width: 42%; aspect-ratio: 9 / 19; border-radius: 28px; color: var(--fire-700); box-shadow: 0 30px 60px -24px rgba(162, 87, 61, .35); }
-    .pd-square { width: 70%; aspect-ratio: 1; border-radius: 16px; color: var(--growth-700); box-shadow: 0 30px 60px -24px rgba(62, 118, 60, .3); }
     .pd-scope { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px 64px; }
     .pd-row { display: flex; justify-content: space-between; gap: 12px; font-size: 18px; font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--n-e3); }
     .pd-row span:last-child { color: var(--n-66); font-weight: 400; }
     .pd-chip { font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--n-e3); }
-    .pd-avatar { width: 64px; height: 64px; border-radius: 50%; background: var(--royal-200); flex: none; box-shadow: 0 0 0 4px #FFFFFF, 0 0 0 6px var(--royal-500); }
-    .pd-quote { margin: 0; font-size: clamp(24px, 2.8vw, 40px); line-height: 1.2; letter-spacing: -.03em; font-weight: 500; text-wrap: pretty; }
     .pd-cta { max-width: 1320px; margin: 0 auto; background: var(--royal-100); border: 1.5px solid var(--royal-200); border-radius: 24px; padding: clamp(32px, 5vw, 64px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; transition: border-color .15s; }
     .pd-cta:hover { border-color: var(--royal-500); }
     .pd-cta-title { font-size: clamp(28px, 3.6vw, 48px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; color: var(--royal-800); max-width: 18ch; }
+    .pd-lead strong { color: var(--ink); font-weight: 600; }
+    .pd-ext { align-self: flex-start; font-weight: 600; font-size: 15px; color: var(--royal-500); border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+    .pd-ext:hover { color: var(--royal-600); }
+    .pd-goals b { font-weight: 600; }
+    .pd-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
+    .pd-checks li::before { content: "✓"; color: var(--growth-600); font-weight: 700; }
+    /* Two screens per band, capped at 700px wide so 1400px exports stay sharp on retina. */
+    .pd-pair { position: relative; width: min(88%, 1140px); aspect-ratio: 16 / 9; }
+    .pd-pair img { position: absolute; width: 62%; max-width: 700px; height: auto; border-radius: 12px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .3), 0 2px 8px rgba(22, 21, 15, .06); }
+    .pd-pair img:first-child { left: 0; top: 2%; }
+    .pd-pair img:last-child { right: 0; bottom: 2%; }
+    .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
+    .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
+    .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-600); }
+    .pd-stats .l { font-size: 15px; line-height: 1.5; color: var(--n-4a); max-width: 26ch; }
+    .pd-phases { list-style: none; margin: 0 0 clamp(40px, 6vw, 64px); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; }
+    .pd-phases li { background: var(--growth-50); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .pd-phases .mono { font-size: 12px; color: var(--growth-700); }
+    .pd-phases strong { font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+    .pd-phases span:last-child { font-size: 14px; line-height: 1.45; color: var(--n-4a); }
+    .pd-voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; }
+    .pd-voices figure { margin: 0; background: var(--royal-50); border-radius: 20px; padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; }
+    .pd-voices blockquote { margin: 0; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; letter-spacing: -.02em; font-weight: 500; color: var(--royal-800); }
+    .pd-voices figcaption { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--royal-600); }
+    .pd-more { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
+    .pd-more figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+    .pd-more img { width: 100%; max-width: 700px; height: auto; border-radius: 12px; border: 1px solid var(--n-e3); }
+    .pd-more figcaption { display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.5; color: var(--n-4a); }
+    .pd-more figcaption strong { font-size: 18px; font-weight: 600; color: var(--ink); }
+    .pd-tests { display: flex; flex-direction: column; }
+    .pd-tests div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid #333333; align-items: baseline; }
+    .pd-tests div:first-child { border-top: 1px solid #333333; }
+    .pd-tests p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--n-b3); }
+    .pd-tests b { color: #FFFFFF; font-weight: 600; }
+    .pd-tests .sev { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--growth-300); }
+    .pd-tests .sev.high { color: var(--fire-300); }
+    .pd-video { position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: var(--ink); }
+    .pd-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .pd-moves { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+    .pd-moves div { background: var(--bg); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .pd-moves .mono { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-c); }
+    .pd-moves p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--n-3a); }
     [data-reveal] { transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1), filter .9s cubic-bezier(.2, .7, .2, 1); }
     .js-reveal [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(32px); filter: blur(6px); }
     @media (prefers-reduced-motion: reduce) { .js-reveal [data-reveal]:not(.is-in) { opacity: 1; transform: none; filter: none; } }
@@ -91,10 +126,13 @@
   <nav class="pd-crumbs" aria-label="Breadcrumb"><a href="projects.html">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Fluent Conveyors</span></nav>
   <div class="pd-hero-grid">
     <div class="stack" style="gap:24px">
-      <div class="tags"><span class="pd-tag">ERP platforms</span><span class="pd-tag">Web apps</span></div>
+      <div class="tags"><span class="pd-tag">ERP platforms</span><span class="pd-tag">SaaS products</span><span class="pd-tag">Web apps</span></div>
       <h1 class="h1">Fluent Conveyors</h1>
     </div>
-    <p class="pd-lead">A customer portal where conveyor owners track quotes, shipments, maintenance and support for every line they run.</p>
+    <div class="stack" style="gap:20px">
+      <p class="pd-lead"><strong>Turning a support-heavy aftermarket into a self-serve platform.</strong> We designed the multi-tenant customer portal that moved Fluent’s parts, service and maintenance business off phone calls and PDFs and online.</p>
+      <a class="pd-ext" href="https://fluentconveyors.com/" target="_blank" rel="noopener">Visit Fluent Conveyors ↗</a>
+    </div>
   </div>
 </section>
 
@@ -102,17 +140,17 @@
   <div class="pd-band" data-expand style="--band:#e6eefd">
     <img class="pd-vortex" data-parallax="-0.12" src="assets/vortex.svg" alt="" style="width:44vw;right:-10vw;top:-14vw" />
     <img class="pd-vortex" data-parallax="0.1" src="assets/vortex.svg" alt="" style="width:20vw;left:-5vw;bottom:-6vw;rotate:140deg" />
-    <img class="pd-hero-shot" data-parallax="0.06" src="assets/projects/fluent-conveyors-detail-2400.webp" srcset="assets/projects/fluent-conveyors-detail-1200.webp 1296w, assets/projects/fluent-conveyors-detail-2400.webp 2592w" sizes="(max-width: 760px) 90vw, min(84vw, 1240px)" alt="Fluent Conveyors dashboard on a desktop screen" width="2592" height="2238" />
+    <img class="pd-hero-shot" data-parallax="0.06" src="assets/projects/fluent-conveyors-detail-2400.webp" srcset="assets/projects/fluent-conveyors-detail-1200.webp 1296w, assets/projects/fluent-conveyors-detail-2400.webp 2592w" sizes="(max-width: 760px) 90vw, min(84vw, 1240px)" alt="Fluent Conveyors customer dashboard on a desktop screen" width="2592" height="2238" />
   </div>
 </section>
 
 <section class="wrap" style="padding-top:clamp(40px,5vw,64px)">
   <dl class="pd-meta">
     <div><dt>Client</dt><dd>Fluent Conveyors</dd></div>
-    <div><dt>Industry</dt><dd>Manufacturing</dd></div>
-    <div><dt>Services</dt><dd>Research, Product design, Engineering</dd></div>
-    <div><dt>Platform</dt><dd>Web</dd></div>
-    <div><dt>Timeline</dt><dd>00 weeks</dd></div>
+    <div><dt>Industry</dt><dd>Industrial manufacturing · recycling &amp; waste</dd></div>
+    <div><dt>Product</dt><dd>B2B SaaS · multi-tenant customer portal</dd></div>
+    <div><dt>Services</dt><dd>Research, UX/UI design, Design system, Usability testing</dd></div>
+    <div><dt>Scope</dt><dd>12 surfaces · 3 roles · responsive web</dd></div>
   </dl>
 </section>
 
@@ -120,19 +158,20 @@
   <div class="pd-split" data-reveal>
     <div class="eyebrow" style="color:var(--royal-500);font-weight:400">About the client</div>
     <div class="stack" style="gap:24px">
-      <p class="pd-big">Fluent Conveyors supplies and services conveyor systems for customers who run several lines at once.</p>
-      <p class="body" style="line-height:1.6;max-width:58ch">Quotes, parts orders, shipments, maintenance work orders and support tickets were spread across email, spreadsheets and separate tools. Customers had no single place to see what was happening on their lines.</p>
+      <p class="pd-big">Fluent engineers and manufactures heavy-duty conveyors for recycling and waste facilities, where a line that stops costs money every minute.</p>
+      <p class="body" style="line-height:1.6;max-width:58ch">A conveyor sells once and is serviced for a decade. Parts, service and maintenance are the revenue that lasts, and all of it was moving through inboxes, phone calls and printed PDFs. Fluent wanted that aftermarket to run as a product, without adding headcount for every new account.</p>
     </div>
   </div>
 </section>
 
 <section class="dark">
   <div class="wrap" style="padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px)">
-    <div class="eyebrow" style="color:var(--royal-300);font-weight:400;margin-bottom:clamp(32px,5vw,56px)">Results</div>
+    <div class="eyebrow" style="color:var(--royal-300);font-weight:400;margin-bottom:clamp(32px,5vw,56px)">What we delivered</div>
     <div class="pd-results" data-reveal>
-      <div><div class="v">00%</div><div class="l">Result metric, e.g. fewer support emails</div></div>
-      <div><div class="v">00×</div><div class="l">Result metric, e.g. faster quote turnaround</div></div>
-      <div><div class="v">00</div><div class="l">Result metric, e.g. conveyor lines managed in the portal</div></div>
+      <div><div class="v">12</div><div class="l">Connected surfaces under one mental model and one design system</div></div>
+      <div><div class="v">0</div><div class="l">Phone calls needed to quote, sign, pay and track: the routine work dealers used to absorb</div></div>
+      <div><div class="v">88%</div><div class="l">Task completion across the activation path in usability testing</div></div>
+      <div><div class="v">3</div><div class="l">Roles (operator, account admin, dealer) scoped per tenant on every screen</div></div>
     </div>
   </div>
 </section>
@@ -141,15 +180,45 @@
   <div class="pd-split" style="gap:40px 80px" data-reveal>
     <div class="stack">
       <div class="eyebrow">The challenge</div>
-      <h2 class="h2" style="max-width:14ch">Six conveyor lines, five places to check.</h2>
-      <p class="body" style="margin-top:8px;line-height:1.6;max-width:46ch">Finding out whether a part had shipped or a maintenance task was overdue meant emailing someone at Fluent and waiting for an answer.</p>
+      <h2 class="h2" style="max-width:15ch">The aftermarket was the business. Manual process was the tax on it.</h2>
+      <p class="body" style="margin-top:8px;line-height:1.6;max-width:46ch">Every quote, status check and reorder went through a dealer. That capped how many accounts a fixed team could serve, and handed the relationship to whoever answered the phone fastest.</p>
     </div>
     <div class="pd-goals">
-      <strong>What the client needed</strong>
-      <div><span class="mono">01</span><span>One place for every quote, order and invoice.</span></div>
-      <div><span class="mono">02</span><span>See late and upcoming maintenance before a line goes down.</span></div>
-      <div><span class="mono">03</span><span>Track parts shipments all the way to site.</span></div>
-      <div><span class="mono">04</span><span>Raise and follow support tickets without email.</span></div>
+      <strong>What it was costing Fluent</strong>
+      <div><span class="mono">01</span><span><b>Cost to serve.</b> Dealers were the interface, so support load grew with every new customer.</span></div>
+      <div><span class="mono">02</span><span><b>Lost orders.</b> A day of quote latency while a line is down is how parts orders go to third-party suppliers.</span></div>
+      <div><span class="mono">03</span><span><b>Retention.</b> Asset and service history lived in customer spreadsheets, so nothing tied customers to Fluent between purchases.</span></div>
+      <div><span class="mono">04</span><span><b>Expansion.</b> Without a system of record, there was nothing to sell preventive maintenance or service contracts into.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section">
+    <div class="row-between" data-reveal style="margin-bottom:clamp(36px,5vw,56px)">
+      <div class="stack">
+        <div class="eyebrow" style="color:var(--growth-700)">How we approached it</div>
+        <h2 class="h2" style="max-width:16ch">We started on the plant floor, not in Figma.</h2>
+      </div>
+      <p class="lead" style="font-size:17px;max-width:40ch">Six phases, from research to delivery, with every design goal written against the business number it had to move.</p>
+    </div>
+    <div class="pd-stats" data-reveal>
+      <div><span class="v">14</span><span class="l">Stakeholder interviews with operators, maintenance leads and dealers</span></div>
+      <div><span class="v">3</span><span class="l">Facility visits to recycling and waste sites</span></div>
+      <div><span class="v">2</span><span class="l">Dealer ride-alongs shadowing the quote process</span></div>
+      <div><span class="v">40+</span><span class="l">Support tickets reviewed for recurring friction</span></div>
+    </div>
+    <ol class="pd-phases" data-reveal>
+      <li><span class="mono">01</span><strong>Research</strong><span>Interviews, field visits and the problem as users live it</span></li>
+      <li><span class="mono">02</span><strong>Define</strong><span>Personas, journey maps and goals tied to metrics</span></li>
+      <li><span class="mono">03</span><strong>Ideate</strong><span>Information architecture, roles and permissions, wireframes</span></li>
+      <li><span class="mono">04</span><strong>Design</strong><span>The high-fidelity platform and its visual system</span></li>
+      <li><span class="mono">05</span><strong>Test</strong><span>Usability sessions on the activation path</span></li>
+      <li><span class="mono">06</span><strong>Deliver</strong><span>Design system and specification for engineering</span></li>
+    </ol>
+    <div class="pd-voices" data-reveal>
+      <figure><blockquote>“Getting a quote is three emails and a day of waiting. By the time it’s signed, the line’s already been down too long.”</blockquote><figcaption>Plant operations manager · waste transfer station</figcaption></figure>
+      <figure><blockquote>“Customers call me to ask where their shipment is. I’m a salesperson, I’m just forwarding tracking numbers all day.”</blockquote><figcaption>Fluent dealer · regional territory</figcaption></figure>
     </div>
   </div>
 </section>
@@ -159,75 +228,158 @@
     <div class="row-between" data-reveal>
       <div class="stack">
         <div class="eyebrow" style="color:var(--royal-500)">The solution</div>
-        <h2 class="h2" style="max-width:16ch;color:var(--royal-800)">One dashboard for every conveyor line.</h2>
+        <h2 class="h2" style="max-width:16ch;color:var(--royal-800)">Quote-to-cash, anchored to the asset.</h2>
       </div>
-      <p class="lead" style="font-size:17px;line-height:1.5;max-width:36ch;color:var(--royal-600)">Time with Fluent’s customers and support team first, then design and build in short releases.</p>
+      <p class="lead" style="font-size:17px;line-height:1.5;max-width:38ch;color:var(--royal-600)">Each customer’s machines are the home base. Parts, quotes, payment, shipping and service all branch from the asset, so the loop that used to take a week of email closes inside one product.</p>
     </div>
   </div>
 
   <div class="pd-feature">
     <div class="wrap pd-feature-text" data-reveal>
-      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">01</div><h3>Start the day with what needs attention.</h3></div>
-      <p>Open quotes, shipments, maintenance and tickets are summarised at the top. Late and due work orders are listed first, so nothing slips.</p>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">01 · Assets</div><h3>Every line, and every part that fits it.</h3></div>
+      <div class="stack" style="gap:16px"><p>Operators see each conveyor line with its health, status and next service date. Opening a machine shows its uptime, maintenance status and a parts list stated as compatible with that exact machine, so the right part is found first time.</p><ul class="pd-checks"><li>Searchable parts catalogue per asset</li><li>Add to cart, raise a ticket or log a task in context</li></ul></div>
     </div>
     <div class="pd-band" data-expand style="--band:var(--royal-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-hero-shot" data-parallax="0.08" src="assets/projects/fluent-conveyors-detail-2400.webp" srcset="assets/projects/fluent-conveyors-detail-1200.webp 1296w, assets/projects/fluent-conveyors-detail-2400.webp 2592w" sizes="(max-width: 760px) 90vw, min(84vw, 1240px)" alt="Fluent Conveyors dashboard with the Needs your attention list" width="2592" height="2238" style="max-width:min(72%,1040px)" />
+      <div class="pd-pair" data-parallax="0.06">
+        <img src="assets/projects/fluent/asset-list.webp" alt="My Assets list with health and next service per line" width="1400" height="803" loading="lazy" />
+        <img src="assets/projects/fluent/asset-detail.webp" alt="Asset detail for a drive motor assembly with its parts and components" width="1400" height="802" loading="lazy" />
+      </div>
     </div>
   </div>
 
   <div class="pd-feature">
     <div class="wrap pd-feature-text" data-reveal>
-      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--fire-500)">02</div><h3>Track every shipment to site.</h3></div>
-      <p>Each order shows where it is, when it will arrive and which site it is going to, without a phone call.</p>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--fire-500)">02 · Cart → quote → e-sign</div><h3>A cart that becomes a signed order.</h3></div>
+      <div class="stack" style="gap:16px"><p>Conveyor parts are made to order and freight varies, so the cart sends a quote request to the dealer instead of checking out. The customer keeps a running estimate, then reviews the priced quote and e-signs it in the same place.</p><ul class="pd-checks"><li>Parts grouped by the asset they belong to</li><li>Line items, bill-to and ship-to, then sign and accept</li></ul></div>
     </div>
     <div class="pd-band" data-expand style="--band:var(--fire-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-screen" data-parallax="0.08" style="color:var(--fire-700)">Screen · Shipments in transit</div>
+      <div class="pd-pair" data-parallax="0.06">
+        <img src="assets/projects/fluent/cart-quote.webp" alt="Cart grouped by asset with a request quote summary" width="1400" height="804" loading="lazy" />
+        <img src="assets/projects/fluent/open-quote-detail.webp" alt="Quote detail with line items and a sign and accept button" width="1400" height="752" loading="lazy" />
+      </div>
     </div>
   </div>
 
   <div class="pd-feature">
     <div class="wrap pd-feature-text" data-reveal>
-      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-600)">03</div><h3>Maintenance and help desk in one place.</h3></div>
-      <p>Work orders, assets and support tickets share one view, so customers can see the full history of a line and raise a ticket in seconds.</p>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-600)">03 · Pay and track</div><h3>Invoice, payment and delivery in one flow.</h3></div>
+      <div class="stack" style="gap:16px"><p>Customers pay by card or on purchase-order terms, then follow the shipment from order to delivery with carrier, ETA and every scan. “Where is it?” stops being a phone call to the dealer.</p><ul class="pd-checks"><li>Pay by card or PO terms in the portal</li><li>Order → processing → in transit → delivered</li></ul></div>
     </div>
     <div class="pd-band" data-expand style="--band:var(--growth-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-screen" data-parallax="0.08" style="color:var(--growth-700)">Screen · Maintenance and help desk</div>
+      <div class="pd-pair" data-parallax="0.06">
+        <img src="assets/projects/fluent/invoice-detail.webp" alt="Invoice detail with card and purchase order payment" width="1400" height="802" loading="lazy" />
+        <img src="assets/projects/fluent/shipment-detail.webp" alt="Shipment tracking timeline with carrier and scan history" width="1400" height="802" loading="lazy" />
+      </div>
+    </div>
+  </div>
+
+  <div class="pd-feature">
+    <div class="wrap pd-feature-text" data-reveal>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">04 · Maintenance and support</div><h3>Get ahead of downtime.</h3></div>
+      <div class="stack" style="gap:16px"><p>Work orders are grouped into late, due and upcoming, so teams service equipment before it fails. Tickets can be raised from any asset and keep the full support thread linked to the machine, part and work order.</p><ul class="pd-checks"><li>Late, due and upcoming at a glance</li><li>Completed tasks log back to the asset’s history</li></ul></div>
+    </div>
+    <div class="pd-band" data-expand style="--band:var(--royal-50)">
+      <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
+      <div class="pd-pair" data-parallax="0.06">
+        <img src="assets/projects/fluent/maintenance.webp" alt="Maintenance work orders grouped by urgency" width="1400" height="802" loading="lazy" />
+        <img src="assets/projects/fluent/helpdesk.webp" alt="Help desk ticket thread linked to an asset" width="1400" height="804" loading="lazy" />
+      </div>
     </div>
   </div>
 </section>
 
-<section style="padding-top:clamp(16px,2vw,24px)">
-  <div class="pd-gallery" data-expand>
-    <div style="background:var(--fire-50)"><div class="pd-phone" data-parallax="0.08">Mobile view</div></div>
-    <div style="background:var(--growth-50)"><div class="pd-square" data-parallax="-0.06">Design system components</div></div>
+<section class="wrap" style="padding-top:var(--section-y)">
+  <div class="row-between" data-reveal style="margin-bottom:clamp(28px,4vw,40px)">
+    <div class="stack">
+      <div class="eyebrow muted">And around the core flow</div>
+      <h2 class="h2" style="max-width:18ch">Tools that make the portal the first place people look.</h2>
+    </div>
+  </div>
+  <div class="pd-more" data-reveal>
+    <figure><img src="assets/projects/fluent/ai-assistant.webp" alt="Fluent AI assistant answering account questions" width="1400" height="803" loading="lazy" /><figcaption><strong>AI assistant</strong>Answers spec questions and drafts carts from Fluent’s catalogue and manuals.</figcaption></figure>
+    <figure><img src="assets/projects/fluent/inventory.webp" alt="Inventory list with stock status per part" width="1400" height="802" loading="lazy" /><figcaption><strong>Inventory</strong>Every part with its stock and status, managed location by location.</figcaption></figure>
+    <figure><img src="assets/projects/fluent/calendar.webp" alt="Shared calendar of maintenance, deliveries and visits" width="1400" height="803" loading="lazy" /><figcaption><strong>Calendar</strong>Maintenance windows, deliveries and service visits on one shared schedule.</figcaption></figure>
+    <figure><img src="assets/projects/fluent/elearning.webp" alt="E-learning courses for onboarding new staff" width="1400" height="803" loading="lazy" /><figcaption><strong>E-learning</strong>Guided courses so new staff get productive without a training session.</figcaption></figure>
   </div>
 </section>
 
 <section class="wrap section">
-  <div class="pd-scope" data-reveal>
-    <div class="stack"><div class="eyebrow muted">What we did</div>
-      <div class="pd-row">User research</div><div class="pd-row">UX and UI design</div><div class="pd-row">Design system</div><div class="pd-row">Web app development</div>
+  <div class="pd-split" style="gap:40px 80px" data-reveal>
+    <div class="stack">
+      <div class="eyebrow">Built for B2B, under the hood</div>
+      <h2 class="h2" style="max-width:15ch">The person who uses it isn’t the person who buys it.</h2>
+      <p class="body" style="margin-top:8px;line-height:1.6;max-width:46ch">We designed the tenancy and permissions model explicitly, before the screens, so self-serve never meant uncontrolled spend or leaked data.</p>
     </div>
-    <div class="stack"><div class="eyebrow muted">Team</div>
-      <div class="pd-row"><span>Product designers</span><span>0</span></div><div class="pd-row"><span>Front-end engineers</span><span>0</span></div><div class="pd-row"><span>Back-end engineers</span><span>0</span></div><div class="pd-row"><span>Project lead</span><span>0</span></div>
+    <div class="pd-goals">
+      <div><span class="mono">01</span><span><b>Tenants.</b> Assets, quotes, invoices, pricing and history are scoped to each customer account. Multi-site customers see all their sites under one login.</span></div>
+      <div><span class="mono">02</span><span><b>Roles.</b> Operators raise carts and tickets, account admins approve spend and e-sign, dealers quote and support: the same screen, different primary actions.</span></div>
+      <div><span class="mono">03</span><span><b>Approval.</b> Signing and payment sit behind the admin role, because the person who finds the part usually can’t authorise the purchase.</span></div>
     </div>
-    <div class="stack"><div class="eyebrow muted">Tech stack</div>
-      <div class="tags" style="gap:8px"><span class="pd-chip">Technology</span><span class="pd-chip">Technology</span><span class="pd-chip">Technology</span><span class="pd-chip">Figma</span></div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap section">
+    <div class="pd-split" style="gap:40px 80px" data-reveal>
+      <div class="stack">
+        <div class="eyebrow on-dark">Tested before it was built</div>
+        <h2 class="h2" style="max-width:15ch">We tested the path to first value, not the pixels.</h2>
+        <p style="margin:8px 0 0;color:var(--n-b3);font-size:17px;line-height:1.6;max-width:46ch">Adoption was the real risk: a portal nobody logs into changes nothing. Operators and dealers worked through find a part, get a quote, sign, pay and track on a clickable prototype. 8 participants, 5 tasks, 88% completion, 5 issues fixed before engineering handoff.</p>
+      </div>
+      <div class="pd-tests">
+        <div><span class="sev high">High</span><p><b>Cart → quote felt like a dead end.</b> We added a persistent “Request quote” summary with a clear primary action on the cart.</p></div>
+        <div><span class="sev high">High</span><p><b>E-signature was missed.</b> Signing became an explicit step with inline sign-and-accept before an order can be placed.</p></div>
+        <div><span class="sev">Medium</span><p><b>Maintenance status read as decoration.</b> Overdue items moved to the dashboard with count badges and a direct link to schedule.</p></div>
+        <div><span class="sev">Medium</span><p><b>Part-to-asset link unclear.</b> The catalogue moved inside each asset, with compatibility labelled explicitly.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="stack" data-reveal style="margin-bottom:clamp(28px,4vw,40px)">
+    <div class="eyebrow" style="color:var(--royal-500)">See it in motion</div>
+    <h2 class="h2" style="max-width:20ch">From finding a part to tracking the shipment.</h2>
+  </div>
+  <div class="pd-video" data-reveal>
+    <iframe src="https://player.vimeo.com/video/1216652313?badge=0&amp;autopause=0&amp;dnt=1" title="Fluent Conveyors customer portal demo" allow="autoplay; fullscreen; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section">
+    <div class="pd-split" style="gap:40px 80px;margin-bottom:clamp(40px,6vw,64px)" data-reveal>
+      <div class="stack">
+        <div class="eyebrow" style="color:var(--growth-700)">The outcome</div>
+        <h2 class="h2" style="max-width:15ch">A manual aftermarket, turned into a product.</h2>
+      </div>
+      <p class="body" style="line-height:1.6;max-width:52ch">Fluent now has something it never had: a system of record for the customer relationship between purchases. The platform is designed to move the three numbers Fluent’s leadership judges it on.</p>
+    </div>
+    <div class="pd-moves" data-reveal>
+      <div class="t-royal"><span class="mono">Cost to serve</span><p>Every quote request, payment and shipment check that happens in the portal is one that no longer lands on a dealer.</p></div>
+      <div class="t-fire"><span class="mono">Parts attach rate</span><p>Compatibility is stated per asset and the cart is a quote request, so the fastest route to the right part is Fluent’s own.</p></div>
+      <div class="t-growth"><span class="mono">Retention &amp; expansion</span><p>Service history and maintenance schedules living in Fluent’s product are what make a service contract renewable.</p></div>
     </div>
   </div>
 </section>
 
 <section class="rule-top">
-  <figure class="wrap section pd-split" data-reveal style="margin-top:0;margin-bottom:0">
-    <div style="display:flex;gap:14px;align-items:center">
-      <div class="pd-avatar"></div>
-      <figcaption style="display:flex;flex-direction:column;gap:2px;font-size:15px"><span style="font-weight:600">Client name</span><span style="color:var(--n-66)">Role, Fluent Conveyors</span></figcaption>
+  <div class="wrap section">
+    <div class="pd-scope" data-reveal>
+      <div class="stack"><div class="eyebrow muted">What we did</div>
+        <div class="pd-row">User research &amp; field visits</div><div class="pd-row">Personas &amp; journey maps</div><div class="pd-row">Information architecture</div><div class="pd-row">Tenancy, roles &amp; permissions</div><div class="pd-row">UX/UI design · 12 surfaces</div><div class="pd-row">Usability testing</div>
+      </div>
+      <div class="stack"><div class="eyebrow muted">Deliverables</div>
+        <div class="pd-row">Research findings</div><div class="pd-row">Responsive high-fidelity designs</div><div class="pd-row">Clickable prototype</div><div class="pd-row">Design system</div><div class="pd-row">Engineering specification</div>
+      </div>
+      <div class="stack"><div class="eyebrow muted">Platform features</div>
+        <div class="tags" style="gap:8px"><span class="pd-chip">Asset management</span><span class="pd-chip">Parts catalogue</span><span class="pd-chip">Quote requests</span><span class="pd-chip">E-signature</span><span class="pd-chip">Card &amp; PO payments</span><span class="pd-chip">Shipment tracking</span><span class="pd-chip">Preventive maintenance</span><span class="pd-chip">Help desk</span><span class="pd-chip">AI assistant</span><span class="pd-chip">E-learning</span><span class="pd-chip">Multi-site accounts</span></div>
+      </div>
     </div>
-    <blockquote class="pd-quote">“Client quote goes here. One or two sentences about what changed for the people using the product.”</blockquote>
-  </figure>
+  </div>
 </section>
 
 <section style="background:#FAFAFA;border-top:1px solid var(--n-e3)">
@@ -261,7 +413,7 @@
 
 <section style="padding:var(--gutter) var(--gutter) 0">
   <a class="pd-cta" href="./#contact">
-    <div class="stack"><span class="mono" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--royal-500)">Sound familiar?</span><span class="pd-cta-title">Your product works. Let’s make it good to use.</span></div>
+    <div class="stack"><span class="mono" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--royal-500)">Running on phone calls and PDFs?</span><span class="pd-cta-title">Let’s turn your service business into a self-serve product.</span></div>
     <span class="btn btn-primary btn-sm">Free consultation →</span>
   </a>
 </section>
