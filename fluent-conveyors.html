@@ -60,8 +60,8 @@
     .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
     .pd-checks li::before { content: "✓"; color: var(--growth-600); font-weight: 700; }
     /* Full-bleed screens: the band takes the screenshot's own shape. */
-    .pd-band-full { height: auto; min-height: 0; display: block; }
-    .pd-full-shot { display: block; width: 100%; height: auto; }
+    .pd-band-full { height: auto; min-height: 0; display: block; padding: clamp(20px, 5vw, 72px); }
+    .pd-full-shot { display: block; width: 100%; height: auto; border: 1px solid rgba(22, 21, 15, .12); border-radius: 12px; box-shadow: 0 24px 48px -28px rgba(22, 21, 15, .25); }
     .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
     .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
     .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-600); }
