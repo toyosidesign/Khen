@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=202610161921" />
+  <link rel="stylesheet" href="assets/site.css?v=202610171523" />
   <style>
     .pd-hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(32px, 4vw, 48px); }
     .pd-crumbs { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--n-66); }
@@ -25,7 +25,8 @@
     /* Full-width image bands: inset with rounded corners, widening to full bleed as they scroll in (assets/site.js). */
     .pd-band { height: min(100vh, 62vw); min-height: 420px; background: var(--band); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; clip-path: inset(0 var(--gutter) round 24px); }
     .pd-vortex { position: absolute; height: auto; opacity: .9; pointer-events: none; }
-    .pd-hero-shot { position: relative; width: min(64%, 980px); height: auto; filter: drop-shadow(0 30px 40px rgba(22, 21, 15, .22)); }
+    /* Shadow is baked into the image: CSS filters on moving layers render soft in Safari. */
+    .pd-hero-shot { position: relative; width: auto; height: auto; max-width: min(84%, 1240px); max-height: 92%; }
     .pd-screen { position: relative; width: min(64%, 960px); aspect-ratio: 16 / 10; border-radius: 16px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .25); display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; text-align: center; padding: 20px; }
     .pd-meta { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 24px; border-top: 1.5px solid var(--ink); padding-top: 24px; }
     .pd-meta div { display: flex; flex-direction: column; gap: 6px; }
@@ -101,7 +102,7 @@
   <div class="pd-band" data-expand style="--band:#e6eefd">
     <img class="pd-vortex" data-parallax="-0.12" src="assets/vortex.svg" alt="" style="width:44vw;right:-10vw;top:-14vw" />
     <img class="pd-vortex" data-parallax="0.1" src="assets/vortex.svg" alt="" style="width:20vw;left:-5vw;bottom:-6vw;rotate:140deg" />
-    <img class="pd-hero-shot" data-parallax="0.06" src="assets/projects/fluent-conveyors-2000.webp" srcset="assets/projects/fluent-conveyors.webp 1200w, assets/projects/fluent-conveyors-2000.webp 2000w" sizes="(max-width: 760px) 64vw, min(64vw, 980px)" alt="Fluent Conveyors dashboard on a desktop screen" width="2000" height="1685" />
+    <img class="pd-hero-shot" data-parallax="0.06" src="assets/projects/fluent-conveyors-detail-2400.webp" srcset="assets/projects/fluent-conveyors-detail-1200.webp 1296w, assets/projects/fluent-conveyors-detail-2400.webp 2592w" sizes="(max-width: 760px) 90vw, min(84vw, 1240px)" alt="Fluent Conveyors dashboard on a desktop screen" width="2592" height="2238" />
   </div>
 </section>
 
@@ -171,7 +172,7 @@
     </div>
     <div class="pd-band" data-expand style="--band:var(--royal-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-hero-shot" data-parallax="0.08" src="assets/projects/fluent-conveyors-2000.webp" srcset="assets/projects/fluent-conveyors.webp 1200w, assets/projects/fluent-conveyors-2000.webp 2000w" sizes="(max-width: 760px) 64vw, min(64vw, 980px)" alt="Fluent Conveyors dashboard with the Needs your attention list" width="2000" height="1685" style="width:min(56%,860px)" />
+      <img class="pd-hero-shot" data-parallax="0.08" src="assets/projects/fluent-conveyors-detail-2400.webp" srcset="assets/projects/fluent-conveyors-detail-1200.webp 1296w, assets/projects/fluent-conveyors-detail-2400.webp 2592w" sizes="(max-width: 760px) 90vw, min(84vw, 1240px)" alt="Fluent Conveyors dashboard with the Needs your attention list" width="2592" height="2238" style="max-width:min(72%,1040px)" />
     </div>
   </div>
 
@@ -307,6 +308,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=202610161921"></script>
+<script src="assets/site.js?v=202610171523"></script>
 </body>
 </html>

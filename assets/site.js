@@ -144,7 +144,8 @@
       });
       drifters.forEach((el) => {
         const box = el.parentElement.getBoundingClientRect();
-        el.style.transform = `translate3d(0,${(box.top + box.height / 2 - vh / 2) * parseFloat(el.dataset.parallax)}px,0)`;
+        // Whole pixels keep images crisp while they move.
+        el.style.transform = `translate(0,${Math.round((box.top + box.height / 2 - vh / 2) * parseFloat(el.dataset.parallax))}px)`;
       });
     };
     const schedule = () => { if (!raf) raf = requestAnimationFrame(tick); };
