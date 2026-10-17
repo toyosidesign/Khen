@@ -154,6 +154,25 @@
     tick();
   }
 
+  // ---- Sideways scrollers: ←/→ buttons move one card ----
+  document.querySelectorAll('[data-scroller]').forEach((track) => {
+    const buttons = [...document.querySelectorAll(`[aria-controls="${track.id}"][data-scroll]`)];
+    const step = () => {
+      const card = track.firstElementChild;
+      return card ? card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0) : track.clientWidth;
+    };
+    const update = () => buttons.forEach((b) => {
+      const dir = Number(b.dataset.scroll);
+      b.disabled = dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    });
+    buttons.forEach((b) => b.addEventListener('click', () => {
+      track.scrollBy({ left: Number(b.dataset.scroll) * step(), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }));
+    track.addEventListener('scroll', update, { passive: true });
+    addEventListener('resize', update);
+    update();
+  });
+
   const reveals = document.querySelectorAll('[data-reveal]');
   if (!reduceMotion && reveals.length && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js-reveal');

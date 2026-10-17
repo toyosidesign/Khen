@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=202610171523" />
+  <link rel="stylesheet" href="assets/site.css?v=202610171754" />
   <style>
     .pd-hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(32px, 4vw, 48px); }
     .pd-crumbs { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--n-66); }
@@ -75,11 +75,17 @@
     .pd-voices figure { margin: 0; background: var(--royal-50); border-radius: 20px; padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; }
     .pd-voices blockquote { margin: 0; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; letter-spacing: -.02em; font-weight: 500; color: var(--royal-800); }
     .pd-voices figcaption { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--royal-600); }
-    .pd-more { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px; }
-    .pd-more figure { margin: 0; display: flex; flex-direction: column; gap: 14px; }
-    .pd-more img { width: 100%; max-width: 700px; height: auto; border-radius: 12px; border: 1px solid var(--n-e3); }
-    .pd-more figcaption { display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.5; color: var(--n-4a); }
-    .pd-more figcaption strong { font-size: 18px; font-weight: 600; color: var(--ink); }
+    /* Sideways-scrolling row: starts in line with the page content, runs to the screen edge. */
+    .pd-scroller { --edge: max(var(--gutter), calc((100vw - 1320px) / 2 + var(--gutter))); display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); padding: 4px var(--edge) 20px; scrollbar-width: thin; scrollbar-color: var(--n-cf) transparent; }
+    .pd-scroller:focus-visible { outline: 3px solid var(--royal-300); outline-offset: -3px; }
+    .pd-scroller figure { flex: 0 0 min(82vw, 680px); margin: 0; scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; }
+    .pd-scroller img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--n-e3); }
+    .pd-scroller figcaption { display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.5; color: var(--n-4a); max-width: 52ch; }
+    .pd-scroller figcaption strong { font-size: 18px; font-weight: 600; color: var(--ink); }
+    .pd-scroll-btns { display: flex; gap: 8px; }
+    .pd-scroll-btn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--n-e3); background: #FFFFFF; color: var(--ink); font: inherit; font-size: 18px; cursor: pointer; transition: border-color .15s, background .15s; }
+    .pd-scroll-btn:hover { border-color: var(--royal-300); background: var(--royal-50); }
+    .pd-scroll-btn:disabled { opacity: .35; cursor: default; background: #FFFFFF; border-color: var(--n-e3); }
     .pd-tests { display: flex; flex-direction: column; }
     .pd-tests div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid #333333; align-items: baseline; }
     .pd-tests div:first-child { border-top: 1px solid #333333; }
@@ -273,14 +279,18 @@
   </div>
 </section>
 
-<section class="wrap" style="padding-top:var(--section-y)">
-  <div class="row-between" data-reveal style="margin-bottom:clamp(28px,4vw,40px)">
+<section style="padding-top:var(--section-y)">
+  <div class="wrap row-between" data-reveal style="margin-bottom:clamp(28px,4vw,40px);align-items:end">
     <div class="stack">
       <div class="eyebrow muted">And around the core flow</div>
-      <h2 class="h2" style="max-width:18ch">Tools that make the portal the first place people look.</h2>
+      <h2 class="h2" style="max-width:30ch">Tools that make the portal the first place people look.</h2>
+    </div>
+    <div class="pd-scroll-btns">
+      <button type="button" class="pd-scroll-btn" data-scroll="-1" aria-controls="tools" aria-label="Previous">←</button>
+      <button type="button" class="pd-scroll-btn" data-scroll="1" aria-controls="tools" aria-label="Next">→</button>
     </div>
   </div>
-  <div class="pd-more" data-reveal>
+  <div class="pd-scroller" id="tools" data-scroller tabindex="0" role="region" aria-label="More platform tools, scrolls sideways">
     <figure><img src="assets/projects/fluent/ai-assistant.webp" alt="Fluent AI assistant answering account questions" width="1400" height="803" loading="lazy" /><figcaption><strong>AI assistant</strong>Answers spec questions and drafts carts from Fluent’s catalogue and manuals.</figcaption></figure>
     <figure><img src="assets/projects/fluent/inventory.webp" alt="Inventory list with stock status per part" width="1400" height="802" loading="lazy" /><figcaption><strong>Inventory</strong>Every part with its stock and status, managed location by location.</figcaption></figure>
     <figure><img src="assets/projects/fluent/calendar.webp" alt="Shared calendar of maintenance, deliveries and visits" width="1400" height="803" loading="lazy" /><figcaption><strong>Calendar</strong>Maintenance windows, deliveries and service visits on one shared schedule.</figcaption></figure>
@@ -442,6 +452,6 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=202610171523"></script>
+<script src="assets/site.js?v=202610171754"></script>
 </body>
 </html>
