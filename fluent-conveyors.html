@@ -59,8 +59,9 @@
     .pd-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
     .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
     .pd-checks li::before { content: "✓"; color: var(--growth-600); font-weight: 700; }
-    /* One screen per band. 1400px exports shown at up to 800px stay crisp on retina. */
-    .pd-shot { position: relative; width: min(82%, 800px); height: auto; border-radius: 12px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .3), 0 2px 8px rgba(22, 21, 15, .06); }
+    /* Full-bleed screens: the band takes the screenshot's own shape. */
+    .pd-band-full { height: auto; min-height: 0; display: block; }
+    .pd-full-shot { display: block; width: 100%; height: auto; }
     .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
     .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
     .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-600); }
@@ -236,9 +237,8 @@
       <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">01 · Assets</div><h3>Every line, and every part that fits it.</h3></div>
       <div class="stack" style="gap:16px"><p>Operators see each conveyor line with its health, status and next service date. Opening a machine shows its uptime, maintenance status and a parts list stated as compatible with that exact machine, so the right part is found first time.</p><ul class="pd-checks"><li>Searchable parts catalogue per asset</li><li>Add to cart, raise a ticket or log a task in context</li></ul></div>
     </div>
-    <div class="pd-band" data-expand style="--band:var(--royal-50)">
-      <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/asset-detail.webp" alt="Asset detail for a drive motor assembly with its parts and components" width="1400" height="802" loading="lazy" />
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--royal-50)">
+      <img class="pd-full-shot" src="assets/projects/fluent/asset-detail.webp" alt="Asset detail for a drive motor assembly with its parts and components" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 
@@ -247,9 +247,8 @@
       <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--fire-500)">02 · Cart → quote → e-sign</div><h3>A cart that becomes a signed order.</h3></div>
       <div class="stack" style="gap:16px"><p>Conveyor parts are made to order and freight varies, so the cart sends a quote request to the dealer instead of checking out. The customer keeps a running estimate, then reviews the priced quote and e-signs it in the same place.</p><ul class="pd-checks"><li>Parts grouped by the asset they belong to</li><li>Line items, bill-to and ship-to, then sign and accept</li></ul></div>
     </div>
-    <div class="pd-band" data-expand style="--band:var(--fire-50)">
-      <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/open-quote-detail.webp" alt="Quote detail with line items and a sign and accept button" width="1400" height="752" loading="lazy" />
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--fire-50)">
+      <img class="pd-full-shot" src="assets/projects/fluent/open-quote-detail.webp" alt="Quote detail with line items and a sign and accept button" width="1400" height="752" loading="lazy" />
     </div>
   </div>
 
@@ -258,9 +257,8 @@
       <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-600)">03 · Pay and track</div><h3>Invoice, payment and delivery in one flow.</h3></div>
       <div class="stack" style="gap:16px"><p>Customers pay by card or on purchase-order terms, then follow the shipment from order to delivery with carrier, ETA and every scan. “Where is it?” stops being a phone call to the dealer.</p><ul class="pd-checks"><li>Pay by card or PO terms in the portal</li><li>Order → processing → in transit → delivered</li></ul></div>
     </div>
-    <div class="pd-band" data-expand style="--band:var(--growth-50)">
-      <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/shipment-detail.webp" alt="Shipment tracking timeline with carrier and scan history" width="1400" height="802" loading="lazy" />
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--growth-50)">
+      <img class="pd-full-shot" src="assets/projects/fluent/shipment-detail.webp" alt="Shipment tracking timeline with carrier and scan history" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 
@@ -269,9 +267,8 @@
       <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">04 · Maintenance and support</div><h3>Get ahead of downtime.</h3></div>
       <div class="stack" style="gap:16px"><p>Work orders are grouped into late, due and upcoming, so teams service equipment before it fails. Tickets can be raised from any asset and keep the full support thread linked to the machine, part and work order.</p><ul class="pd-checks"><li>Late, due and upcoming at a glance</li><li>Completed tasks log back to the asset’s history</li></ul></div>
     </div>
-    <div class="pd-band" data-expand style="--band:var(--royal-50)">
-      <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/maintenance.webp" alt="Maintenance work orders grouped by urgency" width="1400" height="802" loading="lazy" />
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--royal-50)">
+      <img class="pd-full-shot" src="assets/projects/fluent/maintenance.webp" alt="Maintenance work orders grouped by urgency" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 </section>
