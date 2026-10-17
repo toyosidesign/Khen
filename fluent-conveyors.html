@@ -59,11 +59,8 @@
     .pd-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
     .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
     .pd-checks li::before { content: "✓"; color: var(--growth-600); font-weight: 700; }
-    /* Two screens per band, capped at 700px wide so 1400px exports stay sharp on retina. */
-    .pd-pair { position: relative; width: min(88%, 1140px); aspect-ratio: 16 / 9; }
-    .pd-pair img { position: absolute; width: 62%; max-width: 700px; height: auto; border-radius: 12px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .3), 0 2px 8px rgba(22, 21, 15, .06); }
-    .pd-pair img:first-child { left: 0; top: 2%; }
-    .pd-pair img:last-child { right: 0; bottom: 2%; }
+    /* One screen per band. 1400px exports shown at up to 800px stay crisp on retina. */
+    .pd-shot { position: relative; width: min(82%, 800px); height: auto; border-radius: 12px; background: #FFFFFF; box-shadow: 0 30px 60px -24px rgba(22, 21, 15, .3), 0 2px 8px rgba(22, 21, 15, .06); }
     .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
     .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
     .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-600); }
@@ -241,10 +238,7 @@
     </div>
     <div class="pd-band" data-expand style="--band:var(--royal-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-pair" data-parallax="0.06">
-        <img src="assets/projects/fluent/asset-list.webp" alt="My Assets list with health and next service per line" width="1400" height="803" loading="lazy" />
-        <img src="assets/projects/fluent/asset-detail.webp" alt="Asset detail for a drive motor assembly with its parts and components" width="1400" height="802" loading="lazy" />
-      </div>
+      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/asset-detail.webp" alt="Asset detail for a drive motor assembly with its parts and components" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 
@@ -255,10 +249,7 @@
     </div>
     <div class="pd-band" data-expand style="--band:var(--fire-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-pair" data-parallax="0.06">
-        <img src="assets/projects/fluent/cart-quote.webp" alt="Cart grouped by asset with a request quote summary" width="1400" height="804" loading="lazy" />
-        <img src="assets/projects/fluent/open-quote-detail.webp" alt="Quote detail with line items and a sign and accept button" width="1400" height="752" loading="lazy" />
-      </div>
+      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/open-quote-detail.webp" alt="Quote detail with line items and a sign and accept button" width="1400" height="752" loading="lazy" />
     </div>
   </div>
 
@@ -269,10 +260,7 @@
     </div>
     <div class="pd-band" data-expand style="--band:var(--growth-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-pair" data-parallax="0.06">
-        <img src="assets/projects/fluent/invoice-detail.webp" alt="Invoice detail with card and purchase order payment" width="1400" height="802" loading="lazy" />
-        <img src="assets/projects/fluent/shipment-detail.webp" alt="Shipment tracking timeline with carrier and scan history" width="1400" height="802" loading="lazy" />
-      </div>
+      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/shipment-detail.webp" alt="Shipment tracking timeline with carrier and scan history" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 
@@ -283,10 +271,7 @@
     </div>
     <div class="pd-band" data-expand style="--band:var(--royal-50)">
       <img class="pd-vortex" data-parallax="-0.1" src="assets/vortex.svg" alt="" style="width:32vw;left:-8vw;top:-10vw" />
-      <div class="pd-pair" data-parallax="0.06">
-        <img src="assets/projects/fluent/maintenance.webp" alt="Maintenance work orders grouped by urgency" width="1400" height="802" loading="lazy" />
-        <img src="assets/projects/fluent/helpdesk.webp" alt="Help desk ticket thread linked to an asset" width="1400" height="804" loading="lazy" />
-      </div>
+      <img class="pd-shot" data-parallax="0.06" src="assets/projects/fluent/maintenance.webp" alt="Maintenance work orders grouped by urgency" width="1400" height="802" loading="lazy" />
     </div>
   </div>
 </section>
