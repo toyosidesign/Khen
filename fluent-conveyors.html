@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=202610171754" />
+  <link rel="stylesheet" href="assets/site.css?v=202610182049" />
   <style>
     .pd-hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(32px, 4vw, 48px); }
     .pd-crumbs { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--n-66); }
@@ -58,13 +58,13 @@
     .pd-goals b { font-weight: 600; }
     .pd-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
     .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
-    .pd-checks li::before { content: "✓"; color: var(--growth-600); font-weight: 700; }
+    .pd-checks li::before { content: "✓"; color: var(--growth-700); font-weight: 700; }
     /* Full-bleed screens: the band takes the screenshot's own shape. */
     .pd-band-full { height: auto; min-height: 0; display: block; padding: clamp(20px, 5vw, 72px); }
-    .pd-full-shot { display: block; width: 100%; height: auto; border: 1px solid rgba(22, 21, 15, .12); border-radius: 12px; box-shadow: 0 24px 48px -28px rgba(22, 21, 15, .25); }
+    .pd-full-shot { display: block; width: 100%; height: auto; border: 1px solid rgba(23, 23, 23, .12); border-radius: 12px; box-shadow: 0 24px 48px -28px rgba(23, 23, 23, .25); }
     .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
     .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
-    .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-600); }
+    .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-700); }
     .pd-stats .l { font-size: 15px; line-height: 1.5; color: var(--n-4a); max-width: 26ch; }
     .pd-phases { list-style: none; margin: 0 0 clamp(40px, 6vw, 64px); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; }
     .pd-phases li { background: var(--growth-50); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
@@ -90,7 +90,7 @@
     .pd-tests div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid #333333; align-items: baseline; }
     .pd-tests div:first-child { border-top: 1px solid #333333; }
     .pd-tests p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--n-b3); }
-    .pd-tests b { color: #FFFFFF; font-weight: 600; }
+    .pd-tests b { color: #F5F2EB; font-weight: 600; }
     .pd-tests .sev { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--growth-300); }
     .pd-tests .sev.high { color: var(--fire-300); }
     .pd-moves { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
@@ -106,7 +106,7 @@
 
 <header class="site-header">
   <div class="wrap">
-    <a class="logo" href="./"><img src="assets/khen-logo.svg?v=4" alt="Khen" width="130" height="64" /></a>
+    <a class="logo" href="./" aria-label="Khen home"><khen-logo></khen-logo><noscript><img src="assets/khen-wordmark.svg" alt="Khen" width="124" height="28" /></noscript></a>
     <nav class="nav" aria-label="Main">
       <div class="nav-links">
         <a class="nav-link" href="projects.html" aria-current="page">Projects</a>
@@ -158,7 +158,7 @@
 
 <section class="wrap section">
   <div class="pd-split" data-reveal>
-    <div class="eyebrow" style="color:var(--royal-500);font-weight:400">About the client</div>
+    <div class="eyebrow" style="color:var(--royal-600);font-weight:400">About the client</div>
     <div class="stack" style="gap:24px">
       <p class="pd-big">Fluent engineers and manufactures heavy-duty conveyors for recycling and waste facilities, where a line that stops costs money every minute.</p>
       <p class="body" style="line-height:1.6;max-width:58ch">A conveyor sells once and is serviced for a decade. Parts, service and maintenance are the revenue that lasts, and all of it was moving through inboxes, phone calls and printed PDFs. Fluent wanted that aftermarket to run as a product, without adding headcount for every new account.</p>
@@ -258,7 +258,7 @@
 
   <div class="pd-feature">
     <div class="wrap pd-feature-text" data-reveal>
-      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-600)">03 · Pay and track</div><h3>Invoice, payment and delivery in one flow.</h3></div>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-700)">03 · Pay and track</div><h3>Invoice, payment and delivery in one flow.</h3></div>
       <div class="stack" style="gap:16px"><p>Customers pay by card or on purchase-order terms, then follow the shipment from order to delivery with carrier, ETA and every scan. “Where is it?” stops being a phone call to the dealer.</p><ul class="pd-checks"><li>Pay by card or PO terms in the portal</li><li>Order → processing → in transit → delivered</li></ul></div>
     </div>
     <div class="pd-band pd-band-full" data-expand style="--band:var(--growth-50)">
@@ -362,7 +362,7 @@
   </div>
 </section>
 
-<section style="background:#FAFAFA;border-top:1px solid var(--n-e3)">
+<section style="background:#F0EDE5;border-top:1px solid var(--n-e3)">
   <div class="wrap" style="padding-top:clamp(64px,9vw,112px);padding-bottom:clamp(64px,9vw,112px)">
     <div class="row-between" style="margin-bottom:clamp(32px,5vw,48px)">
       <h2 class="h2">More projects</h2>
@@ -404,7 +404,7 @@
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <img src="assets/khen-logo-light.svg?v=4" alt="Khen" width="147" height="72" />
+      <img src="assets/khen-wordmark-white.svg" alt="Khen" width="141" height="32" />
       <div style="font-weight:600;font-size:16px">Khen Ltd.</div>
       <address>Street address<br />City, Postcode<br />Country</address>
       <a class="email" href="mailto:hello@khen.example">hello@khen.example</a>
@@ -440,6 +440,7 @@
   </div>
 </footer>
 
-<script src="assets/site.js?v=202610171754"></script>
+<script src="assets/khen-logo.js?v=1"></script>
+<script src="assets/site.js?v=202610182049"></script>
 </body>
 </html>
