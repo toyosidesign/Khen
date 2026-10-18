@@ -29,7 +29,7 @@ const ALLOW = [
   { from: "about.html", to: "about.html", required: true },
   { from: "fluent-conveyors.html", to: "fluent-conveyors.html", required: true },
   { from: "fluent-conveyors-website.html", to: "fluent-conveyors-website.html", required: true },
-  { from: "khen-analytics-landing.html", to: "khen-analytics-landing.html", required: true },
+  { from: "khen-template.html", to: "khen-template.html", required: true },
   // Site-wide CSS, JS and logo for the agency pages.
   { from: "assets", to: "assets", required: true },
   { from: "preview.html", to: "preview.html", required: true },
