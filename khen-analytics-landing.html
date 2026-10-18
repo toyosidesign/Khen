@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Khen Analytics — Khen</title>
+  <meta name="description" content="How Khen designed and built a responsive landing page for a product analytics SaaS, on a shared design system with HTML and Next.js builds." />
+  <link rel="icon" href="favicon.ico?v=8" sizes="any" />
+  <link rel="icon" href="assets/favicon.svg?v=8" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-32.png?v=8" sizes="32x32" type="image/png" />
+  <link rel="icon" href="assets/favicon-192.png?v=8" sizes="192x192" type="image/png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/site.css?v=202610182056" />
+  <style>
+    .pd-hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(32px, 4vw, 48px); }
+    .pd-crumbs { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--n-66); }
+    .pd-crumbs a { color: var(--n-66); }
+    .pd-crumbs a:hover { color: var(--royal-500); }
+    .pd-crumbs [aria-current] { color: var(--ink); }
+    .pd-hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 32px 80px; align-items: end; margin-top: clamp(32px, 5vw, 56px); }
+    .pd-tag { font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 999px; background: var(--royal-50); color: var(--royal-600); }
+    .pd-lead { margin: 0; font-size: 17px; line-height: 1.55; color: var(--n-3a); max-width: 40ch; text-wrap: pretty; }
+    /* Full-width image bands: inset with rounded corners, widening to full bleed as they scroll in (assets/site.js). */
+    .pd-band { height: min(100vh, 62vw); min-height: 420px; background: var(--band); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; clip-path: inset(0 var(--gutter) round 24px); }
+    .pd-vortex { position: absolute; height: auto; opacity: .9; pointer-events: none; }
+    /* Shadow is baked into the image: CSS filters on moving layers render soft in Safari. */
+    .pd-hero-shot { position: relative; width: auto; height: auto; max-width: min(84%, 1240px); max-height: 92%; }
+    .pd-meta { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 24px; border-top: 1.5px solid var(--ink); padding-top: 24px; }
+    .pd-meta div { display: flex; flex-direction: column; gap: 6px; }
+    .pd-meta dt { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--n-66); }
+    .pd-meta dd { margin: 0; font-size: 16px; font-weight: 500; line-height: 1.4; }
+    .pd-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 32px 80px; align-items: start; }
+    .pd-big { margin: 0; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -.03em; font-weight: 500; text-wrap: pretty; }
+    .pd-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 40px; }
+    .pd-results > div { display: flex; flex-direction: column; gap: 12px; border-top: 1.5px solid #444444; padding-top: 20px; }
+    .pd-results .v { font-size: clamp(56px, 7vw, 104px); font-weight: 700; letter-spacing: -.05em; line-height: .9; color: var(--royal-200); }
+    .pd-results .l { font-size: 16px; line-height: 1.5; color: var(--n-b3); max-width: 28ch; }
+    .pd-goals { display: flex; flex-direction: column; }
+    .pd-goals strong { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .pd-goals div { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--n-e3); align-items: baseline; }
+    .pd-goals .mono { font-size: 13px; color: var(--fire-500); flex: none; }
+    .pd-goals div span:last-child { font-size: 18px; line-height: 1.45; font-weight: 500; }
+    .pd-feature-text { padding-top: clamp(56px, 8vw, 104px); padding-bottom: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 20px 80px; align-items: start; }
+    .pd-feature-text h3 { margin: 0; font-size: clamp(26px, 3vw, 40px); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; max-width: 18ch; }
+    .pd-feature-text p { margin: 0; font-size: 18px; line-height: 1.6; color: var(--n-4a); max-width: 46ch; text-wrap: pretty; }
+    .pd-scope { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 48px 64px; }
+    .pd-row { display: flex; justify-content: space-between; gap: 12px; font-size: 18px; font-weight: 500; padding-bottom: 14px; border-bottom: 1px solid var(--n-e3); }
+    .pd-row span:last-child { color: var(--n-66); font-weight: 400; }
+    .pd-chip { font-size: 14px; font-weight: 500; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--n-e3); }
+    .pd-cta { max-width: 1320px; margin: 0 auto; background: var(--royal-100); border: 1.5px solid var(--royal-200); border-radius: 24px; padding: clamp(32px, 5vw, 64px); display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; transition: border-color .15s; }
+    .pd-cta:hover { border-color: var(--royal-500); }
+    .pd-cta-title { font-size: clamp(28px, 3.6vw, 48px); font-weight: 700; letter-spacing: -.035em; line-height: 1.05; color: var(--royal-800); max-width: 18ch; }
+    .pd-lead strong { color: var(--ink); font-weight: 600; }
+    .pd-ext { align-self: flex-start; font-weight: 600; font-size: 15px; color: var(--royal-500); border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+    .pd-ext:hover { color: var(--royal-600); }
+    .pd-goals b { font-weight: 600; }
+    .pd-checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+    .pd-checks li { display: flex; gap: 10px; font-size: 15px; color: var(--n-3a); }
+    .pd-checks li::before { content: "✓"; color: var(--growth-700); font-weight: 700; }
+    /* Full-bleed screens: the band takes the screenshot's own shape. */
+    .pd-band-full { height: auto; min-height: 0; display: block; padding: clamp(20px, 5vw, 72px); }
+    .pd-full-shot { display: block; width: 100%; height: auto; border: 1px solid rgba(23, 23, 23, .12); border-radius: 12px; box-shadow: 0 24px 48px -28px rgba(23, 23, 23, .25); }
+    .pd-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 24px; margin-bottom: clamp(40px, 6vw, 64px); }
+    .pd-stats div { display: flex; flex-direction: column; gap: 10px; border-top: 1.5px solid var(--ink); padding-top: 18px; }
+    .pd-stats .v { font-size: clamp(40px, 5vw, 64px); font-weight: 700; letter-spacing: -.04em; line-height: .95; color: var(--growth-700); }
+    .pd-stats .l { font-size: 15px; line-height: 1.5; color: var(--n-4a); max-width: 26ch; }
+    .pd-phases { list-style: none; margin: 0 0 clamp(40px, 6vw, 64px); padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 12px; }
+    .pd-phases li { background: var(--growth-50); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 6px; }
+    .pd-phases .mono { font-size: 12px; color: var(--growth-700); }
+    .pd-phases strong { font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+    .pd-phases span:last-child { font-size: 14px; line-height: 1.45; color: var(--n-4a); }
+    .pd-voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); gap: 16px; }
+    .pd-voices figure { margin: 0; background: var(--royal-50); border-radius: 20px; padding: clamp(24px, 3vw, 36px); display: flex; flex-direction: column; gap: 16px; }
+    .pd-voices blockquote { margin: 0; font-size: clamp(19px, 1.8vw, 24px); line-height: 1.35; letter-spacing: -.02em; font-weight: 500; color: var(--royal-800); }
+    .pd-voices figcaption { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--royal-600); }
+    /* Sideways-scrolling row: starts in line with the page content, runs to the screen edge. */
+    .pd-scroller { --edge: max(var(--gutter), calc((100vw - 1320px) / 2 + var(--gutter))); display: flex; gap: 24px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--edge); padding: 4px var(--edge) 20px; scrollbar-width: thin; scrollbar-color: var(--n-cf) transparent; }
+    .pd-scroller:focus-visible { outline: 3px solid var(--royal-300); outline-offset: -3px; }
+    .pd-scroller figure { flex: 0 0 min(82vw, 680px); margin: 0; scroll-snap-align: start; display: flex; flex-direction: column; gap: 14px; }
+    .pd-scroller img { width: 100%; height: auto; border-radius: 14px; border: 1px solid var(--n-e3); }
+    .pd-scroller figcaption { display: flex; flex-direction: column; gap: 4px; font-size: 15px; line-height: 1.5; color: var(--n-4a); max-width: 52ch; }
+    .pd-scroller figcaption strong { font-size: 18px; font-weight: 600; color: var(--ink); }
+    .pd-scroll-btns { display: flex; gap: 8px; }
+    .pd-scroll-btn { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--n-e3); background: #FFFFFF; color: var(--ink); font: inherit; font-size: 18px; cursor: pointer; transition: border-color .15s, background .15s; }
+    .pd-scroll-btn:hover { border-color: var(--royal-300); background: var(--royal-50); }
+    .pd-scroll-btn:disabled { opacity: .35; cursor: default; background: #FFFFFF; border-color: var(--n-e3); }
+    .pd-tests { display: flex; flex-direction: column; }
+    .pd-tests div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-bottom: 1px solid #333333; align-items: baseline; }
+    .pd-tests div:first-child { border-top: 1px solid #333333; }
+    .pd-tests p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--n-b3); }
+    .pd-tests b { color: #F5F2EB; font-weight: 600; }
+    .pd-tests .sev { font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--growth-300); }
+    .pd-tests .sev.high { color: var(--fire-300); }
+    .pd-moves { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
+    .pd-moves div { background: var(--bg); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+    .pd-moves .mono { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-c); }
+    .pd-moves p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--n-3a); }
+    .pd-phones { display: flex; justify-content: center; gap: clamp(12px, 3vw, 40px); padding: clamp(28px, 5vw, 64px) clamp(16px, 4vw, 48px); background: var(--royal-50); border-radius: 24px; }
+    .pd-phones img { width: min(30%, 300px); height: auto; border-radius: 28px; border: 1px solid rgba(23, 23, 23, .12); box-shadow: 0 24px 48px -28px rgba(23, 23, 23, .3); background: #FFFFFF; }
+    [data-reveal] { transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform .9s cubic-bezier(.2, .7, .2, 1), filter .9s cubic-bezier(.2, .7, .2, 1); }
+    .js-reveal [data-reveal]:not(.is-in) { opacity: 0; transform: translateY(32px); filter: blur(6px); }
+    @media (prefers-reduced-motion: reduce) { .js-reveal [data-reveal]:not(.is-in) { opacity: 1; transform: none; filter: none; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="./" aria-label="Khen home"><khen-logo></khen-logo><noscript><img src="assets/khen-wordmark.svg" alt="Khen" width="124" height="28" /></noscript></a>
+    <nav class="nav" aria-label="Main">
+      <div class="nav-links">
+        <a class="nav-link" href="projects.html" aria-current="page">Projects</a>
+        <a class="nav-link" href="./#build">Services</a>
+        <a class="nav-link" href="./#approach">How we work</a>
+        <a class="nav-link" href="about.html">About us</a>
+      </div>
+      <a class="nav-cta" href="./#contact">Free consultation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Menu">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main class="pd">
+
+<section class="wrap pd-hero">
+  <nav class="pd-crumbs" aria-label="Breadcrumb"><a href="projects.html">Projects</a><span aria-hidden="true">/</span><span aria-current="page">Khen Analytics</span></nav>
+  <div class="pd-hero-grid">
+    <div class="stack" style="gap:24px">
+      <div class="tags"><span class="pd-tag">Websites</span><span class="pd-tag">SaaS products</span><span class="pd-tag">Product design</span><span class="pd-tag">UI/UX</span></div>
+      <h1 class="h1">Khen Analytics</h1>
+    </div>
+    <div class="stack" style="gap:20px">
+      <p class="pd-lead"><strong>A launch-ready landing page for a product analytics SaaS.</strong> We designed and built it end to end, from page structure and UI to a responsive front end made from one shared set of components.</p>
+      <a class="pd-ext" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page">Open the live preview ↗</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="pd-band pd-band-full" data-expand style="--band:var(--royal-50)">
+    <img class="pd-full-shot" src="assets/projects/khen-analytics/hero-2880.webp" srcset="assets/projects/khen-analytics/hero-1440.webp 1440w, assets/projects/khen-analytics/hero-2880.webp 2880w" sizes="100vw" alt="Khen Analytics hero: Beautiful analytics to grow smarter, with Demo and Sign up buttons above a product dashboard" width="2880" height="1800" />
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:clamp(40px,5vw,64px)">
+  <dl class="pd-meta">
+    <div><dt>Client</dt><dd>Khen Analytics (concept)</dd></div>
+    <div><dt>Industry</dt><dd>B2B SaaS · product analytics</dd></div>
+    <div><dt>Product</dt><dd>Marketing landing page</dd></div>
+    <div><dt>Services</dt><dd>UX/UI design, Design system, Front-end development</dd></div>
+    <div><dt>Platform</dt><dd>Responsive web · HTML &amp; Next.js</dd></div>
+  </dl>
+</section>
+
+<section class="wrap section">
+  <div class="pd-split" data-reveal>
+    <div class="eyebrow" style="color:var(--royal-600);font-weight:400">About the product</div>
+    <div class="stack" style="gap:24px">
+      <p class="pd-big">Khen Analytics gives startups self-serve product and growth analytics, so teams can convert, engage and retain more users.</p>
+      <p class="body" style="line-height:1.6;max-width:58ch">The landing page has one job: turn a visitor into a demo request or a free-trial sign-up. Everything on it either explains the value, proves it, or removes a reason not to start.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap" style="padding-top:clamp(56px,8vw,104px);padding-bottom:clamp(56px,8vw,104px)">
+    <div class="eyebrow" style="color:var(--royal-300);font-weight:400;margin-bottom:clamp(32px,5vw,56px)">What we delivered</div>
+    <div class="pd-results" data-reveal>
+      <div><div class="v">8</div><div class="l">Page sections, from hero to footer, each with one clear purpose</div></div>
+      <div><div class="v">2</div><div class="l">Builds from one design: static HTML and a Next.js component version</div></div>
+      <div><div class="v">3</div><div class="l">Breakpoints designed and built: desktop, tablet and mobile</div></div>
+      <div><div class="v">1</div><div class="l">Shared token system for colour, type, spacing, radius and shadow</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="pd-split" style="gap:40px 80px" data-reveal>
+    <div class="stack">
+      <div class="eyebrow">The challenge</div>
+      <h2 class="h2" style="max-width:15ch">Every analytics tool promises the same thing.</h2>
+      <p class="body" style="margin-top:8px;line-height:1.6;max-width:46ch">Visitors arrive comparing several tools and give each one seconds. The page has to show the product working straight away, make the benefits easy to scan, and answer the questions that stop people signing up.</p>
+    </div>
+    <div class="pd-goals">
+      <strong>What the page needed to do</strong>
+      <div><span class="mono">01</span><span><b>Show the product first.</b> A real dashboard in the opening screen, not an abstract illustration.</span></div>
+      <div><span class="mono">02</span><span><b>Make two actions obvious.</b> “Demo” for evaluators, “Sign up” for people ready to try it.</span></div>
+      <div><span class="mono">03</span><span><b>Remove objections.</b> Free trial, plan changes, cancellation and billing answered on the page.</span></div>
+      <div><span class="mono">04</span><span><b>Stay easy to change.</b> Built so copy, colours and sections can be updated without a redesign.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap" style="padding-top:var(--section-y)">
+    <div class="row-between" data-reveal>
+      <div class="stack">
+        <div class="eyebrow" style="color:var(--royal-500)">The solution</div>
+        <h2 class="h2" style="max-width:16ch;color:var(--royal-800)">A page that explains, proves, then asks.</h2>
+      </div>
+      <p class="lead" style="font-size:17px;line-height:1.5;max-width:38ch;color:var(--royal-600)">Each section answers the next question a visitor has, in order, with the sign-up always one scroll away.</p>
+    </div>
+  </div>
+
+  <div class="pd-feature">
+    <div class="wrap pd-feature-text" data-reveal>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">01 · Benefits</div><h3>Six benefits, scannable in seconds.</h3></div>
+      <div class="stack" style="gap:16px"><p>A grid of short benefits, each with an icon, a headline and one sentence, so visitors get the whole pitch at a glance before deciding to read on.</p><ul class="pd-checks"><li>Consistent icon, headline and body for every card</li><li>Followed by a customer quote for instant proof</li></ul></div>
+    </div>
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--fire-50)">
+      <img class="pd-full-shot" src="assets/projects/khen-analytics/features-2880.webp" srcset="assets/projects/khen-analytics/features-1440.webp 1440w, assets/projects/khen-analytics/features-2880.webp 2880w" sizes="100vw" alt="Features section: Analytics that feels like it's from the future, with six benefit cards" width="2880" height="1800" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="pd-feature">
+    <div class="wrap pd-feature-text" data-reveal>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--growth-700)">02 · Product showcase</div><h3>Show it working, on desktop and mobile.</h3></div>
+      <div class="stack" style="gap:16px"><p>The feature showcase pairs the desktop dashboard with the mobile app, beside three key features with “Learn more” links, so the product feels real and complete.</p><ul class="pd-checks"><li>Desktop and mobile screens side by side</li><li>Three features, each with a clear next step</li></ul></div>
+    </div>
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--growth-50)">
+      <img class="pd-full-shot" src="assets/projects/khen-analytics/showcase-2880.webp" srcset="assets/projects/khen-analytics/showcase-1440.webp 1440w, assets/projects/khen-analytics/showcase-2880.webp 2880w" sizes="100vw" alt="Cutting-edge features section with desktop dashboard and mobile app" width="2880" height="1800" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="pd-feature">
+    <div class="wrap pd-feature-text" data-reveal>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--royal-500)">03 · FAQ</div><h3>Answer the objections before they become drop-offs.</h3></div>
+      <div class="stack" style="gap:16px"><p>An accordion covers the questions that stop sign-ups: free trial, changing plans, cancellation, invoices, billing and account changes, with a route to the team if anything is still unclear.</p><ul class="pd-checks"><li>Six questions, one open at a time</li><li>“Still have questions?” hand-off to support</li></ul></div>
+    </div>
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--royal-50)">
+      <img class="pd-full-shot" src="assets/projects/khen-analytics/faq-2880.webp" srcset="assets/projects/khen-analytics/faq-1440.webp 1440w, assets/projects/khen-analytics/faq-2880.webp 2880w" sizes="100vw" alt="Frequently asked questions accordion" width="2880" height="1800" loading="lazy" />
+    </div>
+  </div>
+
+  <div class="pd-feature">
+    <div class="wrap pd-feature-text" data-reveal>
+      <div class="stack" style="gap:14px"><div class="mono" style="font-size:13px;color:var(--fire-700)">04 · Proof and sign-up</div><h3>Close with proof, then the ask.</h3></div>
+      <div class="stack" style="gap:16px"><p>A metrics block for customer numbers, return on investment, downloads and reviews leads straight into the free-trial call to action, so the last thing visitors see is a reason to start and a button to do it.</p><ul class="pd-checks"><li>Four headline metrics with short supporting lines</li><li>Free-trial call to action with “Learn more” and “Get started”</li></ul></div>
+    </div>
+    <div class="pd-band pd-band-full" data-expand style="--band:var(--fire-50)">
+      <img class="pd-full-shot" src="assets/projects/khen-analytics/metrics-2880.webp" srcset="assets/projects/khen-analytics/metrics-1440.webp 1440w, assets/projects/khen-analytics/metrics-2880.webp 2880w" sizes="100vw" alt="Launch faster section with four metrics, followed by the free trial call to action" width="2880" height="1800" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<section class="wrap" style="padding-top:var(--section-y)">
+  <div class="row-between" data-reveal style="margin-bottom:clamp(28px,4vw,40px)">
+    <div class="stack">
+      <div class="eyebrow muted">Designed for every screen</div>
+      <h2 class="h2" style="max-width:24ch">Just as clear on a phone.</h2>
+    </div>
+    <p class="lead" style="font-size:17px;max-width:38ch">Layouts stack, buttons go full width and the navigation collapses into a menu, so the sign-up path works on any device.</p>
+  </div>
+  <div class="pd-phones" data-reveal>
+    <img src="assets/projects/khen-analytics/m-hero.webp" alt="Mobile hero with Demo and Sign up buttons" width="780" height="1688" loading="lazy" />
+    <img src="assets/projects/khen-analytics/m-features.webp" alt="Mobile features list" width="780" height="1688" loading="lazy" />
+    <img src="assets/projects/khen-analytics/m-metrics.webp" alt="Mobile metrics section" width="780" height="1688" loading="lazy" />
+  </div>
+</section>
+
+<section class="wrap section">
+  <div class="pd-split" style="gap:40px 80px" data-reveal>
+    <div class="stack">
+      <div class="eyebrow">Built to last</div>
+      <h2 class="h2" style="max-width:15ch">One design system, two builds.</h2>
+      <p class="body" style="margin-top:8px;line-height:1.6;max-width:46ch">The page isn’t a one-off. It sits on a design system, so the next page, or a full rebrand, takes days instead of weeks.</p>
+    </div>
+    <div class="pd-goals">
+      <div><span class="mono">01</span><span><b>Design tokens.</b> Colour, type, spacing, radius and shadow live in one place. Change a brand value once and the whole page follows.</span></div>
+      <div><span class="mono">02</span><span><b>Component library.</b> Buttons, cards, badges, section headings and the FAQ accordion are typed React components, not copied markup.</span></div>
+      <div><span class="mono">03</span><span><b>Figma that matches the code.</b> The same tokens are exported as Figma variables, so design and code don’t drift apart.</span></div>
+      <div><span class="mono">04</span><span><b>Two outputs.</b> A static HTML version for speed and simple hosting, and a Next.js version with Tailwind for teams that want to extend it.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section">
+    <div class="pd-split" style="gap:40px 80px;margin-bottom:clamp(40px,6vw,64px)" data-reveal>
+      <div class="stack">
+        <div class="eyebrow" style="color:var(--growth-700)">The outcome</div>
+        <h2 class="h2" style="max-width:15ch">Ready to launch, easy to grow.</h2>
+      </div>
+      <p class="body" style="line-height:1.6;max-width:52ch">A complete, responsive landing page built on reusable parts, designed to turn visits into trials and to keep up as the product changes.</p>
+    </div>
+    <div class="pd-moves" data-reveal>
+      <div class="t-royal"><span class="mono">Sign-ups</span><p>Two clear actions, repeated at the right moments, with objections answered before the visitor has to ask.</p></div>
+      <div class="t-fire"><span class="mono">Speed to launch</span><p>Sections are components, so new pages and campaigns are assembled, not designed from scratch.</p></div>
+      <div class="t-growth"><span class="mono">Brand consistency</span><p>Tokens shared between Figma and code keep every page on brand as the team grows.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="rule-top">
+  <div class="wrap section">
+    <div class="pd-scope" data-reveal>
+      <div class="stack"><div class="eyebrow muted">What we did</div>
+        <div class="pd-row">Page structure &amp; messaging hierarchy</div><div class="pd-row">UX/UI design</div><div class="pd-row">Responsive design</div><div class="pd-row">Design tokens &amp; components</div><div class="pd-row">Front-end development</div>
+      </div>
+      <div class="stack"><div class="eyebrow muted">Deliverables</div>
+        <div class="pd-row">Landing page design</div><div class="pd-row">Static HTML build</div><div class="pd-row">Next.js + Tailwind build</div><div class="pd-row">Token package &amp; Figma variables</div><div class="pd-row">React component library</div>
+      </div>
+      <div class="stack"><div class="eyebrow muted">Page sections</div>
+        <div class="tags" style="gap:8px"><span class="pd-chip">Navigation</span><span class="pd-chip">Hero &amp; dashboard</span><span class="pd-chip">Benefits grid</span><span class="pd-chip">Testimonial</span><span class="pd-chip">Feature showcase</span><span class="pd-chip">FAQ</span><span class="pd-chip">Metrics</span><span class="pd-chip">Free-trial CTA</span><span class="pd-chip">Footer</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#F0EDE5;border-top:1px solid var(--n-e3)">
+  <div class="wrap" style="padding-top:clamp(64px,9vw,112px);padding-bottom:clamp(64px,9vw,112px)">
+    <div class="row-between" style="margin-bottom:clamp(32px,5vw,48px)">
+      <h2 class="h2">More projects</h2>
+      <a href="projects.html" style="font-weight:600;font-size:15px;color:var(--royal-500)">All projects →</a>
+    </div>
+    <div class="pcard-grid" data-reveal>
+      <a class="pcard" href="fluent-conveyors.html" data-tags="ERP platforms|SaaS products|Web apps|Product design" style="--tile:#e6eefd">
+        <div class="pcard-media"><div class="pcard-frame is-mockup"><img class="pcard-shot" src="assets/projects/fluent-conveyors.webp" alt="Fluent Conveyors ERP dashboard on a desktop screen" loading="lazy" width="1200" height="1011" /></div></div>
+        <div class="tags"><span class="tag neutral">ERP platforms</span><span class="tag neutral">SaaS products</span><span class="tag neutral">Web apps</span><span class="tag neutral">Product design</span><span class="tag neutral">UI/UX</span></div>
+        <h3 class="pcard-title">Fluent Conveyors</h3>
+        <p class="pcard-desc">Self-serve customer portal that moved a conveyor maker’s parts, service and maintenance business online.</p>
+      </a>
+      <a class="pcard" href="fluent-conveyors-website.html" data-tags="Websites|Product design" style="--tile:#e4e5e7">
+        <div class="pcard-media"><div class="pcard-frame is-mockup"><img class="pcard-shot" src="assets/projects/fluent-web/card.webp" alt="Fluent Conveyors website homepage on a desktop screen" loading="lazy" width="1200" height="1011" /></div></div>
+        <div class="tags"><span class="tag neutral">Websites</span><span class="tag neutral">Product design</span><span class="tag neutral">UI/UX</span></div>
+        <h3 class="pcard-title">Fluent Conveyors website</h3>
+        <p class="pcard-desc">Marketing and sales website that takes industrial buyers from choosing a conveyor to requesting a quote.</p>
+      </a>
+      <a class="pcard" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="Websites|SaaS products" style="--tile:#e9eafc">
+        <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" /></div></div>
+        <div class="tags"><span class="tag neutral">Websites</span><span class="tag neutral">SaaS products</span></div>
+        <h3 class="pcard-title">Aurora Analytics</h3>
+        <p class="pcard-desc">Blue analytics landing: hero dashboard, feature blocks, integrations and CTA.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="start" style="padding:var(--gutter) var(--gutter) clamp(48px,6vw,80px)">
+  <a class="pd-cta" href="./#contact">
+    <div class="stack"><span class="mono" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--royal-500)">Launching a product?</span><span class="pd-cta-title">Let’s build a page that turns visits into sign-ups.</span></div>
+    <span class="btn btn-primary btn-sm">Free consultation →</span>
+  </a>
+</section>
+
+</main>
+
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-brand">
+      <img src="assets/khen-wordmark-white.svg" alt="Khen" width="141" height="32" />
+      <div style="font-weight:600;font-size:16px">Khen Ltd.</div>
+      <address>Street address<br />City, Postcode<br />Country</address>
+      <a class="email" href="mailto:hello@khen.example">hello@khen.example</a>
+    </div>
+    <div class="footer-col">
+      <h2>Company</h2>
+      <a href="about.html">About us</a>
+      <a href="./#approach">How we work</a>
+      <a href="projects.html">Projects</a>
+      <a href="#">Careers</a>
+      <a href="./#contact">Contact us</a>
+      <a href="#">Privacy policy</a>
+    </div>
+    <div class="footer-col">
+      <h2>Services</h2>
+      <a href="./#build">ERP platforms</a>
+      <a href="./#build">SaaS products</a>
+      <a href="./#build">Web apps</a>
+      <a href="./#build">Mobile apps</a>
+      <a href="./#build">Websites</a>
+      <a href="./#build">Product design</a>
+      <a href="./#build">Branding</a>
+    </div>
+    <div class="footer-col">
+      <h2>Start a project</h2>
+      <p>Tell us what your product does and who uses it.</p>
+      <a class="footer-cta" href="./#contact">Free consultation →</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Khen. All rights reserved.</span>
+    <div><a href="#">LinkedIn</a><a href="#">Dribbble</a><a href="#">Behance</a></div>
+  </div>
+</footer>
+
+<script src="assets/khen-logo.js?v=1"></script>
+<script src="assets/site.js?v=202610182056"></script>
+</body>
+</html>
