@@ -372,6 +372,7 @@ a.pcard:hover .pcard-frame { transform: translateY(-6px); }
 a.pcard:hover .pcard-title { color: var(--royal-500); }
 .pcard-title { margin: 0; font-size: 22px; font-weight: 600; letter-spacing: -.025em; line-height: 1.2; transition: color .15s; }
 .pcard-desc { margin: -6px 0 0; font-size: 15px; line-height: 1.5; color: var(--n-4a); }
+.tag.tag-live { background: var(--royal-50); color: var(--royal-600); }
 .tag.soon { background: transparent; border: 1px dashed var(--n-cf); color: var(--n-66); }
 @media (prefers-reduced-motion: reduce) { a.pcard:hover .pcard-frame { transform: none; } }
 .work-card .shot.mockup { background: #eef1f8; border-color: transparent; display: flex; align-items: center; justify-content: center; padding: 8% 10%; }

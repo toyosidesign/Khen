@@ -98,7 +98,8 @@
   // ---- Projects filter ----
   const filterBar = document.querySelector('[data-filters]');
   if (filterBar) {
-    const cards = [...document.querySelectorAll('[data-tags]')];
+    // Inside a [data-filter-scope], only filter that area's cards (not "More projects" rows).
+    const cards = [...(filterBar.closest('[data-filter-scope]') || document).querySelectorAll('[data-tags]')];
     const buttons = [...filterBar.querySelectorAll('.pill-btn')];
     buttons.forEach((btn) => {
       const f = btn.dataset.filter;
