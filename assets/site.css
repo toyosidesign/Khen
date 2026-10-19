@@ -381,9 +381,3 @@ a.pcard:hover .pcard-title { color: var(--royal-500); }
 .pcard-frame.is-mockup { width: 86%; aspect-ratio: 1200 / 1011; background: transparent; border-radius: 0; box-shadow: none; overflow: visible; }
 .pcard-frame.is-mockup .pcard-shot { object-fit: contain; object-position: center; filter: drop-shadow(0 18px 24px rgba(23, 23, 23, .18)); }
 
-/* ---- Template cards: preview link + Book a demo ---- */
-.tcard .tcard-media-link { display: block; }
-.tcard .tcard-media-link:hover .pcard-frame { transform: translateY(-6px); }
-.tcard-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 6px; }
-.tcard-link { font-weight: 600; font-size: 15px; color: var(--royal-600); }
-.tcard-link:hover { color: var(--royal-500); }
