@@ -71,6 +71,8 @@
     /* Screenshot previews: the cut-off export scrolls under the fixed watermark. */
     .shot { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; background: #fff; }
     .shot img { display: block; width: 100%; height: auto; }
+    .shot.narrow { background: var(--n-100); }
+    .shot.narrow img { max-width: 390px; margin: 0 auto; background: #fff; }
     .frame.tablet .shot { border-radius: 18px; }
     .frame.mobile .shot { border-radius: 44px; }
 
@@ -200,7 +202,10 @@
     // Optional screenshot preview (?shot= desktop, ?mshot= mobile), shown in
     // place of the live page. Restricted to our own project images.
     const ownImage = (p) => p && /^assets\/projects\/[\w\/.-]+\.(webp|png|jpe?g)$/.test(p) ? p : "";
-    const shotSrc  = ownImage(params.get("shot"));
+    // A template with only a mobile export (?mshot= alone) opens on Mobile and
+    // keeps the phone-width image at its own width on the larger devices.
+    const mobileOnly = !ownImage(params.get("shot")) && !!ownImage(params.get("mshot"));
+    const shotSrc  = ownImage(params.get("shot")) || ownImage(params.get("mshot"));
     const mshotSrc = ownImage(params.get("mshot")) || shotSrc;
 
     const viewer = document.getElementById("viewer");
@@ -220,6 +225,7 @@
       viewer.remove();
       shot.hidden = false;
       shotImg.alt = name + " landing page preview";
+      if (mobileOnly) shot.classList.add("narrow");
       shotImg.addEventListener("load", () => loading.classList.add("hide"));
       showShot("desktop");
     } else {
@@ -250,6 +256,7 @@
       if (shotSrc) showShot(w);
       fitDevice();
     });
+    if (mobileOnly) document.querySelector('#devices button[data-w="mobile"]').click();
     fitDevice();
 
   </script>
