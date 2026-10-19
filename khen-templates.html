@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/site.css?v=202610182229" />
+  <link rel="stylesheet" href="assets/site.css?v=202610191406" />
   <style>
     .pd-hero { padding-top: clamp(32px, 5vw, 64px); padding-bottom: clamp(32px, 4vw, 48px); }
     .pd-crumbs { display: flex; gap: 10px; align-items: center; font-size: 14px; font-weight: 500; color: var(--n-66); }
@@ -147,7 +147,7 @@
       <div class="eyebrow" style="color:var(--royal-600)">Choose a template</div>
       <h2 class="h2" style="max-width:22ch">Pick a starting point. We make it yours.</h2>
     </div>
-    <p class="lead" style="font-size:17px;max-width:40ch">Every template can be customised for your industry, brand and content. Open a live preview to see one in full.</p>
+    <p class="lead" style="font-size:17px;max-width:40ch">Every template can be customised for your industry, brand and content. Open a live preview, or book a demo and we’ll walk you through it.</p>
   </div>
   <div class="filters" data-filters role="group" aria-label="Filter templates by industry">
       <button type="button" class="pill-btn" data-filter="All" aria-pressed="true">All<span class="count"></span></button>
@@ -162,65 +162,75 @@
       <button type="button" class="pill-btn" data-filter="Creator" aria-pressed="false">Creator<span class="count"></span></button>
   </div>
   <div class="pcard-grid" style="padding-top:clamp(28px,4vw,40px)">
-      <a class="pcard" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="SaaS" style="--tile:#f0ebfa">
-        <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/khen-analytics.jpg" alt="Khen Analytics landing page" loading="lazy" width="900" height="900" /></div></div>
+      <article class="pcard tcard" data-tags="SaaS" style="--tile:#f0ebfa">
+        <a class="tcard-media-link" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page" aria-label="Live preview of Khen Analytics"><div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/khen-analytics.jpg" alt="Khen Analytics landing page" loading="lazy" width="900" height="900" /></div></div></a>
         <div class="tags"><span class="tag neutral">SaaS</span><span class="tag tag-live">Live preview</span></div>
         <h3 class="pcard-title">Khen Analytics</h3>
         <p class="pcard-desc">Analytics landing: hero dashboard, benefits, product showcase, FAQ and free-trial sign-up.</p>
-      </a>
-      <a class="pcard" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page" data-tags="SaaS" style="--tile:#e9eafc">
-        <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" /></div></div>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Khen%20Analytics#contact">Book a demo</a><a class="tcard-link" href="preview.html?src=previews/khen-analytics.html&amp;name=Khen%20Analytics&amp;cat=SaaS%20landing%20page">Live preview →</a></div>
+      </article>
+      <article class="pcard tcard" data-tags="SaaS" style="--tile:#e9eafc">
+        <a class="tcard-media-link" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page" aria-label="Live preview of Aurora Analytics"><div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/aurora-analytics.jpg" alt="Aurora Analytics landing page" loading="lazy" width="900" height="900" /></div></div></a>
         <div class="tags"><span class="tag neutral">SaaS</span><span class="tag tag-live">Live preview</span></div>
         <h3 class="pcard-title">Aurora Analytics</h3>
         <p class="pcard-desc">Blue analytics landing: hero dashboard, feature blocks, integrations and CTA.</p>
-      </a>
-      <a class="pcard" href="preview.html?src=previews/mono-fintech.html&amp;name=Mono&amp;cat=Fintech%20landing%20page" data-tags="Fintech" style="--tile:#e5f1fc">
-        <div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/mono-fintech.jpg" alt="Mono landing page" loading="lazy" width="900" height="900" /></div></div>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Aurora%20Analytics#contact">Book a demo</a><a class="tcard-link" href="preview.html?src=previews/aurora-analytics.html&amp;name=Aurora%20Analytics&amp;cat=SaaS%20landing%20page">Live preview →</a></div>
+      </article>
+      <article class="pcard tcard" data-tags="Fintech" style="--tile:#e5f1fc">
+        <a class="tcard-media-link" href="preview.html?src=previews/mono-fintech.html&amp;name=Mono&amp;cat=Fintech%20landing%20page" aria-label="Live preview of Mono"><div class="pcard-media"><div class="pcard-frame"><img class="pcard-shot" src="assets/projects/mono-fintech.jpg" alt="Mono landing page" loading="lazy" width="900" height="900" /></div></div></a>
         <div class="tags"><span class="tag neutral">Fintech</span><span class="tag tag-live">Live preview</span></div>
         <h3 class="pcard-title">Mono</h3>
         <p class="pcard-desc">Fintech landing: virtual cards hero, logo cloud, feature grid and CTA.</p>
-      </a>
-      <article class="pcard is-soon" data-tags="E-commerce" style="--tile:#EFEFFE">
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Mono#contact">Book a demo</a><a class="tcard-link" href="preview.html?src=previews/mono-fintech.html&amp;name=Mono&amp;cat=Fintech%20landing%20page">Live preview →</a></div>
+      </article>
+      <article class="pcard tcard is-soon" data-tags="E-commerce" style="--tile:#EFEFFE">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Marketplace Storefront" style="display:block"><defs><filter id="pf0" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf0)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#7777F7"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#7777F7"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#C9C9FC"></rect><circle cx="430" cy="310" r="44" fill="#7777F7"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">E-commerce</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Marketplace Storefront</h3>
         <p class="pcard-desc">Product grid, category rail and conversion-focused checkout hero.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Marketplace%20Storefront#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Agency" style="--tile:#EDE9DF">
+      <article class="pcard tcard is-soon" data-tags="Agency" style="--tile:#EDE9DF">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Studio Agency" style="display:block"><defs><filter id="pf1" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf1)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#171717"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#171717"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#D6CFC0"></rect><circle cx="430" cy="310" r="44" fill="#171717"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">Agency</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Studio Agency</h3>
         <p class="pcard-desc">Bold hero, service cards and social proof for teams and studios.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Studio%20Agency#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Mobile app" style="--tile:#F1FBE3">
+      <article class="pcard tcard is-soon" data-tags="Mobile app" style="--tile:#F1FBE3">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Orbit App Launch" style="display:block"><defs><filter id="pf2" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf2)" transform="rotate(-6 300 320)"><rect x="190" y="80" width="220" height="460" rx="34" fill="#171717"></rect><rect x="202" y="92" width="196" height="436" rx="26" fill="#FFFFFF"></rect></g><g transform="rotate(-6 300 320)"><rect x="270" y="102" width="60" height="10" rx="5" fill="#171717"></rect><rect x="222" y="134" width="110" height="14" rx="7" fill="#171717"></rect><rect x="222" y="166" width="156" height="96" rx="14" fill="#B8F36B"></rect><rect x="238" y="186" width="70" height="8" rx="4" fill="#FFFFFF" fill-opacity=".7"></rect><rect x="238" y="206" width="100" height="16" rx="8" fill="#FFFFFF"></rect><rect x="222" y="280" width="156" height="50" rx="12" fill="#EDE9DF"></rect><circle cx="244" cy="305" r="9" fill="#D2F7A2"></circle><rect x="262" y="300" width="80" height="10" rx="5" fill="#CFCFCF"></rect><rect x="222" y="340" width="156" height="50" rx="12" fill="#EDE9DF"></rect><circle cx="244" cy="365" r="9" fill="#B8F36B"></circle><rect x="262" y="360" width="64" height="10" rx="5" fill="#CFCFCF"></rect><rect x="222" y="400" width="156" height="50" rx="12" fill="#EDE9DF"></rect><circle cx="244" cy="425" r="9" fill="#D2F7A2"></circle><rect x="262" y="420" width="90" height="10" rx="5" fill="#CFCFCF"></rect><rect x="222" y="470" width="156" height="40" rx="20" fill="#171717"></rect><rect x="268" y="486" width="64" height="8" rx="4" fill="#FFFFFF" fill-opacity=".85"></rect></g></svg></div>
         <div class="tags"><span class="tag neutral">Mobile app</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Orbit App Launch</h3>
         <p class="pcard-desc">App-store badges, feature highlights and device mockup hero.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Orbit%20App%20Launch#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Portfolio" style="--tile:#EFEFFE">
+      <article class="pcard tcard is-soon" data-tags="Portfolio" style="--tile:#EFEFFE">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Folio Personal" style="display:block"><defs><filter id="pf3" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf3)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#7777F7"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#7777F7"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#C9C9FC"></rect><circle cx="430" cy="310" r="44" fill="#7777F7"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">Portfolio</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Folio Personal</h3>
         <p class="pcard-desc">Minimal portfolio with project gallery and about section.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Folio%20Personal#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Restaurant" style="--tile:#EDE9DF">
+      <article class="pcard tcard is-soon" data-tags="Restaurant" style="--tile:#EDE9DF">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Savory Restaurant" style="display:block"><defs><filter id="pf4" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf4)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#171717"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#171717"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#D6CFC0"></rect><circle cx="430" cy="310" r="44" fill="#171717"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">Restaurant</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Savory Restaurant</h3>
         <p class="pcard-desc">Menu highlights, reservations CTA and location for local venues.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Savory%20Restaurant#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Event" style="--tile:#F1FBE3">
+      <article class="pcard tcard is-soon" data-tags="Event" style="--tile:#F1FBE3">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Summit Conference" style="display:block"><defs><filter id="pf5" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf5)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#B8F36B"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#B8F36B"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#D2F7A2"></rect><circle cx="430" cy="310" r="44" fill="#B8F36B"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">Event</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Summit Conference</h3>
         <p class="pcard-desc">Speaker lineup, schedule and ticket CTA for events.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Summit%20Conference#contact">Book a demo</a></div>
       </article>
-      <article class="pcard is-soon" data-tags="Creator" style="--tile:#EFEFFE">
+      <article class="pcard tcard is-soon" data-tags="Creator" style="--tile:#EFEFFE">
         <div class="pcard-media"><svg viewBox="0 0 600 600" width="100%" height="100%" role="img" aria-label="Preview illustration: Signal Newsletter" style="display:block"><defs><filter id="pf6" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#2A2A80" flood-opacity=".16"></feDropShadow></filter></defs><g filter="url(#pf6)"><rect x="60" y="120" width="480" height="360" rx="16" fill="#FFFFFF"></rect></g><rect x="60" y="120" width="480" height="40" rx="16" fill="#EDE9DF"></rect><rect x="60" y="144" width="480" height="16" fill="#EDE9DF"></rect><circle cx="84" cy="140" r="6" fill="#171717"></circle><circle cx="104" cy="140" r="6" fill="#8F8FF8"></circle><circle cx="124" cy="140" r="6" fill="#B8F36B"></circle><rect x="90" y="190" width="60" height="10" rx="5" fill="#7777F7"></rect><rect x="410" y="190" width="100" height="10" rx="5" fill="#E3E3E3"></rect><rect x="90" y="236" width="240" height="22" rx="11" fill="#171717"></rect><rect x="90" y="270" width="190" height="22" rx="11" fill="#171717"></rect><rect x="90" y="312" width="210" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="332" width="170" height="10" rx="5" fill="#CFCFCF"></rect><rect x="90" y="370" width="110" height="38" rx="19" fill="#7777F7"></rect><rect x="350" y="230" width="160" height="200" rx="14" fill="#C9C9FC"></rect><circle cx="430" cy="310" r="44" fill="#7777F7"></circle><rect x="380" y="380" width="100" height="10" rx="5" fill="#FFFFFF"></rect></svg></div>
         <div class="tags"><span class="tag neutral">Creator</span><span class="tag soon">Coming soon</span></div>
         <h3 class="pcard-title">Signal Newsletter</h3>
         <p class="pcard-desc">Email capture hero, testimonials and archive for creators.</p>
+        <div class="tcard-actions"><a class="btn btn-primary btn-sm" href="./?demo=Signal%20Newsletter#contact">Book a demo</a></div>
       </article>
   </div>
 </section>
@@ -465,6 +475,6 @@
 </footer>
 
 <script src="assets/khen-logo.js?v=1"></script>
-<script src="assets/site.js?v=202610182229"></script>
+<script src="assets/site.js?v=202610191406"></script>
 </body>
 </html>
