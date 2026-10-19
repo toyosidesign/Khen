@@ -120,7 +120,7 @@
 
     <div class="tb-right">
       <span class="price" id="tplPrice"></span>
-      <a class="btn btn-primary" id="demoBtn" href="./#contact">Book a demo</a>
+      <a class="btn btn-primary" id="demoBtn" href="https://calendly.com/toyosi-design" target="_blank" rel="noopener">Book a demo ↗</a>
     </div>
   </header>
 
@@ -188,7 +188,6 @@
     const price = params.get("price") || "";
 
     document.getElementById("tplPrice").textContent = price;
-    document.getElementById("demoBtn").href = "./?demo=" + encodeURIComponent(name) + "#contact";
     document.title = "Preview " + name;
 
     const viewer = document.getElementById("viewer");

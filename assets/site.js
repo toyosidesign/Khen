@@ -88,15 +88,6 @@
     });
   }
 
-  // ?demo=<template> (from the template gallery / previews) prefills a demo request.
-  const demo = new URLSearchParams(location.search).get('demo');
-  if (form && demo) {
-    selectService('Websites');
-    if (form.elements.message && !form.elements.message.value) {
-      form.elements.message.value = `I'd like to book a demo of the ${demo} template.`;
-    }
-  }
-
   // "Where are you now?" cards preselect a service and jump to the form.
   document.querySelectorAll('[data-pick]').forEach((card) => card.addEventListener('click', () => {
     if (form && form.hidden) { form.hidden = false; contact.querySelector('.sent').hidden = true; }
