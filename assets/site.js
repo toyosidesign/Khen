@@ -174,6 +174,18 @@
     update();
   });
 
+  // ---- Back to top (appears once the visitor is well down the page) ----
+  const toTop = document.createElement('button');
+  toTop.type = 'button';
+  toTop.className = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>';
+  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
+  document.body.appendChild(toTop);
+  const syncToTop = () => toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight * 1.2);
+  addEventListener('scroll', syncToTop, { passive: true });
+  syncToTop();
+
   const reveals = document.querySelectorAll('[data-reveal]');
   if (!reduceMotion && reveals.length && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js-reveal');
