@@ -30,6 +30,7 @@ const ALLOW = [
   { from: "fluent-conveyors.html", to: "fluent-conveyors.html", required: true },
   { from: "fluent-conveyors-website.html", to: "fluent-conveyors-website.html", required: true },
   { from: "khen-templates.html", to: "khen-templates.html", required: true },
+  { from: "khen-fashion-store.html", to: "khen-fashion-store.html", required: true },
   // Site-wide CSS, JS and logo for the agency pages.
   { from: "assets", to: "assets", required: true },
   { from: "preview.html", to: "preview.html", required: true },
