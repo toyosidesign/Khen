@@ -71,7 +71,7 @@ img, svg { display: block; }
 .site-header { position: sticky; top: 0; z-index: 10; background: rgba(245, 242, 235, .92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid var(--n-e3); }
 .site-header .wrap { padding-top: 18px; padding-bottom: 18px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-header .logo { display: block; }
-.site-header .logo khen-logo, .site-header .logo img { display: block; height: 28px; width: 124px; }
+.site-header .logo khen-logo, .site-header .logo img { display: block; height: 34px; width: 102px; }
 .nav { display: flex; align-items: center; gap: clamp(14px, 3vw, 36px); font-size: 15px; font-weight: 500; }
 .nav-link { transition: color .15s; }
 .nav-link:hover, .nav-link[aria-current="page"] { color: var(--royal-500); }
@@ -81,7 +81,7 @@ img, svg { display: block; }
 
 /* The design's nav does not fit a phone; collapse links into a menu there. */
 @media (max-width: 760px) {
-  .site-header .logo khen-logo, .site-header .logo img { height: 24px; width: 106px; }
+  .site-header .logo khen-logo, .site-header .logo img { height: 28px; width: 84px; }
   .nav-toggle { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--n-e3); background: #FFFFFF; cursor: pointer; color: var(--ink); }
   .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #F5F2EB; border-bottom: 1px solid var(--n-e3); flex-direction: column; padding: 8px var(--gutter) 20px; }
   .nav-links .nav-link { padding: 12px 0; font-size: 17px; }
