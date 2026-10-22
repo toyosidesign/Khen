@@ -141,6 +141,10 @@ img, svg { display: block; }
 .hero .h1 { max-width: 16ch; }
 .hero p { margin: 0; font-size: 17px; line-height: 1.55; color: var(--n-3a); max-width: 40ch; text-wrap: pretty; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+@media (max-width: 560px) {
+  .hero-actions { flex-direction: column; }
+  .hero-actions .btn { text-align: center; }
+}
 .hero-art { aspect-ratio: 900 / 780; max-height: 620px; width: 100%; }
 .pulse-eyebrow { display: flex; gap: 12px; align-items: center; }
 .pulse { width: 8px; height: 8px; background: var(--growth-700); border-radius: 50%; animation: khenPulse 2s ease-out infinite; }
