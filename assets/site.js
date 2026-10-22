@@ -9,6 +9,15 @@
   const header = document.querySelector('.site-header');
   const toggle = header && header.querySelector('.nav-toggle');
   if (toggle) {
+    // On phones the header CTA moves into the menu: a copy lives at the end of
+    // .nav-links and CSS shows one or the other by breakpoint.
+    const cta = header.querySelector('.nav > .nav-cta');
+    const links = header.querySelector('.nav-links');
+    if (cta && links) {
+      const menuCta = cta.cloneNode(true);
+      menuCta.classList.add('nav-cta-menu');
+      links.appendChild(menuCta);
+    }
     toggle.addEventListener('click', () => {
       const open = header.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
