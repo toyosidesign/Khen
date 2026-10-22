@@ -195,6 +195,22 @@ img, svg { display: block; }
 .compare-line { position: absolute; top: 0; bottom: 0; left: var(--split); width: 3px; margin-left: -1.5px; background: var(--royal-500); pointer-events: none; }
 .compare-handle { position: absolute; top: 50%; left: var(--split); transform: translate(-50%, -50%); width: 48px; height: 48px; border-radius: 50%; border: 3px solid #FFFFFF; background: var(--royal-500); color: #F5F2EB; font: inherit; font-size: 18px; font-weight: 700; cursor: ew-resize; box-shadow: 0 8px 24px -6px rgba(42, 42, 128, .5); display: flex; align-items: center; justify-content: center; }
 .compare-handle:focus-visible { outline: 3px solid var(--royal-300); outline-offset: 2px; }
+/* Phones: Before / After switch instead of the drag handle (built by assets/site.js). */
+.compare-switch { display: none; }
+.only-phone { display: none; }
+@media (max-width: 640px) { .only-wide { display: none; } .only-phone { display: inline; } }
+@media (max-width: 640px) {
+  .compare-switch { display: flex; gap: 4px; padding: 4px; margin-bottom: 14px; border: 1px solid var(--n-e3); border-radius: 999px; background: #FFFFFF; }
+  .compare-switch button { flex: 1; border: 0; background: transparent; font: inherit; font-size: 15px; font-weight: 600; padding: 11px 12px; border-radius: 999px; color: var(--n-66); cursor: pointer; transition: background .2s, color .2s; }
+  .compare-switch button[data-view="before"][aria-pressed="true"] { background: var(--ink); color: #F5F2EB; }
+  .compare-switch button[data-view="after"][aria-pressed="true"] { background: var(--royal-500); color: #F5F2EB; }
+  .compare-switch button:focus-visible { outline: 3px solid var(--royal-300); outline-offset: 2px; }
+  .compare { cursor: auto; touch-action: auto; align-items: start; overflow: hidden; transition: height .45s cubic-bezier(.3, .8, .3, 1); }
+  .compare .after { transition: clip-path .45s cubic-bezier(.3, .8, .3, 1); }
+  .compare .legacy { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare .compare-line, .compare .compare-handle, .compare .compare-label { display: none; }
+}
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) { .compare, .compare .after { transition: none; } }
 .takeaways { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 24px; margin-top: clamp(28px, 4vw, 44px); }
 .takeaway { display: flex; gap: 14px; align-items: baseline; }
 .takeaway .mono { font-size: 13px; color: var(--royal-500); }

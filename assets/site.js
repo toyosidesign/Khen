@@ -43,7 +43,35 @@
       const r = compare.getBoundingClientRect();
       set(((e.clientX - r.left) / r.width) * 100);
     };
+    // Phones: a thin drag handle over two cramped half-screens reads badly, so
+    // a Before / After switch shows one full-width pane at a time instead.
+    const phone = window.matchMedia('(max-width: 640px)');
+    const legacy = compare.querySelector('.legacy');
+    const after = compare.querySelector('.after');
+    const sw = document.createElement('div');
+    sw.className = 'compare-switch';
+    sw.setAttribute('role', 'group');
+    sw.setAttribute('aria-label', 'Show the screen before or after');
+    sw.innerHTML = '<button type="button" data-view="before">Before</button><button type="button" data-view="after">After Khen</button>';
+    (compare.closest('.browser') || compare).before(sw);
+    let view = 'before';
+    const fit = () => {
+      if (!phone.matches) { compare.style.height = ''; return; }
+      compare.style.height = (view === 'after' ? after : legacy).offsetHeight + 'px';
+    };
+    const show = (v) => {
+      view = v;
+      compare.dataset.view = v;
+      sw.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+      compare.style.setProperty('--split', v === 'after' ? '0%' : '100%');
+      fit();
+    };
+    sw.addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) show(b.dataset.view); });
+    const mode = () => { if (phone.matches) show(view); else { delete compare.dataset.view; compare.style.height = ''; set(split); } };
+    phone.addEventListener('change', mode);
+    addEventListener('resize', fit);
     compare.addEventListener('pointerdown', (e) => {
+      if (phone.matches) return;
       dragging = true;
       try { compare.setPointerCapture(e.pointerId); } catch (_) {}
       fromEvent(e);
@@ -57,6 +85,7 @@
       if (d) { e.preventDefault(); set(split + d); }
     });
     set(50);
+    mode();
   }
 
   // ---- Contact form ----
