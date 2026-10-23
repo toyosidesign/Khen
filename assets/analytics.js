@@ -2,7 +2,7 @@
 // Paste the Clarity project ID below to switch it on; while it is empty,
 // nothing loads and no banner is shown.
 (() => {
-  const CLARITY_ID = '';
+  const CLARITY_ID = 'z2d68ejzkg';
   if (!CLARITY_ID) return;
 
   const KEY = 'khen-analytics-consent'; // 'yes' | 'no'
