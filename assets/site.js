@@ -137,7 +137,8 @@
   const filterBar = document.querySelector('[data-filters]');
   if (filterBar) {
     // Inside a [data-filter-scope], only filter that area's cards (not "More projects" rows).
-    const cards = [...(filterBar.closest('[data-filter-scope]') || document).querySelectorAll('[data-tags]')];
+    // Coming-soon placeholders (.is-soon) are hidden for now and don't count.
+    const cards = [...(filterBar.closest('[data-filter-scope]') || document).querySelectorAll('[data-tags]:not(.is-soon)')];
     const buttons = [...filterBar.querySelectorAll('.pill-btn')];
     buttons.forEach((btn) => {
       const f = btn.dataset.filter;
