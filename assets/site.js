@@ -102,19 +102,61 @@
     selectService(on ? null : chip.dataset.value);
   }));
 
+  // Enquiries are emailed via FormSubmit (formsubmit.co). Put the address
+  // (or the private alias FormSubmit gives you after activation) here.
+  const FORM_TO = 'hellokhen01@gmail.com';
+
   if (form) {
     const sent = contact.querySelector('.sent');
     const error = form.querySelector('.form-error');
-    form.addEventListener('submit', (e) => {
+    const submit = form.querySelector('button[type="submit"]');
+    const submitLabel = submit ? submit.textContent : '';
+    const fail = () => {
+      error.textContent = 'Sorry, that didn’t send. Please try again, or email us directly.';
+      error.hidden = false;
+    };
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const bad = ['name', 'email', 'company']
         .map((n) => form.elements[n])
         .find((el) => !el.value.trim() || !el.checkValidity());
-      if (bad) { error.hidden = false; bad.focus(); return; }
+      if (bad) {
+        error.textContent = 'Please add your name, a valid work email and your company.';
+        error.hidden = false; bad.focus(); return;
+      }
       error.hidden = true;
-      // No backend yet: wire this to a form/CRM endpoint before launch.
-      form.hidden = true;
-      sent.hidden = false;
+      if (form.elements._honey && form.elements._honey.value) return; // bot
+      if (!FORM_TO) { fail(); return; }
+      const v = (n) => (form.elements[n] ? form.elements[n].value.trim() : '');
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(FORM_TO), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({
+            _subject: 'New enquiry from ' + (v('name') || 'the Khen website'),
+            _template: 'table',
+            _captcha: 'false',
+            _replyto: v('email'),
+            Name: v('name'),
+            Email: v('email'),
+            Company: v('company'),
+            'Needs help with': v('service') || 'Not specified',
+            Message: v('message') || '(none)',
+            Page: location.href,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || String(data.success) === 'false') throw new Error(data.message || res.status);
+        form.hidden = true;
+        sent.hidden = false;
+      } catch (_) {
+        fail();
+      } finally {
+        submit.disabled = false;
+        submit.textContent = submitLabel;
+      }
     });
     const again = contact.querySelector('[data-reset]');
     if (again) again.addEventListener('click', () => {
