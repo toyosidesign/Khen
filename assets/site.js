@@ -93,13 +93,21 @@
   const form = contact && contact.querySelector('form');
   const chips = form ? [...form.querySelectorAll('.chips .pill-btn')] : [];
   const serviceInput = form && form.querySelector('input[name="service"]');
+  // Several services can be picked; the hidden input carries them comma-separated.
+  const syncService = () => {
+    if (serviceInput) serviceInput.value = chips.filter((c) => c.getAttribute('aria-pressed') === 'true').map((c) => c.dataset.value).join(', ');
+  };
+  // null clears every chip; a value turns that chip on (keeping the others).
   const selectService = (value) => {
-    chips.forEach((c) => c.setAttribute('aria-pressed', String(c.dataset.value === value)));
-    if (serviceInput) serviceInput.value = value || '';
+    chips.forEach((c) => {
+      if (value === null) c.setAttribute('aria-pressed', 'false');
+      else if (c.dataset.value === value) c.setAttribute('aria-pressed', 'true');
+    });
+    syncService();
   };
   chips.forEach((chip) => chip.addEventListener('click', () => {
-    const on = chip.getAttribute('aria-pressed') === 'true';
-    selectService(on ? null : chip.dataset.value);
+    chip.setAttribute('aria-pressed', String(chip.getAttribute('aria-pressed') !== 'true'));
+    syncService();
   }));
 
   // Enquiries are emailed to the inbox. Web3Forms (web3forms.com) is used when
