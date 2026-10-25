@@ -102,8 +102,9 @@
     selectService(on ? null : chip.dataset.value);
   }));
 
-  // Enquiries are emailed via FormSubmit (formsubmit.co). Put the address
-  // (or the private alias FormSubmit gives you after activation) here.
+  // Enquiries are emailed to the inbox. Web3Forms (web3forms.com) is used when
+  // its access key is set; otherwise FormSubmit (formsubmit.co) to FORM_TO.
+  const WEB3FORMS_KEY = 'a47a02a0-cbb5-4d18-badd-0c064dc6d5c4';
   const FORM_TO = 'hellokhen01@gmail.com';
 
   if (form) {
@@ -126,26 +127,27 @@
       }
       error.hidden = true;
       if (form.elements._honey && form.elements._honey.value) return; // bot
-      if (!FORM_TO) { fail(); return; }
+      if (!WEB3FORMS_KEY && !FORM_TO) { fail(); return; }
       const v = (n) => (form.elements[n] ? form.elements[n].value.trim() : '');
+      const subject = 'New enquiry from ' + (v('name') || 'the Khen website');
+      const fields = {
+        Name: v('name'),
+        Email: v('email'),
+        Company: v('company'),
+        'Needs help with': v('service') || 'Not specified',
+        Message: v('message') || '(none)',
+        Page: location.href,
+      };
+      const [url, payload] = WEB3FORMS_KEY
+        ? ['https://api.web3forms.com/submit', { access_key: WEB3FORMS_KEY, subject, from_name: 'Khen website', replyto: v('email'), ...fields }]
+        : ['https://formsubmit.co/ajax/' + encodeURIComponent(FORM_TO), { _subject: subject, _template: 'table', _captcha: 'false', _replyto: v('email'), ...fields }];
       submit.disabled = true;
       submit.textContent = 'Sending…';
       try {
-        const res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(FORM_TO), {
+        const res = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            _subject: 'New enquiry from ' + (v('name') || 'the Khen website'),
-            _template: 'table',
-            _captcha: 'false',
-            _replyto: v('email'),
-            Name: v('name'),
-            Email: v('email'),
-            Company: v('company'),
-            'Needs help with': v('service') || 'Not specified',
-            Message: v('message') || '(none)',
-            Page: location.href,
-          }),
+          body: JSON.stringify(payload),
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok || String(data.success) === 'false') throw new Error(data.message || res.status);
